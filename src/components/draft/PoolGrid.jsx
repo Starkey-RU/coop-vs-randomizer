@@ -28,36 +28,41 @@ const getGridCols = (cat) => {
         return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3';
     }
     if (cat === 'booster') {
-        return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3';
+        return 'grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5';
     }
     if (cat === 'stratagems') {
-        return 'grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2';
+        return 'grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 gap-2';
     }
-    return 'grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2';
+    return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5';
 };
 
 const groupItemsBySubcategory = (itemList, cat) => {
     if (cat === 'primary' || cat === 'secondary') {
         const groups = {
-            'Assault Rifles & Snipers / Штурмовые и Снайперские': [],
-            'Shotguns / Дробовики': [],
-            'Energy & Plasma / Энергетическое': [],
-            'Pistols, SMGs & Explosives / Пистолеты и ПП': [],
-            'Разное / Специальное': []
+            'Submachine Guns & Pistols': [],
+            'Assault Rifles & Marksman': [],
+            'Shotguns': [],
+            'Energy & Plasma': [],
+            'Explosive & Special': [],
+            'Other': []
         };
 
         itemList.forEach(item => {
             const tags = item.tags || [];
-            if (tags.includes('AssaultRifle') || tags.includes('Sniper') || tags.includes('MarksmanRifle')) {
-                groups['Assault Rifles & Snipers / Штурмовые и Снайперские'].push(item);
-            } else if (tags.includes('Shotgun')) {
-                groups['Shotguns / Дробовики'].push(item);
-            } else if (tags.includes('Energy')) {
-                groups['Energy & Plasma / Энергетическое'].push(item);
-            } else if (tags.some(t => ['Pistol', 'Sidearm', 'SMG', 'Explosive'].includes(t))) {
-                groups['Pistols, SMGs & Explosives / Пистолеты и ПП'].push(item);
+            const tagLower = tags.map(t => typeof t === 'string' ? t.toLowerCase() : '');
+            
+            if (tagLower.some(t => ['submachinegun', 'smg', 'pistol', 'sidearm', 'onehanded'].includes(t)) || ['smg37defender', 'mp98knight', 'smg72pummeler', 'smg32reprimand', 'sta11smg', 'm7s'].includes(item.id)) {
+                groups['Submachine Guns & Pistols'].push(item);
+            } else if (tagLower.some(t => ['assaultrifle', 'sniper', 'marksmanrifle'].includes(t))) {
+                groups['Assault Rifles & Marksman'].push(item);
+            } else if (tagLower.includes('shotgun')) {
+                groups['Shotguns'].push(item);
+            } else if (tagLower.some(t => ['energy', 'plasma', 'laser', 'arc'].includes(t))) {
+                groups['Energy & Plasma'].push(item);
+            } else if (tagLower.includes('explosive') || ['jar5dominator', 'r36eruptor', 'cb9explodingcrossbow'].includes(item.id)) {
+                groups['Explosive & Special'].push(item);
             } else {
-                groups['Разное / Специальное'].push(item);
+                groups['Other'].push(item);
             }
         });
 
@@ -66,23 +71,25 @@ const groupItemsBySubcategory = (itemList, cat) => {
 
     if (cat === 'stratagems') {
         const groups = {
-            'Orbital Strikes / Орбитальные пушки': [],
-            'Eagle Airstrikes / Авиаудары Eagle': [],
-            'Defensive & Sentries / Защита и Турели': [],
-            'Supply, Backpacks & Vehicles / Снабжение и Техника': []
+            'Offensive Stratagems': [],
+            'Defensive Stratagems': [],
+            'Utility & Supply': []
         };
 
         itemList.forEach(item => {
-            const slotType = item.slotType || '';
-            const tags = item.tags || [];
-            if (slotType === 'Orbital' || tags.includes('orbital')) {
-                groups['Orbital Strikes / Орбитальные пушки'].push(item);
-            } else if (slotType === 'Eagle' || tags.includes('eagle')) {
-                groups['Eagle Airstrikes / Авиаудары Eagle'].push(item);
-            } else if (['Defensive', 'Sentries'].includes(slotType) || tags.some(t => ['turret', 'sentry'].includes(t))) {
-                groups['Defensive & Sentries / Защита и Турели'].push(item);
+            const tags = (item.tags || []).map(t => typeof t === 'string' ? t.toLowerCase() : '');
+            const slotType = (item.slotType || '').toLowerCase();
+            const name = (item.name || '').toLowerCase();
+
+            const isOffensive = slotType === 'orbital' || slotType === 'eagle' || tags.includes('orbital') || tags.includes('eagle') || name.includes('orbital') || name.includes('eagle');
+            const isDefensive = ['defensive', 'sentries', 'sentry', 'emplacement'].includes(slotType) || tags.some(t => ['turret', 'sentry', 'emplacement', 'mine'].includes(t)) || name.includes('sentry') || name.includes('emplacement') || name.includes('mine');
+
+            if (isOffensive) {
+                groups['Offensive Stratagems'].push(item);
+            } else if (isDefensive) {
+                groups['Defensive Stratagems'].push(item);
             } else {
-                groups['Supply, Backpacks & Vehicles / Снабжение и Техника'].push(item);
+                groups['Utility & Supply'].push(item);
             }
         });
 
@@ -98,6 +105,13 @@ export default function PoolGrid({ category, poolSection }) {
     const [hasHover, setHasHover] = useState(true);
     const [activeTooltipId, setActiveTooltipId] = useState(null);
     const [toastMessage, setToastMessage] = useState(null);
+    const [showDebugNames, setShowDebugNames] = useState(() => localStorage.getItem('hd2_debug_names') === 'true');
+
+    const toggleDebugNames = () => {
+        const next = !showDebugNames;
+        setShowDebugNames(next);
+        localStorage.setItem('hd2_debug_names', next ? 'true' : 'false');
+    };
 
     useEffect(() => {
         setHasHover(window.matchMedia('(hover: hover)').matches);
@@ -178,12 +192,21 @@ export default function PoolGrid({ category, poolSection }) {
                 </div>
             )}
 
-            <h3 className="flex items-center gap-2 text-hcMuted font-bold uppercase tracking-widest text-sm sm:text-base border-b border-hcBorder pb-2 mb-3 sm:mb-4">
-                {icons[category]} {category}
+            <h3 className="flex items-center justify-between text-hcMuted font-bold uppercase tracking-widest text-sm sm:text-base border-b border-hcBorder pb-2 mb-3 sm:mb-4">
+                <span className="flex items-center gap-2">
+                    {icons[category]} {category}
+                </span>
+                <button
+                    onClick={toggleDebugNames}
+                    className={`theme-button px-2 py-0.5 text-[10px] font-bold rounded transition-colors ${showDebugNames ? 'active theme-highlight text-hcGreen' : 'text-gray-400 opacity-70 hover:opacity-100'}`}
+                    title="Переключить отображение технических имен и файлов для отладки"
+                >
+                    Dev Names {showDebugNames ? 'ON' : 'OFF'}
+                </button>
             </h3>
             
             {category === 'armor' ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
                     {items.map(item => {
                         const isMine = item.claimedBy === uid;
                         const isTaken = item.claimedBy && !isMine;
@@ -194,7 +217,7 @@ export default function PoolGrid({ category, poolSection }) {
                         const isFree = !code || code === 'none' || item.isBase;
                         const isLocked = !isFree && !isTaken && !myWarbonds.includes(code) && !myWarbonds.includes(item.id);
 
-                        let borderClass = 'border-hcBorder hover:border-hcAccent cursor-pointer';
+                        let borderClass = 'border-[var(--steam-border-dark)] hover:border-[var(--steam-border-light)] cursor-pointer';
                         let opacityClass = 'opacity-100';
 
                         if (isMine) {
@@ -203,39 +226,49 @@ export default function PoolGrid({ category, poolSection }) {
                             borderClass = 'border-red-900/60 bg-red-900/10 cursor-not-allowed';
                             opacityClass = 'opacity-40 grayscale';
                         } else if (isLocked) {
-                            borderClass = 'border-red-900/80 cursor-not-allowed';
-                            opacityClass = 'opacity-80';
+                            borderClass = 'border-red-900/40 bg-black/40 cursor-not-allowed';
+                            opacityClass = 'opacity-60';
                         }
 
                         return (
                             <div
                                 key={item.id}
                                 onClick={(e) => handleItemClick(e, item)}
-                                className={`relative rounded-lg transition-all p-2 flex items-center gap-3 bg-hcDark/80 h-full border overflow-hidden min-h-[72px] ${borderClass} ${opacityClass}`}
+                                className={`relative h-44 sm:h-48 rounded flex flex-col justify-between transition-all group overflow-visible steam-inset-box bg-hcPanel ${borderClass} ${opacityClass}`}
                             >
-                                <div className="w-12 h-16 shrink-0 relative flex items-center justify-center bg-black/40 rounded border border-hcBorder/40 p-1">
+                                <div className="flex-1 w-full relative min-h-0 bg-hcDark/30 p-1 flex items-center justify-center overflow-hidden">
+                                    {showDebugNames && (
+                                        <div className="absolute top-0 left-0 right-0 z-30 bg-yellow-400 text-black font-mono text-[9px] font-bold px-1 py-0.5 text-center truncate border-b border-black shadow">
+                                            {item.id} | {code || 'base'}
+                                        </div>
+                                    )}
                                     <img 
                                         src={`/armor/${item.imageURL}`} 
                                         alt={item.name} 
-                                        className="max-h-full max-w-full object-contain filter drop-shadow" 
+                                        className="w-full h-full object-contain filter drop-shadow-md z-0 transform scale-[1.05] group-hover:scale-110 transition-transform" 
                                         onError={(e) => { e.target.style.opacity = '0.3'; }}
                                     />
+                                    {/* Steam Badges Overlay */}
+                                    <div className="absolute top-1 left-1 z-10">
+                                        <ArmorDisplay item={item} compact={true} showImage={false} showTooltip={false} />
+                                    </div>
                                 </div>
                                 
-                                <div className="flex-1 min-w-0 flex flex-col justify-center gap-1">
-                                    <div className="font-bold text-xs text-slate-100 truncate">{item.name}</div>
-                                    <ArmorDisplay item={item} compact={true} showImage={false} showTooltip={false} />
+                                <div className="shrink-0 px-1 py-1.5 bg-black/60 border-t border-[var(--steam-border-dark)] z-10">
+                                    <span className="text-[10px] sm:text-[9px] block text-center text-slate-100 uppercase font-bold leading-tight truncate px-0.5 tracking-wide">
+                                        {item.name}
+                                    </span>
                                 </div>
-                                
+
                                 {isTaken && (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-lg z-20 pointer-events-none">
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded z-20 pointer-events-none">
                                         <ShieldAlert className="text-hcRed animate-pulse" size={28} />
                                     </div>
                                 )}
 
                                 {isLocked && (
                                     <div 
-                                        className="absolute inset-0 rounded-lg z-20 pointer-events-none border border-red-900/60"
+                                        className="absolute inset-0 rounded z-20 pointer-events-none border border-red-900/60"
                                         style={{
                                             backgroundImage: 'repeating-linear-gradient(45deg, rgba(220,38,38,0.2), rgba(220,38,38,0.2) 10px, rgba(0,0,0,0.75) 10px, rgba(0,0,0,0.75) 20px)'
                                         }}
@@ -244,7 +277,7 @@ export default function PoolGrid({ category, poolSection }) {
                                 
                                 {/* Mobile Action Overlay for Armor */}
                                 {showTooltip && !isTaken && (
-                                     <div className="absolute inset-0 z-[60] bg-black/90 rounded-lg flex items-center justify-center p-2 backdrop-blur-sm border border-hcAccent animate-in fade-in zoom-in duration-200">
+                                     <div className="absolute inset-0 z-[60] bg-black/90 rounded flex items-center justify-center p-2 backdrop-blur-sm border border-hcAccent animate-in fade-in zoom-in duration-200">
                                         <button 
                                             onClick={(e) => { e.stopPropagation(); performAction(item); setActiveTooltipId(null); }}
                                             className={`min-h-[44px] w-full max-w-[200px] flex items-center justify-center rounded text-white font-bold uppercase tracking-widest text-xs border transition-colors ${
@@ -307,6 +340,11 @@ export default function PoolGrid({ category, poolSection }) {
                                             onClick={(e) => handleItemClick(e, item)}
                                             className={`aspect-square p-2 border rounded flex flex-col items-center justify-center relative group transition-all min-h-[44px] overflow-hidden ${borderClass} ${opacityClass}`}
                                         >
+                                            {showDebugNames && (
+                                                <div className="absolute top-0 left-0 right-0 z-30 bg-yellow-400 text-black font-mono text-[8px] font-bold px-0.5 py-0.5 text-center truncate border-b border-black leading-none">
+                                                    {item.id}
+                                                </div>
+                                            )}
                                             <img src={imagePath} alt={item.name} className="w-full h-full object-contain filter drop-shadow-md pointer-events-none" onError={(e) => e.target.src = ''} />
                                             
                                             {isSuperstore && (

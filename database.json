@@ -8,7 +8,7 @@
         "AssaultRifle",
         "ap2"
       ],
-      "warbondCode": "none"
+      "warbondCode": "warbond1"
     },
     {
       "id": "ar23pliberatorpenetrator",
@@ -18,7 +18,7 @@
         "AssaultRifle",
         "ap3"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "ar23cliberatorconcussive",
@@ -134,7 +134,7 @@
         "ap2",
         "onehanded"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "smg72pummeler",
@@ -152,7 +152,7 @@
       "name": "Reprimand",
       "imageURL": "SMG-32_Reprimand_Primary_Render.webp",
       "tags": [
-        "Submachinegun",
+        "SubmachineGun",
         "ap3"
       ],
       "warbondCode": "warbond11"
@@ -162,7 +162,7 @@
       "name": "StA-11 SMG",
       "imageURL": "StA-11_SMG_Primary_Render.webp",
       "tags": [
-        "Submachinegun",
+        "SubmachineGun",
         "ap2",
         "onehanded"
       ],
@@ -209,7 +209,7 @@
         "Shotgun",
         "ap2"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "sg451cookout",
@@ -230,7 +230,7 @@
         "Shotgun",
         "ap3"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "sg225breaker",
@@ -240,7 +240,7 @@
         "Shotgun",
         "ap2"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "sg225iebreakerincendiary",
@@ -293,7 +293,7 @@
         "MarksmanRifle",
         "ap2"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "r63csdiligencecountersniper",
@@ -357,7 +357,7 @@
         "ap2",
         "laser"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "las16sickle",
@@ -378,7 +378,7 @@
         "ap3",
         "plasma"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "plas101purifier",
@@ -556,7 +556,7 @@
         "pistol",
         "ap2"
       ],
-      "warbondCode": "none"
+      "warbondCode": "warbond1"
     },
     {
       "id": "cqc5combathatchet",
@@ -621,7 +621,7 @@
         "pistol",
         "ap2"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "p113verdict",
@@ -729,6 +729,8 @@
       "name": "Talon",
       "imageURL": "las-58_talon_secondary_render.webp",
       "tags": [
+        "Energy",
+        "Laser",
         "ap3"
       ],
       "warbondCode": "warbond14"
@@ -804,7 +806,7 @@
         "ap3",
         "explosive"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "g16impactgrenade",
@@ -814,7 +816,7 @@
         "ap3",
         "explosive"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "g3smokegrenade",
@@ -823,7 +825,7 @@
       "tags": [
         "smoke"
       ],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "g10incendiarygrenade",
@@ -834,7 +836,7 @@
         "explosive",
         "fire"
       ],
-      "warbondCode": "warbond4"
+      "warbondCode": "warbond2"
     },
     {
       "id": "g23stungrenade",
@@ -843,7 +845,7 @@
       "tags": [
         "stun"
       ],
-      "warbondCode": "warbond5"
+      "warbondCode": "warbond3"
     },
     {
       "id": "g123thermitegrenade",
@@ -852,7 +854,7 @@
       "tags": [
         "at"
       ],
-      "warbondCode": "warbond6"
+      "warbondCode": "warbond4"
     },
     {
       "id": "g13incendiaryimpact",
@@ -863,7 +865,7 @@
         "ap3",
         "explosive"
       ],
-      "warbondCode": "warbond7"
+      "warbondCode": "warbond5"
     },
     {
       "id": "k2throwingknife",
@@ -872,7 +874,7 @@
       "tags": [
         "ap3"
       ],
-      "warbondCode": "warbond8"
+      "warbondCode": "warbond6"
     },
     {
       "id": "g50seeker",
@@ -914,7 +916,7 @@
         "gas",
         "explosive"
       ],
-      "warbondCode": "warbond10"
+      "warbondCode": "warbond8"
     },
     {
       "id": "g109urchin",
@@ -1030,14 +1032,14 @@
       "name": "Hellpod Space Optimization",
       "imageURL": "hellpodspaceoptimization.webp",
       "tags": [],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "increasedreinforcementbudget",
       "name": "Increased Reinforcement Budget",
       "imageURL": "increasedreinforcementbudget.webp",
       "tags": [],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "localizationconfusion",
@@ -1051,28 +1053,28 @@
       "name": "Muscle Enhancement",
       "imageURL": "muscleenhancement.webp",
       "tags": [],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "staminaenhancement",
       "name": "Stamina Enhancement",
       "imageURL": "staminaenhancement.webp",
       "tags": [],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "uavrecon",
       "name": "UAV Recon",
       "imageURL": "uavrecon.webp",
       "tags": [],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "vitalityenhancement",
       "name": "Vitality Enhancement",
       "imageURL": "vitalityenhancement.webp",
       "tags": [],
-      "warbondCode": "warbond3"
+      "warbondCode": "warbond1"
     },
     {
       "id": "firebombhellpods",
@@ -2134,7 +2136,7 @@
         "Medium"
       ],
       "imageURL": "cpg48sapper.webp",
-      "warbondCode": "warbond23"
+      "warbondCode": "warbond16"
     },
     {
       "id": "cph26commandant",
@@ -2144,7 +2146,7 @@
         "Light"
       ],
       "imageURL": "cph26commandant.webp",
-      "warbondCode": "warbond23"
+      "warbondCode": "warbond16"
     },
     {
       "id": "cpr80bulwark",
@@ -2230,7 +2232,8 @@
         "Weapons",
         "gas",
         "ap4"
-      ]
+      ],
+      "warbondCode": "warbond8"
     },
     {
       "id": "flam40flamethrower",
@@ -2242,7 +2245,8 @@
         "Weapons",
         "fire",
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "speargun",
@@ -2254,7 +2258,8 @@
         "Weapons",
         "gas",
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "las98lasercannon",
@@ -2266,7 +2271,8 @@
         "Weapons",
         "laser",
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "m105stalwart",
@@ -2278,7 +2284,8 @@
         "Weapons",
         "bullets",
         "ap2"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "mg43machinegun",
@@ -2290,7 +2297,8 @@
         "Weapons",
         "bullets",
         "ap3"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "mg206heavymachinegun",
@@ -2302,7 +2310,8 @@
         "Weapons",
         "bullets",
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "arc3arcthrower",
@@ -2313,7 +2322,8 @@
       "tags": [
         "Weapons",
         "arc"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "gl21grenadelauncher",
@@ -2325,7 +2335,8 @@
         "Weapons",
         "explosive",
         "ap3"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "gl52deescalator",
@@ -2336,7 +2347,8 @@
       "tags": [
         "Weapons",
         "arc"
-      ]
+      ],
+      "warbondCode": "warbond10"
     },
     {
       "id": "apw1antimaterielrifle",
@@ -2348,7 +2360,8 @@
         "Weapons",
         "bullets",
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "rs422railgun",
@@ -2359,7 +2372,8 @@
       "tags": [
         "Weapons",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "las99quasarcannon",
@@ -2370,7 +2384,8 @@
       "tags": [
         "Weapons",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "epoch",
@@ -2382,7 +2397,8 @@
         "Weapons",
         "plasma",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eat17expendableantitank",
@@ -2394,7 +2410,8 @@
         "Weapons",
         "expendable",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "mls4xcommandorocketlauncher",
@@ -2406,7 +2423,8 @@
         "Weapons",
         "expendable",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eat700expendablenapalm",
@@ -2418,7 +2436,8 @@
         "Weapons",
         "expendable",
         "fire"
-      ]
+      ],
+      "warbondCode": "warbond7"
     },
     {
       "id": "solosilo",
@@ -2430,7 +2449,8 @@
         "Weapons",
         "expendable",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "onetrueflag",
@@ -2441,7 +2461,8 @@
       "tags": [
         "Weapons",
         "melee"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "defoliationtool",
@@ -2452,7 +2473,8 @@
       "tags": [
         "Weapons",
         "melee"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "maxigun",
@@ -2465,7 +2487,8 @@
         "Backpacks",
         "bullets",
         "ap3"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "ac8autocannon",
@@ -2477,7 +2500,8 @@
         "Weapons",
         "Backpacks",
         "explosive"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "wasplauncher",
@@ -2489,7 +2513,8 @@
         "Weapons",
         "Backpacks",
         "explosive"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "rl77airburstrocketlauncher",
@@ -2501,7 +2526,8 @@
         "Weapons",
         "Backpacks",
         "explosive"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "gr8recoillessrifle",
@@ -2514,7 +2540,8 @@
         "Backpacks",
         "explosive",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "faf14spear",
@@ -2527,7 +2554,8 @@
         "Backpacks",
         "explosive",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "c4pack",
@@ -2540,7 +2568,8 @@
         "Backpacks",
         "explosive",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "guarddogflames",
@@ -2551,7 +2580,8 @@
       "tags": [
         "Backpacks",
         "fire"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "axtx13guarddogdogbreath",
@@ -2562,7 +2592,8 @@
       "tags": [
         "Backpacks",
         "gas"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "axlas5guarddogrover",
@@ -2574,7 +2605,8 @@
         "Backpacks",
         "laser",
         "ap2"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "ad334guarddog",
@@ -2586,7 +2618,8 @@
         "Backpacks",
         "bullets",
         "ap3"
-      ]
+      ],
+      "warbondCode": "warbond8"
     },
     {
       "id": "guarddogarc",
@@ -2597,7 +2630,8 @@
       "tags": [
         "Backpacks",
         "arc"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "lift850jumppack",
@@ -2608,7 +2642,8 @@
       "tags": [
         "Backpacks",
         "movement"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "lift860hoverpack",
@@ -2619,7 +2654,8 @@
       "tags": [
         "Backpacks",
         "movement"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "warppack",
@@ -2630,7 +2666,8 @@
       "tags": [
         "Backpacks",
         "movement"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "b1supplypack",
@@ -2640,7 +2677,8 @@
       "imageURL": "Supply Pack.svg",
       "tags": [
         "Backpacks"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "sh51directionalshield",
@@ -2650,7 +2688,8 @@
       "imageURL": "Directional Shield.svg",
       "tags": [
         "Backpacks"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "sh20shieldgeneratorpack",
@@ -2660,7 +2699,8 @@
       "imageURL": "Shield Generator Pack.svg",
       "tags": [
         "Backpacks"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "sh20ballisticshieldbackpack",
@@ -2670,7 +2710,8 @@
       "imageURL": "Ballistic Shield Backpack.svg",
       "tags": [
         "Backpacks"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "portablehellbomb",
@@ -2682,7 +2723,8 @@
         "Backpacks",
         "at",
         "explosive"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "fastreconvehicle",
@@ -2694,7 +2736,8 @@
         "Vehicles",
         "movement",
         "frv"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "exo45patriotexosuit",
@@ -2707,7 +2750,8 @@
         "at",
         "exosuit",
         "expendable"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "exo49emancipatorexosuit",
@@ -2720,7 +2764,8 @@
         "at",
         "exosuit",
         "expendable"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eaglestrafingrun",
@@ -2730,7 +2775,8 @@
       "imageURL": "Eagle Strafing Run.svg",
       "tags": [
         "Eagle"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eagleairstrike",
@@ -2740,7 +2786,8 @@
       "imageURL": "Eagle Airstrike.svg",
       "tags": [
         "Eagle"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eagleclusterbomb",
@@ -2750,7 +2797,8 @@
       "imageURL": "Eagle Cluster Bomb.svg",
       "tags": [
         "Eagle"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eaglenapalmstrike",
@@ -2761,7 +2809,8 @@
       "tags": [
         "Eagle",
         "fire"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eaglesmokestrike",
@@ -2772,7 +2821,8 @@
       "tags": [
         "Eagle",
         "smoke"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eagle110mmrocketpods",
@@ -2783,7 +2833,8 @@
       "tags": [
         "Eagle",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eagle500kgbomb",
@@ -2794,7 +2845,8 @@
       "tags": [
         "Eagle",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalprecisionstrike",
@@ -2805,7 +2857,8 @@
       "tags": [
         "Orbital",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalgasstrike",
@@ -2816,7 +2869,8 @@
       "tags": [
         "Orbital",
         "gas"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalemsstrike",
@@ -2827,7 +2881,8 @@
       "tags": [
         "Orbital",
         "stun"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalsmokestrike",
@@ -2838,7 +2893,8 @@
       "tags": [
         "Orbital",
         "smoke"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalairburststrike",
@@ -2848,7 +2904,8 @@
       "imageURL": "Orbital Airburst Strike.svg",
       "tags": [
         "Orbital"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalrailcannonstrike",
@@ -2859,7 +2916,8 @@
       "tags": [
         "Orbital",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitallaser",
@@ -2871,7 +2929,8 @@
         "Orbital",
         "laser",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalgatlingbarrage",
@@ -2882,7 +2941,8 @@
       "tags": [
         "Orbital",
         "bullets"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbital120mmhebarrage",
@@ -2892,7 +2952,8 @@
       "imageURL": "Orbital 120MM HE Barrage.svg",
       "tags": [
         "Orbital"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbital380mmhebarrage",
@@ -2902,7 +2963,8 @@
       "imageURL": "Orbital 380MM HE Barrage.svg",
       "tags": [
         "Orbital"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalwalkingbarrage",
@@ -2912,7 +2974,8 @@
       "imageURL": "Orbital Walking Barrage.svg",
       "tags": [
         "Orbital"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "orbitalnapalmbarrage",
@@ -2923,7 +2986,8 @@
       "tags": [
         "Orbital",
         "fire"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "teslatower",
@@ -2934,7 +2998,8 @@
       "tags": [
         "Sentry",
         "arc"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "mortarsentry",
@@ -2944,7 +3009,8 @@
       "imageURL": "Mortar Sentry.svg",
       "tags": [
         "Sentry"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "emsmortarsentry",
@@ -2955,7 +3021,8 @@
       "tags": [
         "Sentry",
         "stun"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "machinegunsentry",
@@ -2967,7 +3034,8 @@
         "Sentry",
         "bullets",
         "ap3"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "gatlingsentry",
@@ -2979,7 +3047,8 @@
         "Sentry",
         "bullets",
         "ap3"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "aflam40flamesentry",
@@ -2990,7 +3059,8 @@
       "tags": [
         "Sentry",
         "fire"
-      ]
+      ],
+      "warbondCode": "warbond7"
     },
     {
       "id": "lasersentry",
@@ -3001,7 +3071,8 @@
       "tags": [
         "Sentry",
         "laser"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "autocannonsentry",
@@ -3013,7 +3084,8 @@
         "Sentry",
         "explosive",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "rocketsentry",
@@ -3025,7 +3097,8 @@
         "Sentry",
         "explosive",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "shieldgeneratorrelay",
@@ -3035,7 +3108,8 @@
       "imageURL": "Shield Generator Relay.svg",
       "tags": [
         "Emplacement"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "hmgemplacement",
@@ -3048,7 +3122,8 @@
         "bullets",
         null,
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "eat12antitankemplacement",
@@ -3060,7 +3135,8 @@
         "Emplacement",
         "explosive",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "grenadierbattlement",
@@ -3072,7 +3148,8 @@
         "Emplacement",
         "explosive",
         "ap3"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "antitankmines",
@@ -3083,7 +3160,8 @@
       "tags": [
         "Emplacement",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "antipersonnelminefield",
@@ -3093,7 +3171,8 @@
       "imageURL": "Anti-Personnel Minefield.svg",
       "tags": [
         "Emplacement"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "gasmines",
@@ -3104,7 +3183,8 @@
       "tags": [
         "Emplacement",
         "gas"
-      ]
+      ],
+      "warbondCode": "warbond8"
     },
     {
       "id": "incendiarymines",
@@ -3115,7 +3195,8 @@
       "tags": [
         "Emplacement",
         "fire"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "breachinghammer",
@@ -3127,7 +3208,8 @@
         "Weapons",
         "melee",
         "at"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "leveller",
@@ -3140,7 +3222,8 @@
         "at",
         "expendable",
         "explosive"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "beltfedgrenadelauncher",
@@ -3155,7 +3238,8 @@
         "explosive",
         null,
         "ap4"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "bastiontank",
@@ -3165,7 +3249,8 @@
       "imageURL": "Bastion MK XVI.svg",
       "tags": [
         "Vehicles"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "gasmortarsentry",
@@ -3176,7 +3261,8 @@
       "tags": [
         "Sentry",
         "gas"
-      ]
+      ],
+      "warbondCode": "warbond8"
     },
     {
       "id": "cremator",
@@ -3189,7 +3275,8 @@
         "Backpacks",
         "fire",
         "at"
-      ]
+      ],
+      "warbondCode": "warbond7"
     },
     {
       "id": "exo51lumbererexosuit",
@@ -3203,7 +3290,8 @@
         "at",
         "expendable",
         "exosuit"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "exo55breakthroughexosuit",
@@ -3216,7 +3304,8 @@
         "expendable",
         "at",
         "exosuit"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "mgx42bulletstorm",
@@ -3229,7 +3318,8 @@
         "expendable",
         "bullets",
         "ap2"
-      ]
+      ],
+      "warbondCode": "none"
     },
     {
       "id": "supplyfrv",
@@ -3241,7 +3331,8 @@
         "Vehicles",
         "movement",
         "frv"
-      ]
+      ],
+      "warbondCode": "none"
     }
   ]
 }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { WARBONDS, LEGENDARY_WARBONDS, getDefaultWarbonds } from '../../utils/warbondRegistry';
 import SuperstoreSubmenu from './SuperstoreSubmenu';
-import { Save, X, ChevronDown, ChevronRight, ShoppingCart } from 'lucide-react';
+import { Save, X, ChevronDown, ChevronRight, ShoppingCart, ShieldCheck, Award } from 'lucide-react';
 
 export default function WarbondSettings({ onClose }) {
     const [owned, setOwned] = useState([]);
+    const [standardOpen, setStandardOpen] = useState(true);
+    const [premiumOpen, setPremiumOpen] = useState(false);
     const [storeOpen, setStoreOpen] = useState(false);
 
     useEffect(() => {
@@ -31,7 +33,6 @@ export default function WarbondSettings({ onClose }) {
     const handleSave = () => {
         localStorage.setItem('bingo_owned_warbonds', JSON.stringify(owned));
         
-        // Push the update to Firebase immediately if inside a room
         import('../../store/useGameStore').then(({ default: useGameStore }) => {
              const sync = useGameStore.getState().syncWarbonds;
              if (sync) sync();
@@ -44,8 +45,6 @@ export default function WarbondSettings({ onClose }) {
         const allCodes = [
             ...WARBONDS.map(w => w.code),
             ...LEGENDARY_WARBONDS.map(w => w.code)
-            // Note: We don't auto-select all 60 superstore items for UI sanity,
-            // they can be checked manually in the submenu if desired.
         ];
         setOwned(allCodes);
     };
@@ -68,66 +67,104 @@ export default function WarbondSettings({ onClose }) {
         ));
     };
 
-    // Calculate how many superstore items are owned
-    // To do this strictly, we could import DB, but as a quick UI hack we can just check 
-    // how many items in `owned` do NOT start with "warbond"
-    const ownedStoreItemsCount = owned.filter(id => !id.startsWith('warbond')).length;
+    const ownedStandardCount = WARBONDS.filter(w => owned.includes(w.code)).length;
+    const ownedPremiumCount = LEGENDARY_WARBONDS.filter(w => owned.includes(w.code)).length;
+    const ownedStoreItemsCount = owned.filter(id => !WARBONDS.some(w => w.code === id) && !LEGENDARY_WARBONDS.some(w => w.code === id)).length;
 
     return (
-        <div className="steam-dialog-window theme-panel flex flex-col gap-3 p-1">
-            <div className="steam-dialog-header">
-                <span>Steam Options — Warbonds & Superstore Catalog</span>
-                <div className="flex gap-1">
-                    <button onClick={selectAll} className="steam-tab-btn text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Выбрать все варбонды">All</button>
-                    <button onClick={clearAll} className="steam-tab-btn text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Отменить весь выбор">Clear</button>
-                </div>
+        <div className="steam-dialog-window max-w-4xl w-full flex flex-col max-h-[85vh]">
+            <div className="steam-dialog-header flex items-center justify-between p-[6px] px-2 cursor-move select-none">
+                <span className="font-bold text-xs uppercase tracking-wider text-hcMuted">Owned Warbonds & Superstore</span>
+                {onClose && (
+                    <button onClick={onClose} className="theme-button p-1 hover:text-red-400">
+                        <X size={14} />
+                    </button>
+                )}
             </div>
 
-            <p className="text-xs text-gray-400 px-2 italic font-mono">
-                Оружие, броня и стратагемы будут отфильтрованы по купленным лицензиям.
-            </p>
-
-            <div className="flex-1 overflow-y-auto custom-scrollbar px-2 max-h-[55vh] flex flex-col gap-4" style={{ minHeight: '200px' }}>
-                
-                {/* Regular Warbonds */}
-                <div className="steam-group-box relative pt-4 pb-3 px-3">
-                    <span className="steam-group-box-title">Стандартные Warbonds</span>
-                    <div className="steam-inset-box p-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {renderCheckboxList(WARBONDS)}
+            <div className="p-3 overflow-y-auto custom-scrollbar flex-1 flex flex-col gap-3">
+                <div className="flex justify-between items-center text-xs pb-1 border-b" style={{ borderColor: 'var(--steam-border-dark)' }}>
+                    <span className="text-gray-400">Total Unlocked: <b className="text-hcAccent">{owned.length}</b></span>
+                    <div className="flex gap-1">
+                        <button onClick={selectAll} className="steam-tab-btn text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Select All">All</button>
+                        <button onClick={clearAll} className="steam-tab-btn text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Clear All">Clear</button>
                     </div>
                 </div>
 
-                {/* Legendary Status */}
-                <div className="steam-group-box relative pt-4 pb-3 px-3">
-                    <span className="steam-group-box-title">Премиум Статусы (Legendary)</span>
-                    <div className="steam-inset-box p-3 flex flex-col gap-2">
-                        {renderCheckboxList(LEGENDARY_WARBONDS)}
-                    </div>
-                </div>
-
-                {/* Superstore - Visual Submenu */}
-                <div className="steam-group-box relative pt-4 pb-3 px-3 mb-2">
-                    <button 
-                        onClick={() => setStoreOpen(!storeOpen)}
-                        className={`steam-tab-btn theme-button w-full py-3 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${storeOpen ? 'active' : ''}`}
-                    >
-                        <span className="flex items-center gap-2">
-                            <ShoppingCart size={14} className={storeOpen ? 'theme-highlight' : 'text-gray-400'} />
-                            Каталог Superstore
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <span className={`text-[10px] ${ownedStoreItemsCount > 0 ? 'text-hcGreen' : 'text-gray-500'}`}>
-                                ({ownedStoreItemsCount} шт. куплено)
+                <div className="flex-1 overflow-y-auto custom-scrollbar px-2 max-h-[55vh] flex flex-col gap-4" style={{ minHeight: '200px' }}>
+                    
+                    {/* Standard Warbonds */}
+                    <div className="steam-group-box relative pt-2 pb-2 px-3">
+                        <button 
+                            onClick={() => setStandardOpen(!standardOpen)}
+                            className={`steam-tab-btn theme-button w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${standardOpen ? 'active' : ''}`}
+                        >
+                            <span className="flex items-center gap-2">
+                                <ShieldCheck size={14} className={standardOpen ? 'theme-highlight' : 'text-gray-400'} />
+                                Standard Warbonds
                             </span>
-                            {storeOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-                        </span>
-                    </button>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] ${ownedStandardCount > 0 ? 'text-hcGreen' : 'text-gray-500'}`}>
+                                    ({ownedStandardCount} / {WARBONDS.length})
+                                </span>
+                                {standardOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                            </span>
+                        </button>
+                        {standardOpen && (
+                            <div className="steam-inset-box p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                                {renderCheckboxList(WARBONDS)}
+                            </div>
+                        )}
+                    </div>
 
-                    {storeOpen && (
-                        <div className="steam-inset-box p-2 mt-2">
-                            <SuperstoreSubmenu owned={owned} toggleWarbond={toggleWarbond} />
-                        </div>
-                    )}
+                    {/* Premium / Legendary Warbonds */}
+                    <div className="steam-group-box relative pt-2 pb-2 px-3">
+                        <button 
+                            onClick={() => setPremiumOpen(!premiumOpen)}
+                            className={`steam-tab-btn theme-button w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${premiumOpen ? 'active' : ''}`}
+                        >
+                            <span className="flex items-center gap-2">
+                                <Award size={14} className={premiumOpen ? 'theme-highlight' : 'text-gray-400'} />
+                                Premium & Legendary Warbonds
+                            </span>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] ${ownedPremiumCount > 0 ? 'text-hcGreen' : 'text-gray-500'}`}>
+                                    ({ownedPremiumCount} / {LEGENDARY_WARBONDS.length})
+                                </span>
+                                {premiumOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                            </span>
+                        </button>
+                        {premiumOpen && (
+                            <div className="steam-inset-box p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                                {renderCheckboxList(LEGENDARY_WARBONDS)}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Superstore - Visual Submenu */}
+                    <div className="steam-group-box relative pt-2 pb-2 px-3 mb-2">
+                        <button 
+                            onClick={() => setStoreOpen(!storeOpen)}
+                            className={`steam-tab-btn theme-button w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${storeOpen ? 'active' : ''}`}
+                        >
+                            <span className="flex items-center gap-2">
+                                <ShoppingCart size={14} className={storeOpen ? 'theme-highlight' : 'text-gray-400'} />
+                                Superstore Catalog
+                            </span>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] ${ownedStoreItemsCount > 0 ? 'text-hcGreen' : 'text-gray-500'}`}>
+                                    ({ownedStoreItemsCount} items unlocked)
+                                </span>
+                                {storeOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                            </span>
+                        </button>
+                        {storeOpen && (
+                            <div className="steam-inset-box p-2 mt-2">
+                                <SuperstoreSubmenu owned={owned} toggleWarbond={toggleWarbond} />
+                            </div>
+                        )}
+                    </div>
+
                 </div>
 
             </div>
@@ -144,4 +181,3 @@ export default function WarbondSettings({ onClose }) {
         </div>
     );
 }
-

@@ -30,7 +30,7 @@ export default function SuperstoreSubmenu({ owned, toggleWarbond }) {
                 />
             </div>
 
-            <div className="flex flex-wrap gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5">
                 {filteredItems.map(item => {
                     const isOwned = owned.includes(item.id);
                     const imagePath = item.type === 'armor' 
@@ -41,7 +41,7 @@ export default function SuperstoreSubmenu({ owned, toggleWarbond }) {
                         <div
                             key={item.id}
                             onClick={() => toggleWarbond(item.id)}
-                            className={`relative cursor-pointer transition-all duration-200 border-2 rounded-lg p-1.5 flex flex-col items-center justify-between w-20 h-28 ${
+                            className={`relative cursor-pointer transition-all duration-200 border-2 rounded-lg p-1.5 flex flex-col items-center justify-between h-32 w-full ${
                                 isOwned 
                                 ? 'border-hcAccent bg-hcAccent/10 shadow-[0_0_12px_rgba(210,185,54,0.15)]' 
                                 : 'border-hcBorder/60 bg-black/40 opacity-70 hover:opacity-100 hover:border-gray-500'
@@ -72,14 +72,16 @@ export default function SuperstoreSubmenu({ owned, toggleWarbond }) {
                             )}
 
                             {/* Superstore Bag Badge */}
-                            <div className="absolute bottom-6 right-1 filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] pointer-events-none">
+                            <div className="absolute top-1 left-1 z-20 filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] pointer-events-none">
                                 <ShoppingBag size={11} className="text-cyan-400" />
                             </div>
 
-                            {/* Title Label */}
-                            <span className="text-[9px] font-bold text-slate-100 text-center truncate w-full pt-1 border-t border-hcBorder/40 leading-none">
-                                {item.name}
-                            </span>
+                            {/* Title Label (Only for non-armor, as ArmorDisplay renders its own title) */}
+                            {item.type !== 'armor' && (
+                                <span className="text-[9px] font-bold text-slate-100 text-center truncate w-full pt-1 border-t border-hcBorder/40 leading-none">
+                                    {item.name}
+                                </span>
+                            )}
                         </div>
                     );
                 })}

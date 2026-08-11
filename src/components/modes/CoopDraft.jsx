@@ -46,6 +46,7 @@ export default function CoopDraft() {
             missionNumber: currentMissionCount,
             squadLoadouts: squadSnapshot
         };
+        updates[`rooms/${roomCode}/options/historyLength`] = currentMissionCount;
 
         await update(ref(db), updates);
     };

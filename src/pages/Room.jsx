@@ -85,7 +85,7 @@ const Room = () => {
 
             <div className="flex-1 overflow-hidden">
                 {(roomData.mode === 'chaos' || roomData.mode === 'chaos_random' || roomData.mode === 'chaos_attrition') && <ChaosMode />}
-                {roomData.mode === 'coop' && <CoopDraft />}
+                {(roomData.mode === 'coop' || roomData.mode === 'attrition') && <CoopDraft />}
                 {roomData.mode === 'random_pool' && <RandomPool />}
             </div>
         </div>

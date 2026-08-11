@@ -8,7 +8,7 @@ const Home = () => {
     const navigate = useNavigate();
     const { name, setName, createRoom, joinRoom, listenToActiveRooms, activeRooms } = useGameStore();
 
-    const [mode, setMode] = useState('chaos_random'); 
+    const [mode, setMode] = useState('attrition'); 
     const [isDark, setIsDark] = useState(document.body.getAttribute('data-dark') === 'true');
     const [showWarbonds, setShowWarbonds] = useState(false);
 
@@ -104,7 +104,7 @@ const Home = () => {
                             <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-2 mb-1 w-full">
                                 <button onClick={() => setMode('chaos_random')} className={`theme-button px-3 min-h-[44px] text-xs sm:text-sm font-bold rounded flex-1 ${mode === 'chaos_random' ? 'active theme-highlight' : ''}`} title="Случайно выдает каждому игроку случайный лодаут. Предметы не кончаются.">Chaos Random</button>
                                 <button onClick={() => setMode('chaos_attrition')} className={`theme-button px-3 min-h-[44px] text-xs sm:text-sm font-bold rounded flex-1 ${mode === 'chaos_attrition' ? 'active theme-highlight' : ''}`} title="Случайно выдает каждому игроку случайный лодаут, предметы не повторяются.">Chaos Attrition</button>
-                                <button onClick={() => setMode('coop')} className={`theme-button px-3 min-h-[44px] text-xs sm:text-sm font-bold rounded flex-1 ${mode === 'coop' ? 'active theme-highlight' : ''}`} title="Ручной выбор предметов пула из общего пула. Выбирайте аккуратно.">Co-Op Attrition</button>
+                                <button onClick={() => setMode('attrition')} className={`theme-button px-3 min-h-[44px] text-xs sm:text-sm font-bold rounded flex-1 ${mode === 'attrition' ? 'active theme-highlight' : ''}`} title="Ручной выбор предметов пула из общего пула. Выбирайте аккуратно.">Attrition</button>
                                 <button onClick={() => setMode('random_pool')} className={`theme-button px-3 min-h-[44px] text-xs sm:text-sm font-bold rounded flex-1 ${mode === 'random_pool' ? 'active theme-highlight' : ''}`} title="Случайно выбранный пул предметов-допуска (на 4 человека) на всю операцию.">Random Pool</button>
                             </div>
 
