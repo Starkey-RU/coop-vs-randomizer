@@ -1,0 +1,3247 @@
+{
+  "primary": [
+    {
+      "id": "ar23liberator",
+      "name": "Liberator",
+      "imageURL": "ar-23a_liberator_carbine_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2"
+      ],
+      "warbondCode": "none"
+    },
+    {
+      "id": "ar23pliberatorpenetrator",
+      "name": "Liberator Penetrator",
+      "imageURL": "ar-23p_liberator_penetrator_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap3"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "ar23cliberatorconcussive",
+      "name": "Liberator Concussive",
+      "imageURL": "ar-23c_liberator_concussive_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2"
+      ],
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "ar23aliberatorcarbine",
+      "name": "Liberator Carbine",
+      "imageURL": "ar-23a_liberator_carbine_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2"
+      ],
+      "warbondCode": "warbond8"
+    },
+    {
+      "id": "br14adjudicator",
+      "name": "Adjudicator",
+      "imageURL": "br-14_adjudicator_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap3"
+      ],
+      "warbondCode": "warbond6"
+    },
+    {
+      "id": "sta52assaultrifle",
+      "name": "StA-52 Assault Rifle",
+      "imageURL": "StA-52_Assault_Rifle_Primary_Render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2"
+      ],
+      "warbondCode": "warbond18"
+    },
+    {
+      "id": "ar32pacifier",
+      "name": "Pacifier",
+      "imageURL": "ar-32_pacifier_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap3",
+        "stun"
+      ],
+      "warbondCode": "warbond16"
+    },
+    {
+      "id": "ar61tenderizer",
+      "name": "Tenderizer",
+      "imageURL": "ar-61_tenderizer_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2"
+      ],
+      "warbondCode": "warbond7"
+    },
+    {
+      "id": "ma5c",
+      "name": "MA5C Assault Rifle",
+      "imageURL": "ma5c_assault_rifle_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap3"
+      ],
+      "warbondCode": "warbond19"
+    },
+    {
+      "id": "ar2coyote",
+      "name": "AR-2 Coyote",
+      "imageURL": "ar-2_coyote_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap3",
+        "fire"
+      ],
+      "warbondCode": "warbond20"
+    },
+    {
+      "id": "onetwo",
+      "name": "One Two",
+      "imageURL": "ar-gl-21_one_two_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2",
+        "ap3",
+        "explosive"
+      ],
+      "warbondCode": "warbond21"
+    },
+    {
+      "id": "ar59suppressor",
+      "name": "Suppressor",
+      "imageURL": "ar-59_suppressor_primary_render.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2",
+        "suppressed"
+      ],
+      "warbondCode": "warbond22"
+    },
+    {
+      "id": "smg37defender",
+      "name": "Defender",
+      "imageURL": "SMG-37_Defender_Primary_Render.webp",
+      "tags": [
+        "SubmachineGun",
+        "ap2",
+        "onehanded"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "smg72pummeler",
+      "name": "Pummeler",
+      "imageURL": "SMG-72_Pummeler_Primary_Render.webp",
+      "tags": [
+        "SubmachineGun",
+        "ap2",
+        "onehanded"
+      ],
+      "warbondCode": "warbond7"
+    },
+    {
+      "id": "smg32reprimand",
+      "name": "Reprimand",
+      "imageURL": "SMG-32_Reprimand_Primary_Render.webp",
+      "tags": [
+        "Submachinegun",
+        "ap3"
+      ],
+      "warbondCode": "warbond11"
+    },
+    {
+      "id": "sta11smg",
+      "name": "StA-11 SMG",
+      "imageURL": "StA-11_SMG_Primary_Render.webp",
+      "tags": [
+        "Submachinegun",
+        "ap2",
+        "onehanded"
+      ],
+      "warbondCode": "warbond18"
+    },
+    {
+      "id": "mp98knight",
+      "name": "Knight",
+      "imageURL": "mp-98_knight_primary_render.webp",
+      "tags": [
+        "SubmachineGun",
+        "ap2",
+        "onehanded"
+      ],
+      "warbondCode": "warbond0"
+    },
+    {
+      "id": "m7s",
+      "name": "M7S SMG",
+      "imageURL": "m7s_smg_primary_render.webp",
+      "tags": [
+        "SubmachineGun",
+        "ap2",
+        "onehanded"
+      ],
+      "warbondCode": "warbond19"
+    },
+    {
+      "id": "doublefreedom",
+      "name": "Double Freedom",
+      "imageURL": "dbs-2_shotgun_primary_render.webp",
+      "tags": [
+        "Shotgun",
+        "ap3",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "sg8punisher",
+      "name": "Punisher",
+      "imageURL": "SG-8P_Punisher_Plasma_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "sg451cookout",
+      "name": "Cookout",
+      "imageURL": "SG-451_Cookout_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2",
+        "fire"
+      ],
+      "warbondCode": "warbond9"
+    },
+    {
+      "id": "sg8sslugger",
+      "name": "Slugger",
+      "imageURL": "SG-8S_Slugger_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap3"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "sg225breaker",
+      "name": "Breaker",
+      "imageURL": "SG-225_Breaker_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "sg225iebreakerincendiary",
+      "name": "Breaker Incendiary",
+      "imageURL": "SG-225IE_Breaker_Incendiary_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2",
+        "fire"
+      ],
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "sg225spbreakerspraynpray",
+      "name": "Breaker Spray & Pray",
+      "imageURL": "SG-225SP_Breaker_Spray&Pray_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "sg20halt",
+      "name": "Halt",
+      "imageURL": "SG-20_Halt_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2",
+        "ap3",
+        "stun"
+      ],
+      "warbondCode": "warbond11"
+    },
+    {
+      "id": "m90a",
+      "name": "M90A Shotgun",
+      "imageURL": "m90a_shotgun_primary_render.webp",
+      "tags": [
+        "Shotgun",
+        "ap2"
+      ],
+      "warbondCode": "warbond19"
+    },
+    {
+      "id": "r63diligence",
+      "name": "Diligence",
+      "imageURL": "R-63CS_Diligence_Counter_Sniper_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap2"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "r63csdiligencecountersniper",
+      "name": "Diligence Counter Sniper",
+      "imageURL": "R-63CS_Diligence_Counter_Sniper_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap3"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "r6deadeye",
+      "name": "Deadeye",
+      "imageURL": "R-6_Deadeye_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap3"
+      ],
+      "warbondCode": "warbond14"
+    },
+    {
+      "id": "r2amendment",
+      "name": "Amendment",
+      "imageURL": "R-2_Amendment_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap2",
+        "melee"
+      ],
+      "warbondCode": "warbond15"
+    },
+    {
+      "id": "r72censor",
+      "name": "Censor",
+      "imageURL": "R-72_Censor_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap2",
+        "suppressed"
+      ],
+      "warbondCode": "warbond22"
+    },
+    {
+      "id": "r2124constitution",
+      "name": "Constitution",
+      "imageURL": "R-2124_Constitution_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap3",
+        "melee"
+      ],
+      "warbondCode": "none"
+    },
+    {
+      "id": "las5scythe",
+      "name": "Scythe",
+      "imageURL": "las-5_scythe_primary_render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap2",
+        "laser"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "las16sickle",
+      "name": "Sickle",
+      "imageURL": "las-16_sickle_primary_render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap2"
+      ],
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "plas1scorcher",
+      "name": "Scorcher",
+      "imageURL": "PLAS-1_Scorcher_Primary_Render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap3",
+        "plasma"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "plas101purifier",
+      "name": "Purifier",
+      "imageURL": "PLAS-101_Purifier_Primary_Render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap3",
+        "plasma"
+      ],
+      "warbondCode": "warbond7"
+    },
+    {
+      "id": "sg8ppunisherplasma",
+      "name": "Punisher Plasma",
+      "imageURL": "SG-8P_Punisher_Plasma_Primary_Render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap3",
+        "plasma"
+      ],
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "arc12blitzer",
+      "name": "Blitzer",
+      "imageURL": "arc-12_blitzer_primary_render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap3",
+        "arc"
+      ],
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "las17doubleedgesickle",
+      "name": "Double Edge Sickle",
+      "imageURL": "las-17_double-edge_sickle_primary_render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap2",
+        "ap3",
+        "ap4"
+      ],
+      "warbondCode": "warbond13"
+    },
+    {
+      "id": "plas39acceleratorrifle",
+      "name": "PLAS-39 Accelerator Rifle",
+      "imageURL": "PLAS-39_Accelerator_Rifle_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap3",
+        "plasma"
+      ],
+      "warbondCode": "warbond18"
+    },
+    {
+      "id": "r36eruptor",
+      "name": "Eruptor",
+      "imageURL": "R-36_Eruptor_Primary_Render.webp",
+      "tags": [
+        "Explosive",
+        "ap4",
+        "explosive"
+      ],
+      "warbondCode": "warbond6"
+    },
+    {
+      "id": "cb9explodingcrossbow",
+      "name": "Exploding Crossbow",
+      "imageURL": "cb-9_exploding_crossbow_primary_render.webp",
+      "tags": [
+        "Explosive",
+        "ap3",
+        "explosive",
+        "onehanded"
+      ],
+      "warbondCode": "warbond6"
+    },
+    {
+      "id": "variable",
+      "name": "Variable",
+      "imageURL": "variable.webp",
+      "tags": [
+        "AssaultRifle",
+        "ap2"
+      ],
+      "warbondCode": "warbond17"
+    },
+    {
+      "id": "jar5dominator",
+      "name": "Dominator",
+      "imageURL": "jar-5_dominator_primary_render.webp",
+      "tags": [
+        "Explosive",
+        "ap3"
+      ],
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "flam66torcher",
+      "name": "Torcher",
+      "imageURL": "flam-66_torcher_primary_render.webp",
+      "tags": [
+        "Special",
+        "ap4",
+        "fire"
+      ],
+      "warbondCode": "warbond9"
+    },
+    {
+      "id": "las16trident",
+      "name": "Trident",
+      "imageURL": "las-13_trident_primary_render.webp",
+      "tags": [
+        "EnergyWeapon",
+        "ap2"
+      ],
+      "warbondCode": "warbond23"
+    },
+    {
+      "id": "smgflam34stoker",
+      "name": "Stoker",
+      "imageURL": "SMGFLAM-34_Stoker_Primary_Render.webp",
+      "tags": [
+        "SubmachineGun",
+        "ap2",
+        "ap4",
+        "fire",
+        "onehanded"
+      ],
+      "warbondCode": "warbond24"
+    },
+    {
+      "id": "sg97sweeper",
+      "name": "Sweeper",
+      "imageURL": "SG-97_Shotgun_Primary_Render.webp",
+      "tags": [
+        "Shotgun",
+        "ap3",
+        "melee",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "smg203gallant",
+      "name": "Gallant",
+      "imageURL": "SMG-203_Gallant_Primary_Render.webp",
+      "tags": [
+        "SubmachineGun",
+        "ap3",
+        "onehanded"
+      ],
+      "warbondCode": "warbond25"
+    },
+    {
+      "id": "r4hyena",
+      "name": "Hyena",
+      "imageURL": "R-4_Hyena_Primary_Render.webp",
+      "tags": [
+        "MarksmanRifle",
+        "ap3"
+      ],
+      "warbondCode": "none"
+    }
+  ],
+  "secondary": [
+    {
+      "id": "p2peacemaker",
+      "name": "Peacemaker",
+      "imageURL": "p-2_peacemaker_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap2"
+      ],
+      "warbondCode": "none"
+    },
+    {
+      "id": "cqc5combathatchet",
+      "name": "Combat Hatchet",
+      "imageURL": "cqc-5_combat_hatchet_secondary_render.webp",
+      "tags": [
+        "melee",
+        "ap3",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cqc2saber",
+      "name": "Saber",
+      "imageURL": "cqc-2_saber_secondary_render.webp",
+      "tags": [
+        "melee",
+        "ap3"
+      ],
+      "warbondCode": "warbond15"
+    },
+    {
+      "id": "cqc42machete",
+      "name": "Machete",
+      "imageURL": "cqc-42_machete_secondary_render.webp",
+      "tags": [
+        "melee",
+        "ap3",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cqc19stunlance",
+      "name": "Stun Lance",
+      "imageURL": "cqc-19_stun_lance_secondary_render.webp",
+      "tags": [
+        "melee",
+        "ap3",
+        "stun"
+      ],
+      "warbondCode": "warbond12"
+    },
+    {
+      "id": "cqc30stunbaton",
+      "name": "Stun Baton",
+      "imageURL": "cqc-30_stun_baton_secondary_render.webp",
+      "tags": [
+        "melee",
+        "ap3",
+        "stun",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "p19redeemer",
+      "name": "Redeemer",
+      "imageURL": "p-19_redeemer_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap2"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "p113verdict",
+      "name": "Verdict",
+      "imageURL": "p-113_verdict_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap3"
+      ],
+      "warbondCode": "warbond7"
+    },
+    {
+      "id": "p4senator",
+      "name": "Senator",
+      "imageURL": "p-4_senator_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap4"
+      ],
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "p92warrant",
+      "name": "P-92 Warrant",
+      "imageURL": "p-92_warrant_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap3",
+        "guided",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "m6csocompistol",
+      "name": "M6C/SOCOM",
+      "imageURL": "m6c-socom_pistol_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap2",
+        "suppressed"
+      ],
+      "warbondCode": "warbond19"
+    },
+    {
+      "id": "p11stimpistol",
+      "name": "Stim Pistol",
+      "imageURL": "p-11_stim_pistol_secondary_render.webp",
+      "tags": [
+        "Special"
+      ],
+      "warbondCode": "warbond10"
+    },
+    {
+      "id": "plas15loyalist",
+      "name": "Loyalist",
+      "imageURL": "PLAS-15_Loyalist_Secondary_Render.webp",
+      "tags": [
+        "plasma",
+        "ap3"
+      ],
+      "warbondCode": "warbond11"
+    },
+    {
+      "id": "sg22bushwhacker",
+      "name": "Bushwhacker",
+      "imageURL": "SG-22_Bushwhacker_Secondary_Render.webp",
+      "tags": [
+        "ap2"
+      ],
+      "warbondCode": "warbond8"
+    },
+    {
+      "id": "gp31grenadepistol",
+      "name": "Grenade Pistol",
+      "imageURL": "gp-31_grenade_pistol_secondary_render.webp",
+      "tags": [
+        "explosive",
+        "ap3"
+      ],
+      "warbondCode": "warbond6"
+    },
+    {
+      "id": "p35reeducator",
+      "name": "Re-Educator",
+      "imageURL": "p-35_re-educator_secondary_render.webp",
+      "tags": [
+        "gas",
+        "ap4"
+      ],
+      "warbondCode": "warbond22"
+    },
+    {
+      "id": "las7dagger",
+      "name": "Dagger",
+      "imageURL": "las-7_dagger_secondary_render.webp",
+      "tags": [
+        "laser",
+        "ap2"
+      ],
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "las58talon",
+      "name": "Talon",
+      "imageURL": "las-58_talon_secondary_render.webp",
+      "tags": [
+        "ap3"
+      ],
+      "warbondCode": "warbond14"
+    },
+    {
+      "id": "p72crisper",
+      "name": "Crisper",
+      "imageURL": "p-72_crisper_secondary_render.webp",
+      "tags": [
+        "fire",
+        "ap4"
+      ],
+      "warbondCode": "warbond9"
+    },
+    {
+      "id": "gp31ultimatum",
+      "name": "GP-31 Ultimatum",
+      "imageURL": "gp-20_ultimatum_secondary_render.webp",
+      "tags": [
+        "explosive",
+        "at"
+      ],
+      "warbondCode": "warbond13"
+    },
+    {
+      "id": "p69veto",
+      "name": "Veto",
+      "imageURL": "p-69_veto_secondary_render.webp",
+      "tags": [
+        "pistol",
+        "ap3"
+      ],
+      "warbondCode": "warbond24"
+    },
+    {
+      "id": "cqc73entrenchmenttool",
+      "name": "Entrenchment Tool",
+      "imageURL": "cqc-73_entrenchment_tool_secondary_render.webp",
+      "tags": [
+        "melee",
+        "ap3"
+      ],
+      "warbondCode": "warbond24"
+    },
+    {
+      "id": "p33missilepistol",
+      "name": "Missile Pistol",
+      "imageURL": "p-33_missile_pistol_secondary_render.webp",
+      "tags": [
+        "explosive",
+        "at",
+        "guided"
+      ],
+      "warbondCode": "warbond25"
+    }
+  ],
+  "grenade": [
+    {
+      "id": "g12highexplosivegrenade",
+      "name": "G-12 High Explosive",
+      "imageURL": "g-12_high_explosive_throwable_render.webp",
+      "tags": [
+        "ap4",
+        "explosive"
+      ],
+      "warbondCode": "none"
+    },
+    {
+      "id": "g6fraggrenade",
+      "name": "G-6 Frag",
+      "imageURL": "g-6_frag_throwable_render.webp",
+      "tags": [
+        "ap3",
+        "explosive"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "g16impactgrenade",
+      "name": "G-16 Impact",
+      "imageURL": "g-16_impact_throwable_render.webp",
+      "tags": [
+        "ap3",
+        "explosive"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "g3smokegrenade",
+      "name": "G-3 Smoke",
+      "imageURL": "g-3_smoke_throwable_render.webp",
+      "tags": [
+        "smoke"
+      ],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "g10incendiarygrenade",
+      "name": "G-10 Incendiary",
+      "imageURL": "g-10_incendiary_throwable_render.webp",
+      "tags": [
+        "ap3",
+        "explosive",
+        "fire"
+      ],
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "g23stungrenade",
+      "name": "G-23 Stun",
+      "imageURL": "g-23_stun_throwable_render.webp",
+      "tags": [
+        "stun"
+      ],
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "g123thermitegrenade",
+      "name": "G-123 Thermite",
+      "imageURL": "g-123_thermite_throwable_render.webp",
+      "tags": [
+        "at"
+      ],
+      "warbondCode": "warbond6"
+    },
+    {
+      "id": "g13incendiaryimpact",
+      "name": "G-13 Incendiary Impact",
+      "imageURL": "g-13_incendiary_impact_throwable_render.webp",
+      "tags": [
+        "fire",
+        "ap3",
+        "explosive"
+      ],
+      "warbondCode": "warbond7"
+    },
+    {
+      "id": "k2throwingknife",
+      "name": "K-2 Throwing Knife",
+      "imageURL": "k-2_throwing_knife_throwable_render.webp",
+      "tags": [
+        "ap3"
+      ],
+      "warbondCode": "warbond8"
+    },
+    {
+      "id": "g50seeker",
+      "name": "G-50 Seeker",
+      "imageURL": "g-50_seeker_throwable_render.webp",
+      "tags": [
+        "ap3",
+        "explosive",
+        "guided"
+      ],
+      "warbondCode": "warbond13"
+    },
+    {
+      "id": "ted63throwabledynamite",
+      "name": "Dynamite",
+      "imageURL": "TED-63_Dynamite_Throwable_Render.webp",
+      "tags": [
+        "at",
+        "explosive"
+      ],
+      "warbondCode": "warbond14"
+    },
+    {
+      "id": "g142pyrotech",
+      "name": "G-142 Pyrotech",
+      "imageURL": "g-142_pyrotech_throwable_render.webp",
+      "tags": [
+        "fire",
+        "ap4",
+        "explosive"
+      ],
+      "warbondCode": "warbond15"
+    },
+    {
+      "id": "g4gasgrenade",
+      "name": "G-4 Gas",
+      "imageURL": "g-4_gas_throwable_render.webp",
+      "tags": [
+        "gas",
+        "explosive"
+      ],
+      "warbondCode": "warbond10"
+    },
+    {
+      "id": "g109urchin",
+      "name": "G-109 Urchin",
+      "imageURL": "g-109_urchin_throwable_render.webp",
+      "tags": [
+        "stun"
+      ],
+      "warbondCode": "warbond16"
+    },
+    {
+      "id": "g31arc",
+      "name": "G-31 Arc",
+      "imageURL": "g-31_arc_throwable_render.webp",
+      "tags": [
+        "arc"
+      ],
+      "warbondCode": "warbond17"
+    },
+    {
+      "id": "g7pineapple",
+      "name": "G-7 Pineapple",
+      "imageURL": "g-7_pineapple_throwable_render.webp",
+      "tags": [
+        "ap3",
+        "explosive"
+      ],
+      "warbondCode": "warbond20"
+    },
+    {
+      "id": "tm01luremine",
+      "name": "TM-01 Lure Mine",
+      "imageURL": "TM-1_Lure_Mine_Throwable_Render.webp",
+      "tags": [
+        "ap4",
+        "explosive"
+      ],
+      "warbondCode": "warbond22"
+    },
+    {
+      "id": "g89smokescreen",
+      "name": "G-89 Smokescreen",
+      "imageURL": "g-89_smokescreen_throwable_render.webp",
+      "tags": [
+        "smoke",
+        "Superstore"
+      ],
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "gsh39shield",
+      "name": "G/SH-39 Shield",
+      "imageURL": "g-sh-39_shield_throwable_render.webp",
+      "tags": [],
+      "warbondCode": "warbond23"
+    },
+    {
+      "id": "g48giga",
+      "name": "G-48 Giga",
+      "imageURL": "g-48_giga_grenade_throwable_render.webp",
+      "tags": [
+        "at",
+        "explosive"
+      ],
+      "warbondCode": "warbond24"
+    }
+  ],
+  "booster": [
+    {
+      "id": "expertextractionpilot",
+      "name": "Expert Extraction Pilot",
+      "imageURL": "expertextractionpilot.webp",
+      "tags": [],
+      "warbondCode": "warbond6"
+    },
+    {
+      "id": "deadsprint",
+      "name": "Dead Sprint",
+      "imageURL": "deadsprint.webp",
+      "tags": [],
+      "warbondCode": "warbond11"
+    },
+    {
+      "id": "armedresupplypods",
+      "name": "Armed Resupply Pods",
+      "imageURL": "armedresupplypods.webp",
+      "tags": [],
+      "warbondCode": "warbond12"
+    },
+    {
+      "id": "experimentalinfusion",
+      "name": "Experimental Infusion",
+      "imageURL": "experimentalinfusion.webp",
+      "tags": [],
+      "warbondCode": "warbond8"
+    },
+    {
+      "id": "motivationalshocks",
+      "name": "Motivational Shocks",
+      "imageURL": "motivationalshocks.webp",
+      "tags": [],
+      "warbondCode": "warbond7"
+    },
+    {
+      "id": "flexiblereinforcementbudget",
+      "name": "Flexible Reinforcement Budget",
+      "imageURL": "flexiblereinforcementbudget.webp",
+      "tags": [],
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "hellpodspaceoptimization",
+      "name": "Hellpod Space Optimization",
+      "imageURL": "hellpodspaceoptimization.webp",
+      "tags": [],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "increasedreinforcementbudget",
+      "name": "Increased Reinforcement Budget",
+      "imageURL": "increasedreinforcementbudget.webp",
+      "tags": [],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "localizationconfusion",
+      "name": "Localization Confusion",
+      "imageURL": "localizationconfusion.webp",
+      "tags": [],
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "muscleenhancement",
+      "name": "Muscle Enhancement",
+      "imageURL": "muscleenhancement.webp",
+      "tags": [],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "staminaenhancement",
+      "name": "Stamina Enhancement",
+      "imageURL": "staminaenhancement.webp",
+      "tags": [],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "uavrecon",
+      "name": "UAV Recon",
+      "imageURL": "uavrecon.webp",
+      "tags": [],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "vitalityenhancement",
+      "name": "Vitality Enhancement",
+      "imageURL": "vitalityenhancement.webp",
+      "tags": [],
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "firebombhellpods",
+      "name": "Firebomb Hellpods",
+      "imageURL": "firebombhellpods.webp",
+      "tags": [],
+      "warbondCode": "warbond9"
+    },
+    {
+      "id": "sampleextricator",
+      "name": "Sample Extricator",
+      "imageURL": "sampleextricator.webp",
+      "tags": [],
+      "warbondCode": "warbond14"
+    },
+    {
+      "id": "samplescanner",
+      "name": "Sample Scanner",
+      "imageURL": "samplescanner.webp",
+      "tags": [],
+      "warbondCode": "warbond15"
+    },
+    {
+      "id": "stunpods",
+      "name": "Stun Pods",
+      "imageURL": "stunpods.webp",
+      "tags": [],
+      "warbondCode": "warbond16"
+    },
+    {
+      "id": "concealedinsertion",
+      "name": "Concealed Insertion",
+      "imageURL": "concealedinsertion.webp",
+      "tags": [],
+      "warbondCode": "warbond22"
+    }
+  ],
+  "armor": [
+    {
+      "id": "af50noxiousranger",
+      "name": "AF-50 Noxious Ranger",
+      "passive": "Advanced Filtration",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "af50noxiousranger.webp",
+      "warbondCode": "warbond10"
+    },
+    {
+      "id": "ac2obedient",
+      "name": "AC-2 Obedient",
+      "passive": "Acclimated",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "ac2obedient.webp",
+      "warbondCode": "warbond18"
+    },
+    {
+      "id": "sr24streetscout",
+      "name": "SR-24 Street Scout",
+      "passive": "Siege-Ready",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "sr24streetscout.webp",
+      "warbondCode": "warbond12"
+    },
+    {
+      "id": "sr18roadblock",
+      "name": "SR-18 Road Block",
+      "passive": "Siege-Ready",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "sr18roadblock.webp",
+      "warbondCode": "warbond12"
+    },
+    {
+      "id": "b08lightgunner",
+      "name": "B-08 Light Gunner",
+      "passive": "Extra Padding",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "b08lightgunner.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ce07demolitionspecialist",
+      "name": "CE-07 Demolition Specialist",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "ce07demolitionspecialist.webp",
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "ce67titan",
+      "name": "CE-67 Titan",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "ce67titan.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ce74breaker",
+      "name": "CE-74 Breaker",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "ce74breaker.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cm21trenchparamedic",
+      "name": "CM-21 Trench Paramedic",
+      "passive": "Med-Kit",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "cm21trenchparamedic.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cw4arcticranger",
+      "name": "CW-4 Arctic Ranger",
+      "passive": "Scout",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "cw4arcticranger.webp",
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "ex00prototypex",
+      "name": "EX-00 Prototype X",
+      "passive": "Electrical Conduit",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "ex00prototypex.webp",
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "fs37ravager",
+      "name": "FS-37 Ravager",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "fs37ravager.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "fs38eradicator",
+      "name": "FS-38 Eradicator",
+      "passive": "Fortified",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "fs38eradicator.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "i09heatseeker",
+      "name": "I-09 Heatseeker",
+      "passive": "Inflammable",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "i09heatseeker.webp",
+      "warbondCode": "warbond9"
+    },
+    {
+      "id": "ph9predator",
+      "name": "PH-9 Predator",
+      "passive": "Peak Physique",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "ph9predator.webp",
+      "warbondCode": "warbond8"
+    },
+    {
+      "id": "sc30trailblazerscout",
+      "name": "SC-30 Trailblazer Scout",
+      "passive": "Scout",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "sc30trailblazerscout.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "sc34infiltrator",
+      "name": "SC-34 Infiltrator",
+      "passive": "Scout",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "sc34infiltrator.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "sc37legionnaire",
+      "name": "SC-37 Legionnaire",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "sc37legionnaire.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "uf16inspector",
+      "name": "UF-16 Inspector",
+      "passive": "Unflinching",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "uf16inspector.webp",
+      "warbondCode": "warbond11"
+    },
+    {
+      "id": "af02hazmaster",
+      "name": "AF-02 Haz-Master",
+      "passive": "Advanced Filtration",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "af02hazmaster.webp",
+      "warbondCode": "warbond10"
+    },
+    {
+      "id": "af91fieldchemist",
+      "name": "AF-91 Field Chemist",
+      "passive": "Advanced Filtration",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "af91fieldchemist.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "b01tactical",
+      "name": "B-01 Tactical",
+      "passive": "Extra Padding",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "b01tactical.webp",
+      "warbondCode": "none"
+    },
+    {
+      "id": "b24enforcer",
+      "name": "B-24 Enforcer",
+      "passive": "Fortified",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "b24enforcer.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ce27groundbreaker",
+      "name": "CE-27 Ground Breaker",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ce27groundbreaker.webp",
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "ce35trenchengineer",
+      "name": "CE-35 Trench Engineer",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ce35trenchengineer.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "ce81juggernaut",
+      "name": "CE-81 Juggernaut",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "ce81juggernaut.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cm09bonesnapper",
+      "name": "CM-09 Bonesnapper",
+      "passive": "Med-Kit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "cm09bonesnapper.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "cm10clinician",
+      "name": "CM-10 Clinician",
+      "passive": "Med-Kit",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "cm10clinician.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cm14physician",
+      "name": "CM-14 Physician",
+      "passive": "Med-Kit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "cm14physician.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "cw9whitewolf",
+      "name": "CW-9 White Wolf",
+      "passive": "Extra Padding",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "cw9whitewolf.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "dp00tactical",
+      "name": "DP-00 Tactical",
+      "passive": "Democracy Protects",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "dp00tactical.webp",
+      "warbondCode": "none"
+    },
+    {
+      "id": "dp11championofthepeople",
+      "name": "DP-11 Champion of the People",
+      "passive": "Democracy Protects",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "dp11championofthepeople.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "ac1dutiful",
+      "name": "AC-1 Dutiful",
+      "passive": "Acclimated",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ac1dutiful.webp",
+      "warbondCode": "warbond18"
+    },
+    {
+      "id": "dp40heroofthefederation",
+      "name": "DP-40 Hero of the Federation",
+      "passive": "Democracy Protects",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "dp40heroofthefederation.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "dp53saviorofthefree",
+      "name": "DP-53 Savior of the Free",
+      "passive": "Democracy Protects",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "dp53saviorofthefree.webp",
+      "warbondCode": "warbond0"
+    },
+    {
+      "id": "ex03prototype3",
+      "name": "EX-03 Prototype 3",
+      "passive": "Electrical Conduit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ex03prototype3.webp",
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "ex16prototype16",
+      "name": "EX-16 Prototype 16",
+      "passive": "Electrical Conduit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ex16prototype16.webp",
+      "warbondCode": "warbond3"
+    },
+    {
+      "id": "fs34exterminator",
+      "name": "FS-34 Exterminator",
+      "passive": "Fortified",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "fs34exterminator.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "i92firefighter",
+      "name": "I-92 Fire Fighter",
+      "passive": "Inflammable",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "i92firefighter.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "i102draconaught",
+      "name": "I-102 Draconaught",
+      "passive": "Inflammable",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "i102draconaught.webp",
+      "warbondCode": "warbond9"
+    },
+    {
+      "id": "ph56jaguar",
+      "name": "PH-56 Jaguar",
+      "passive": "Peak Physique",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "ph56jaguar.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "sa04combattechnician",
+      "name": "SA-04 Combat Technician",
+      "passive": "Scout",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "sa04combattechnician.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "sa12servoassisted",
+      "name": "SA-12 Servo Assisted",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "sa12servoassisted.webp",
+      "warbondCode": "warbond2"
+    },
+    {
+      "id": "sa25steeltrooper",
+      "name": "SA-25 Steel Trooper",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "sa25steeltrooper.webp",
+      "warbondCode": "warbond2"
+    },
+    {
+      "id": "sc15dronemaster",
+      "name": "SA-15 Drone Master",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "sc15dronemaster.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "tr7ambassadorofthebrand",
+      "name": "TR-7 Ambassador of the Brand",
+      "passive": "Extra Padding",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "tr7ambassadorofthebrand.webp",
+      "warbondCode": "warbond2"
+    },
+    {
+      "id": "tr9cavalierofdemocracy",
+      "name": "TR-9 Cavalier of Democracy",
+      "passive": "Democracy Protects",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "tr9cavalierofdemocracy.webp",
+      "warbondCode": "warbond2"
+    },
+    {
+      "id": "tr40goldeagle",
+      "name": "TR-40 Gold Eagle",
+      "passive": "Extra Padding",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "tr40goldeagle.webp",
+      "warbondCode": "none"
+    },
+    {
+      "id": "tr117alphacommander",
+      "name": "TR-117 Alpha Commander",
+      "passive": "Med-Kit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "tr117alphacommander.webp",
+      "warbondCode": "warbond17"
+    },
+    {
+      "id": "uf50bloodhound",
+      "name": "UF-50 Bloodhound",
+      "passive": "Unflinching",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "uf50bloodhound.webp",
+      "warbondCode": "warbond11"
+    },
+    {
+      "id": "uf84doubtkiller",
+      "name": "UF-84 Doubt Killer",
+      "passive": "Unflinching",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "uf84doubtkiller.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "af52lockdown",
+      "name": "AF-52 Lockdown",
+      "passive": "Advanced Filtration",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "af52lockdown.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "b27fortifiedcommando",
+      "name": "B-27 Fortified Commando",
+      "passive": "Extra Padding",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "b27fortifiedcommando.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ce64grenadier",
+      "name": "CE-64 Grenadier",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "ce64grenadier.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ce101guerillagorilla",
+      "name": "CE-101 Guerilla Gorilla",
+      "passive": "Engineering Kit",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "ce101guerillagorilla.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cm17butcher",
+      "name": "CM-17 Butcher",
+      "passive": "Med-Kit",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "cm17butcher.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cw22kodiak",
+      "name": "CW-22 Kodiak",
+      "passive": "Fortified",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "cw22kodiak.webp",
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "cw36winterwarrior",
+      "name": "CW-36 Winter Warrior",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "cw36winterwarrior.webp",
+      "warbondCode": "warbond5"
+    },
+    {
+      "id": "fs05marksman",
+      "name": "FS-05 Marksman",
+      "passive": "Fortified",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "fs05marksman.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "fs11executioner",
+      "name": "FS-11 Executioner",
+      "passive": "Fortified",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "fs11executioner.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "fs23battlemaster",
+      "name": "FS-23 Battle Master",
+      "passive": "Fortified",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "fs23battlemaster.webp",
+      "warbondCode": "warbond1"
+    },
+    {
+      "id": "fs55devastator",
+      "name": "FS-55 Devastator",
+      "passive": "Fortified",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "fs55devastator.webp",
+      "warbondCode": "warbond4"
+    },
+    {
+      "id": "fs61dreadnought",
+      "name": "FS-61 Dreadnought",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "fs61dreadnought.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "i44salamander",
+      "name": "I-44 Salamander",
+      "passive": "Inflammable",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "i44salamander.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ph202twigsnapper",
+      "name": "PH-202 Twigsnapper",
+      "passive": "Peak Physique",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "ph202twigsnapper.webp",
+      "warbondCode": "warbond8"
+    },
+    {
+      "id": "sa32dynamo",
+      "name": "SA-32 Dynamo",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "sa32dynamo.webp",
+      "warbondCode": "warbond2"
+    },
+    {
+      "id": "tr62knight",
+      "name": "TR-62 Knight",
+      "passive": "Servo-Assisted",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "tr62knight.webp",
+      "warbondCode": "warbond2"
+    },
+    {
+      "id": "sr64cinderblock",
+      "name": "SR-64 Cinderblock",
+      "passive": "Siege-Ready",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "sr64cinderblock.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "b22modelcitizen",
+      "name": "B-22 Model Citizen",
+      "passive": "Democracy Protects",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "b22modelcitizen.webp",
+      "warbondCode": "none"
+    },
+    {
+      "id": "ie3martyr",
+      "name": "IE-3 Martyr",
+      "passive": "Integrated Explosives",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ie3martyr.webp",
+      "warbondCode": "warbond13"
+    },
+    {
+      "id": "ie12righteous",
+      "name": "IE-12 Righteous",
+      "passive": "Integrated Explosives",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ie12righteous.webp",
+      "warbondCode": "warbond13"
+    },
+    {
+      "id": "ie57hellbent",
+      "name": "IE-57 Hell-Bent",
+      "passive": "Integrated Explosives",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "ie57hellbent.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "gs17frontiermarshal",
+      "name": "GS-17 Frontier Marshal",
+      "passive": "Gunslinger",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "gs17frontiermarshal.webp",
+      "warbondCode": "warbond24"
+    },
+    {
+      "id": "gs66lawmaker",
+      "name": "GS-66 Lawmaker",
+      "passive": "Gunslinger",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "gs66lawmaker.webp",
+      "warbondCode": "warbond24"
+    },
+    {
+      "id": "gs11democracysdeputy",
+      "name": "GS-11 Democracy's Deputy",
+      "passive": "Gunslinger",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "gs11democracysdeputy.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "re824bearerofthestandard",
+      "name": "RE-824 Bearer of the Standard",
+      "passive": "Reinforced Epaulettes",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "re824bearerofthestandard.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "re1861paradecommander",
+      "name": "RE-1861 Parade Commander",
+      "passive": "Reinforced Epaulettes",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "re1861paradecommander.webp",
+      "warbondCode": "warbond19"
+    },
+    {
+      "id": "re2310honoraryguard",
+      "name": "RE-2310 Honorary Guard",
+      "passive": "Reinforced Epaulettes",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "re2310honoraryguard.webp",
+      "warbondCode": "warbond19"
+    },
+    {
+      "id": "bp20correctofficer",
+      "name": "BP-20 Correct Officer",
+      "passive": "Ballistic Padding",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "bp20correctofficer.webp",
+      "warbondCode": "warbond20"
+    },
+    {
+      "id": "bp32jackboot",
+      "name": "BP-32 Jackboot",
+      "passive": "Ballistic Padding",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "bp32jackboot.webp",
+      "warbondCode": "warbond20"
+    },
+    {
+      "id": "bp77grandjuror",
+      "name": "BP-77 Grand Juror",
+      "passive": "Ballistic Padding",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "bp77grandjuror.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ad11livewire",
+      "name": "AD-11 Livewire",
+      "passive": "Adreno-Defibrillator",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "ad11livewire.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "ad26bleedingedge",
+      "name": "AD-26 Bleeding Edge",
+      "passive": "Adreno-Defibrillator",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ad26bleedingedge.webp",
+      "warbondCode": "warbond25"
+    },
+    {
+      "id": "ad49apollonian",
+      "name": "AD-49 Apollonian",
+      "passive": "Adreno-Defibrillator",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "ad49apollonian.webp",
+      "warbondCode": "warbond25"
+    },
+    {
+      "id": "a9helljumper",
+      "name": "A-9 Helljumper",
+      "passive": "Feet First",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "a9helljumper.webp",
+      "warbondCode": "warbond26"
+    },
+    {
+      "id": "a35recon",
+      "name": "A-35 Recon",
+      "passive": "Feet First",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "a35recon.webp",
+      "warbondCode": "warbond26"
+    },
+    {
+      "id": "ds42federationsblade",
+      "name": "DS-42 Federation's Blade",
+      "passive": "Desert Stormer",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "ds42federationsblade.webp",
+      "warbondCode": "warbond27"
+    },
+    {
+      "id": "ds191scorpion",
+      "name": "DS-191 Scorpion",
+      "passive": "Desert Stormer",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "ds191scorpion.webp",
+      "warbondCode": "warbond27"
+    },
+    {
+      "id": "ds10biggamehunter",
+      "name": "DS-10 Big Game Hunter",
+      "passive": "Desert Stormer",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "ds10biggamehunter.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "rs40beastofprey",
+      "name": "RS-40 Beast of Prey",
+      "passive": "Rock Solid",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "rs40beastofprey.webp",
+      "warbondCode": "warbond21"
+    },
+    {
+      "id": "rs20constrictor",
+      "name": "RS-20 Constrictor",
+      "passive": "Rock Solid",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "rs20constrictor.webp",
+      "warbondCode": "warbond21"
+    },
+    {
+      "id": "rs6fienddestroyer",
+      "name": "RS-6 Fiend Destroyer",
+      "passive": "Rock Solid",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "rs6fienddestroyer.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "rs89shadowparagon",
+      "name": "RS-89 Shadow Paragon",
+      "passive": "Reduced Signature",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "rs89shadowparagon.webp",
+      "warbondCode": "warbond22"
+    },
+    {
+      "id": "rs100sanctioner",
+      "name": "RS-100 Sanctioner",
+      "passive": "Reduced Signature",
+      "tags": [
+        "Light",
+        "Superstore"
+      ],
+      "imageURL": "rs100sanctioner.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "rs67nullcipher",
+      "name": "RS-67 Null Cipher",
+      "passive": "Reduced Signature",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "rs67nullcipher.webp",
+      "warbondCode": "warbond22"
+    },
+    {
+      "id": "sa7headfirst",
+      "name": "SA-7 Head First",
+      "passive": "Supplementary Adrenaline",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "sa7headfirst.webp",
+      "warbondCode": "warbond28"
+    },
+    {
+      "id": "sa8ram",
+      "name": "SA-8 Ram",
+      "passive": "Supplementary Adrenaline",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "sa8ram.webp",
+      "warbondCode": "warbond28"
+    },
+    {
+      "id": "dp8mountainscaled",
+      "name": "DP-8 Mountain-Scaled",
+      "passive": "Siege-Ready",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "dp8mountainscaled.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "cpg48sapper",
+      "name": "CPG-48 Sapper",
+      "passive": "Concussive Padding, Grenadier",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "cpg48sapper.webp",
+      "warbondCode": "warbond23"
+    },
+    {
+      "id": "cph26commandant",
+      "name": "CPH-26 Commandant",
+      "passive": "Concussive Padding, Hazmat",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "cph26commandant.webp",
+      "warbondCode": "warbond23"
+    },
+    {
+      "id": "cpr80bulwark",
+      "name": "CPR-80 Bulwark",
+      "passive": "Concussive Padding, Reinforced",
+      "tags": [
+        "Heavy",
+        "Superstore"
+      ],
+      "imageURL": "cpr80bulwark.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "o3freespirit",
+      "name": "O-3 Free Spirit",
+      "passive": "Oxygenator",
+      "tags": [
+        "Light"
+      ],
+      "imageURL": "o3freespirit.webp",
+      "warbondCode": "warbond17"
+    },
+    {
+      "id": "o2heavyoperator",
+      "name": "O-2 Heavy Operator",
+      "passive": "Oxygenator",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "o2heavyoperator.webp",
+      "warbondCode": "warbond17"
+    },
+    {
+      "id": "o44bondedpilot",
+      "name": "O-44 Bonded Pilot",
+      "passive": "Oxygenator",
+      "tags": [
+        "Medium",
+        "Superstore"
+      ],
+      "imageURL": "o44bondedpilot.webp",
+      "warbondCode": "superstore"
+    },
+    {
+      "id": "kdm500outrider",
+      "name": "KDM-500 Outrider",
+      "passive": "Kinetic Displacement Mitigation",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "kdm500outrider.webp",
+      "warbondCode": "none"
+    },
+    {
+      "id": "tg8sharpshooter",
+      "name": "TG-8 Sharpshooter",
+      "passive": "True Grit",
+      "tags": [
+        "Medium"
+      ],
+      "imageURL": "tg8sharpshooter.webp",
+      "warbondCode": "warbond16"
+    },
+    {
+      "id": "tg122demotrooper",
+      "name": "TG-122 Demo Trooper",
+      "passive": "True Grit",
+      "tags": [
+        "Heavy"
+      ],
+      "imageURL": "tg122demotrooper.webp",
+      "warbondCode": "warbond16"
+    }
+  ],
+  "stratagems": [
+    {
+      "id": "tx41sterilizer",
+      "name": "Sterilizer",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Sterilizer.svg",
+      "tags": [
+        "Weapons",
+        "gas",
+        "ap4"
+      ]
+    },
+    {
+      "id": "flam40flamethrower",
+      "name": "Flamethrower",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Flamethrower.svg",
+      "tags": [
+        "Weapons",
+        "fire",
+        "ap4"
+      ]
+    },
+    {
+      "id": "speargun",
+      "name": "Speargun",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Speargun.svg",
+      "tags": [
+        "Weapons",
+        "gas",
+        "ap4"
+      ]
+    },
+    {
+      "id": "las98lasercannon",
+      "name": "Laser Cannon",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Laser Cannon.svg",
+      "tags": [
+        "Weapons",
+        "laser",
+        "ap4"
+      ]
+    },
+    {
+      "id": "m105stalwart",
+      "name": "Stalwart",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Stalwart.svg",
+      "tags": [
+        "Weapons",
+        "bullets",
+        "ap2"
+      ]
+    },
+    {
+      "id": "mg43machinegun",
+      "name": "Machine Gun",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Machine Gun.svg",
+      "tags": [
+        "Weapons",
+        "bullets",
+        "ap3"
+      ]
+    },
+    {
+      "id": "mg206heavymachinegun",
+      "name": "Heavy Machine Gun",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Heavy Machine Gun.svg",
+      "tags": [
+        "Weapons",
+        "bullets",
+        "ap4"
+      ]
+    },
+    {
+      "id": "arc3arcthrower",
+      "name": "Arc Thrower",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Arc Thrower.svg",
+      "tags": [
+        "Weapons",
+        "arc"
+      ]
+    },
+    {
+      "id": "gl21grenadelauncher",
+      "name": "Grenade Launcher",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Grenade Launcher.svg",
+      "tags": [
+        "Weapons",
+        "explosive",
+        "ap3"
+      ]
+    },
+    {
+      "id": "gl52deescalator",
+      "name": "De-Escalator",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "GL-52 De-Escalator.svg",
+      "tags": [
+        "Weapons",
+        "arc"
+      ]
+    },
+    {
+      "id": "apw1antimaterielrifle",
+      "name": "Anti-Material Rifle",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Anti-Materiel Rifle.svg",
+      "tags": [
+        "Weapons",
+        "bullets",
+        "ap4"
+      ]
+    },
+    {
+      "id": "rs422railgun",
+      "name": "Railgun",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Railgun.svg",
+      "tags": [
+        "Weapons",
+        "at"
+      ]
+    },
+    {
+      "id": "las99quasarcannon",
+      "name": "Quasar Cannon",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Quasar Cannon.svg",
+      "tags": [
+        "Weapons",
+        "at"
+      ]
+    },
+    {
+      "id": "epoch",
+      "name": "Epoch",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Epoch.svg",
+      "tags": [
+        "Weapons",
+        "plasma",
+        "at"
+      ]
+    },
+    {
+      "id": "eat17expendableantitank",
+      "name": "Expendable Anti-Tank",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Expendable Anti-Tank.svg",
+      "tags": [
+        "Weapons",
+        "expendable",
+        "at"
+      ]
+    },
+    {
+      "id": "mls4xcommandorocketlauncher",
+      "name": "Commando",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Commando.svg",
+      "tags": [
+        "Weapons",
+        "expendable",
+        "at"
+      ]
+    },
+    {
+      "id": "eat700expendablenapalm",
+      "name": "Expendable Napalm",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Expendable Napalm.svg",
+      "tags": [
+        "Weapons",
+        "expendable",
+        "fire"
+      ]
+    },
+    {
+      "id": "solosilo",
+      "name": "Solo Silo",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Solo Silo.svg",
+      "tags": [
+        "Weapons",
+        "expendable",
+        "at"
+      ]
+    },
+    {
+      "id": "onetrueflag",
+      "name": "One True Flag",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "One True Flag.svg",
+      "tags": [
+        "Weapons",
+        "melee"
+      ]
+    },
+    {
+      "id": "defoliationtool",
+      "name": "Defoliation Tool",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Defoliation Tool.svg",
+      "tags": [
+        "Weapons",
+        "melee"
+      ]
+    },
+    {
+      "id": "maxigun",
+      "name": "Maxigun",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Maxigun.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "bullets",
+        "ap3"
+      ]
+    },
+    {
+      "id": "ac8autocannon",
+      "name": "Autocannon",
+      "slotType": "Weapon+Backpack",
+      "category": "Supply",
+      "imageURL": "Autocannon.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "explosive"
+      ]
+    },
+    {
+      "id": "wasplauncher",
+      "name": "W.A.S.P. Launcher",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "wasp.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "explosive"
+      ]
+    },
+    {
+      "id": "rl77airburstrocketlauncher",
+      "name": "Airburst Rocket Launcher",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Airburst Rocket Launcher.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "explosive"
+      ]
+    },
+    {
+      "id": "gr8recoillessrifle",
+      "name": "Recoilless Rifle",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Recoilless Rifle.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "explosive",
+        "at"
+      ]
+    },
+    {
+      "id": "faf14spear",
+      "name": "Spear",
+      "slotType": "Weapon+Backpack",
+      "category": "Supply",
+      "imageURL": "Spear.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "explosive",
+        "at"
+      ]
+    },
+    {
+      "id": "c4pack",
+      "name": "C4 Pack",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "C4 Pack.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "explosive",
+        "at"
+      ]
+    },
+    {
+      "id": "guarddogflames",
+      "name": "Guard Dog Flames",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Guard Dog Hot Dog.svg",
+      "tags": [
+        "Backpacks",
+        "fire"
+      ]
+    },
+    {
+      "id": "axtx13guarddogdogbreath",
+      "name": "Guard Dog Breath",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Guard Dog Breath.svg",
+      "tags": [
+        "Backpacks",
+        "gas"
+      ]
+    },
+    {
+      "id": "axlas5guarddogrover",
+      "name": "Guard Dog Laser",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Guard Dog Rover.svg",
+      "tags": [
+        "Backpacks",
+        "laser",
+        "ap2"
+      ]
+    },
+    {
+      "id": "ad334guarddog",
+      "name": "Guard Dog Bullets",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Guard Dog.svg",
+      "tags": [
+        "Backpacks",
+        "bullets",
+        "ap3"
+      ]
+    },
+    {
+      "id": "guarddogarc",
+      "name": "Guard Dog Arc",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Guard Dog K-9.svg",
+      "tags": [
+        "Backpacks",
+        "arc"
+      ]
+    },
+    {
+      "id": "lift850jumppack",
+      "name": "Jump Pack",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Jump Pack.svg",
+      "tags": [
+        "Backpacks",
+        "movement"
+      ]
+    },
+    {
+      "id": "lift860hoverpack",
+      "name": "Hover Pack",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Hover Pack.svg",
+      "tags": [
+        "Backpacks",
+        "movement"
+      ]
+    },
+    {
+      "id": "warppack",
+      "name": "Warp Pack",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Warp Pack.svg",
+      "tags": [
+        "Backpacks",
+        "movement"
+      ]
+    },
+    {
+      "id": "b1supplypack",
+      "name": "Supply Pack",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Supply Pack.svg",
+      "tags": [
+        "Backpacks"
+      ]
+    },
+    {
+      "id": "sh51directionalshield",
+      "name": "Directional Shield",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Directional Shield.svg",
+      "tags": [
+        "Backpacks"
+      ]
+    },
+    {
+      "id": "sh20shieldgeneratorpack",
+      "name": "Shield Generator Pack",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Shield Generator Pack.svg",
+      "tags": [
+        "Backpacks"
+      ]
+    },
+    {
+      "id": "sh20ballisticshieldbackpack",
+      "name": "Ballistic Shield",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Ballistic Shield Backpack.svg",
+      "tags": [
+        "Backpacks"
+      ]
+    },
+    {
+      "id": "portablehellbomb",
+      "name": "Portable Hellbomb",
+      "slotType": "Backpack",
+      "category": "Supply",
+      "imageURL": "Hellbomb Portable.svg",
+      "tags": [
+        "Backpacks",
+        "at",
+        "explosive"
+      ]
+    },
+    {
+      "id": "fastreconvehicle",
+      "name": "Fast Recon Vehicle",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Fast Recon Vehicle.svg",
+      "tags": [
+        "Vehicles",
+        "movement",
+        "frv"
+      ]
+    },
+    {
+      "id": "exo45patriotexosuit",
+      "name": "Patriot Exosuit",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Patriot Exosuit.svg",
+      "tags": [
+        "Vehicles",
+        "at",
+        "exosuit",
+        "expendable"
+      ]
+    },
+    {
+      "id": "exo49emancipatorexosuit",
+      "name": "Emancipator Exosuit",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Emancipator Exosuit.svg",
+      "tags": [
+        "Vehicles",
+        "at",
+        "exosuit",
+        "expendable"
+      ]
+    },
+    {
+      "id": "eaglestrafingrun",
+      "name": "Eagle Strafing Run",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle Strafing Run.svg",
+      "tags": [
+        "Eagle"
+      ]
+    },
+    {
+      "id": "eagleairstrike",
+      "name": "Eagle Airstrike",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle Airstrike.svg",
+      "tags": [
+        "Eagle"
+      ]
+    },
+    {
+      "id": "eagleclusterbomb",
+      "name": "Eagle Cluster Bomb",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle Cluster Bomb.svg",
+      "tags": [
+        "Eagle"
+      ]
+    },
+    {
+      "id": "eaglenapalmstrike",
+      "name": "Eagle Napalm Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle Napalm Airstrike.svg",
+      "tags": [
+        "Eagle",
+        "fire"
+      ]
+    },
+    {
+      "id": "eaglesmokestrike",
+      "name": "Eagle Smoke Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle Smoke Strike.svg",
+      "tags": [
+        "Eagle",
+        "smoke"
+      ]
+    },
+    {
+      "id": "eagle110mmrocketpods",
+      "name": "Eagle 110mm Rocket Pods",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle 110MM Rocket Pods.svg",
+      "tags": [
+        "Eagle",
+        "at"
+      ]
+    },
+    {
+      "id": "eagle500kgbomb",
+      "name": "Eagle 500kg Bomb",
+      "slotType": "Offensive/Defensive",
+      "category": "Eagle",
+      "imageURL": "Eagle 500KG Bomb.svg",
+      "tags": [
+        "Eagle",
+        "at"
+      ]
+    },
+    {
+      "id": "orbitalprecisionstrike",
+      "name": "Orbital Precision Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Precision Strike.svg",
+      "tags": [
+        "Orbital",
+        "at"
+      ]
+    },
+    {
+      "id": "orbitalgasstrike",
+      "name": "Orbital Gas Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Gas Strike.svg",
+      "tags": [
+        "Orbital",
+        "gas"
+      ]
+    },
+    {
+      "id": "orbitalemsstrike",
+      "name": "Orbital EMS Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital EMS Strike.svg",
+      "tags": [
+        "Orbital",
+        "stun"
+      ]
+    },
+    {
+      "id": "orbitalsmokestrike",
+      "name": "Orbital Smoke Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Smoke Strike.svg",
+      "tags": [
+        "Orbital",
+        "smoke"
+      ]
+    },
+    {
+      "id": "orbitalairburststrike",
+      "name": "Orbital Airburst Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Airburst Strike.svg",
+      "tags": [
+        "Orbital"
+      ]
+    },
+    {
+      "id": "orbitalrailcannonstrike",
+      "name": "Orbital Railcannon Strike",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Railcannon Strike.svg",
+      "tags": [
+        "Orbital",
+        "at"
+      ]
+    },
+    {
+      "id": "orbitallaser",
+      "name": "Orbital Laser",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Laser.svg",
+      "tags": [
+        "Orbital",
+        "laser",
+        "at"
+      ]
+    },
+    {
+      "id": "orbitalgatlingbarrage",
+      "name": "Orbital Gatling Barrage",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Gatling Barrage.svg",
+      "tags": [
+        "Orbital",
+        "bullets"
+      ]
+    },
+    {
+      "id": "orbital120mmhebarrage",
+      "name": "Orbital 120mm Barrage",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital 120MM HE Barrage.svg",
+      "tags": [
+        "Orbital"
+      ]
+    },
+    {
+      "id": "orbital380mmhebarrage",
+      "name": "Orbital 380mm Barrage",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital 380MM HE Barrage.svg",
+      "tags": [
+        "Orbital"
+      ]
+    },
+    {
+      "id": "orbitalwalkingbarrage",
+      "name": "Orbital Walking Barrage",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Walking Barrage.svg",
+      "tags": [
+        "Orbital"
+      ]
+    },
+    {
+      "id": "orbitalnapalmbarrage",
+      "name": "Orbital Napalm Barrage",
+      "slotType": "Offensive/Defensive",
+      "category": "Orbital",
+      "imageURL": "Orbital Napalm Barrage.svg",
+      "tags": [
+        "Orbital",
+        "fire"
+      ]
+    },
+    {
+      "id": "teslatower",
+      "name": "Tesla Tower",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Tesla Tower.svg",
+      "tags": [
+        "Sentry",
+        "arc"
+      ]
+    },
+    {
+      "id": "mortarsentry",
+      "name": "Mortar Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Mortar Sentry.svg",
+      "tags": [
+        "Sentry"
+      ]
+    },
+    {
+      "id": "emsmortarsentry",
+      "name": "EMS Mortar Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "EMS Mortar Sentry.svg",
+      "tags": [
+        "Sentry",
+        "stun"
+      ]
+    },
+    {
+      "id": "machinegunsentry",
+      "name": "Machine Gun Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Machine Gun Sentry.svg",
+      "tags": [
+        "Sentry",
+        "bullets",
+        "ap3"
+      ]
+    },
+    {
+      "id": "gatlingsentry",
+      "name": "Gatling Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Gatling Sentry.svg",
+      "tags": [
+        "Sentry",
+        "bullets",
+        "ap3"
+      ]
+    },
+    {
+      "id": "aflam40flamesentry",
+      "name": "Flame Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Flame Sentry.svg",
+      "tags": [
+        "Sentry",
+        "fire"
+      ]
+    },
+    {
+      "id": "lasersentry",
+      "name": "Laser Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Laser Sentry.svg",
+      "tags": [
+        "Sentry",
+        "laser"
+      ]
+    },
+    {
+      "id": "autocannonsentry",
+      "name": "Autocannon Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Autocannon Sentry.svg",
+      "tags": [
+        "Sentry",
+        "explosive",
+        "at"
+      ]
+    },
+    {
+      "id": "rocketsentry",
+      "name": "Rocket Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Rocket Sentry.svg",
+      "tags": [
+        "Sentry",
+        "explosive",
+        "at"
+      ]
+    },
+    {
+      "id": "shieldgeneratorrelay",
+      "name": "Shield Generator Relay",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Shield Generator Relay.svg",
+      "tags": [
+        "Emplacement"
+      ]
+    },
+    {
+      "id": "hmgemplacement",
+      "name": "HMG Emplacement",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "HMG Emplacement.svg",
+      "tags": [
+        "Emplacement",
+        "bullets",
+        null,
+        "ap4"
+      ]
+    },
+    {
+      "id": "eat12antitankemplacement",
+      "name": "Anti-Tank Emplacement",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Anti-Tank Emplacement.svg",
+      "tags": [
+        "Emplacement",
+        "explosive",
+        "at"
+      ]
+    },
+    {
+      "id": "grenadierbattlement",
+      "name": "Grenadier Battlement",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Grenadier Battlement.svg",
+      "tags": [
+        "Emplacement",
+        "explosive",
+        "ap3"
+      ]
+    },
+    {
+      "id": "antitankmines",
+      "name": "Anti-Tank Mines",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Anti-Tank Mines.svg",
+      "tags": [
+        "Emplacement",
+        "at"
+      ]
+    },
+    {
+      "id": "antipersonnelminefield",
+      "name": "Anti-Personnel Mines",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Anti-Personnel Minefield.svg",
+      "tags": [
+        "Emplacement"
+      ]
+    },
+    {
+      "id": "gasmines",
+      "name": "Gas Mines",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Gas Mine.svg",
+      "tags": [
+        "Emplacement",
+        "gas"
+      ]
+    },
+    {
+      "id": "incendiarymines",
+      "name": "Incendiary Mines",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Incendiary Mines.svg",
+      "tags": [
+        "Emplacement",
+        "fire"
+      ]
+    },
+    {
+      "id": "breachinghammer",
+      "name": "Breaching Hammer",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "CQC-20.svg",
+      "tags": [
+        "Weapons",
+        "melee",
+        "at"
+      ]
+    },
+    {
+      "id": "leveller",
+      "name": "Leveller",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "EAT-411.svg",
+      "tags": [
+        "Weapons",
+        "at",
+        "expendable",
+        "explosive"
+      ]
+    },
+    {
+      "id": "beltfedgrenadelauncher",
+      "name": "Belt-Fed Grenade Launcher",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "GL-28.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "at",
+        "explosive",
+        null,
+        "ap4"
+      ]
+    },
+    {
+      "id": "bastiontank",
+      "name": "Bastion",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Bastion MK XVI.svg",
+      "tags": [
+        "Vehicles"
+      ]
+    },
+    {
+      "id": "gasmortarsentry",
+      "name": "Gas Mortar Sentry",
+      "slotType": "Offensive/Defensive",
+      "category": "Defense",
+      "imageURL": "Gas Mortar Sentry.svg",
+      "tags": [
+        "Sentry",
+        "gas"
+      ]
+    },
+    {
+      "id": "cremator",
+      "name": "Cremator",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Cremator.svg",
+      "tags": [
+        "Weapons",
+        "Backpacks",
+        "fire",
+        "at"
+      ]
+    },
+    {
+      "id": "exo51lumbererexosuit",
+      "name": "Lumberer Exosuit",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Lumberer Exosuit.svg",
+      "tags": [
+        "Vehicles",
+        "fire",
+        "at",
+        "expendable",
+        "exosuit"
+      ]
+    },
+    {
+      "id": "exo55breakthroughexosuit",
+      "name": "Breakthrough Exosuit",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Breakthrough Exosuit.svg",
+      "tags": [
+        "Vehicles",
+        "expendable",
+        "at",
+        "exosuit"
+      ]
+    },
+    {
+      "id": "mgx42bulletstorm",
+      "name": "Bullet Storm",
+      "slotType": "Weapon",
+      "category": "Supply",
+      "imageURL": "Bullet Storm.svg",
+      "tags": [
+        "Weapons",
+        "expendable",
+        "bullets",
+        "ap2"
+      ]
+    },
+    {
+      "id": "supplyfrv",
+      "name": "Supply FRV",
+      "slotType": "Vehicle",
+      "category": "Supply",
+      "imageURL": "Supply FRV.svg",
+      "tags": [
+        "Vehicles",
+        "movement",
+        "frv"
+      ]
+    }
+  ]
+}

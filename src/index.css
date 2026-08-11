@@ -1,0 +1,325 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hcDark: #0D0D12;
+  --color-hcPanel: #1a1a24;
+  --color-hcBorder: #2d2d3a;
+  --color-hcAccent: #d2b936;
+  --color-hcBlue: #4b9bb5;
+  --color-hcRed: #d23d45;
+  --color-hcGreen: #4e8c56;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-hcDark);
+    color: var(--color-gray-200);
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+  }
+}
+
+/* ================================
+   Plain CSS (Light/Dark Variables)
+   ================================ */
+
+body[data-theme="plain"] {
+  /* СВЕТЛАЯ ТЕМА ПО УМОЛЧАНИЮ */
+  --color-hcDark: #f0f0f5;         /* Главный фон экрана (светло-серый) */
+  --color-hcPanel: #ffffff;        /* Фон панелей (белый) */
+  --color-hcBorder: #d1d1e0;       /* Цвет рамок */
+  
+  --color-gray-200: #1f2937;       /* Основной текст (темно-серый) */
+  --color-gray-400: #4b5563;       /* Второстепенный текст */
+  --color-gray-500: #6b7280;
+
+  background-color: var(--color-hcDark);
+  color: var(--color-gray-200);
+}
+
+body[data-theme="plain"][data-dark="true"] {
+  /* ТЕМНАЯ ТЕМА (Plain) - Возвращаем в начальные цвета */
+  --color-hcDark: #0D0D12;
+  --color-hcPanel: #1a1a24;
+  --color-hcBorder: #2d2d3a;
+  
+  --color-gray-200: #e5e7eb;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+
+  background-color: var(--color-hcDark);
+  color: var(--color-gray-200);
+}
+
+
+/* ================================
+   Steam 2003 (Light/Dark Variables)
+   ================================ */
+
+body[data-theme="steam2003"] {
+  /* STEAM СВЕТЛАЯ ТЕМА (Классическая зеленая) */
+  --color-bg-body: #4c5844;
+  --color-bg-panel: #384030;
+  --color-text-main: #d2d2d2;
+  --color-text-highlight: #ffe589;
+  --steam-border-light: #69745d;
+  --steam-border-dark: #2a3124;
+  --steam-border-active-bg: #3f4938;
+
+  --color-hcDark: var(--color-bg-body);
+  --color-hcPanel: var(--color-bg-panel);
+  --color-hcBorder: var(--steam-border-light);
+
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  font-family: 'Tahoma', 'Arial', sans-serif;
+}
+
+body[data-theme="steam2003"][data-dark="true"] {
+  /* STEAM ТЕМНАЯ ТЕМА (Серый старый стим) */
+  --color-bg-body: #2b2b2b;
+  --color-bg-panel: #1e1e1e;
+  --color-text-main: #b8b8b8;
+  --steam-border-light: #555555;
+  --steam-border-dark: #111111;
+  --steam-border-active-bg: #252525;
+
+  --color-hcDark: var(--color-bg-body);
+  --color-hcPanel: var(--color-bg-panel);
+  --color-hcBorder: var(--steam-border-light);
+
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+}
+
+
+/* ================================
+   Theme Classes Mapping 
+   (Эти классы тянут цвета из переменных выше)
+   ================================ */
+.theme-panel {
+  background-color: var(--color-hcPanel);
+  border: 1px solid var(--color-hcBorder);
+}
+
+body[data-theme="steam2003"] .theme-panel {
+  background-color: var(--color-bg-body);
+  border: 2px solid;
+  border-color: var(--steam-border-light) var(--steam-border-dark) var(--steam-border-dark) var(--steam-border-light);
+  border-radius: 0;
+}
+
+.theme-inner-panel {
+  background-color: rgba(0, 0, 0, 0.05); /* Легкое затемнение для светлой темы */
+  border: 1px solid var(--color-hcBorder);
+}
+body[data-theme="plain"][data-dark="true"] .theme-inner-panel {
+  background-color: rgba(0, 0, 0, 0.4); /* Сильное затемнение для темной темы */
+}
+
+body[data-theme="steam2003"] .theme-inner-panel {
+  background-color: var(--color-bg-panel);
+  border: 2px solid;
+  border-color: var(--steam-border-dark) var(--steam-border-light) var(--steam-border-light) var(--steam-border-dark);
+  border-radius: 0;
+}
+
+
+/* Input fields */
+.theme-input {
+  background-color: var(--color-hcDark);
+  border: 1px solid var(--color-hcBorder);
+  color: var(--color-gray-200);
+}
+
+body[data-theme="steam2003"] .theme-input {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid;
+  border-color: var(--steam-border-dark) var(--steam-border-light) var(--steam-border-light) var(--steam-border-dark);
+  border-radius: 0;
+  text-transform: none;
+}
+body[data-theme="steam2003"][data-dark="true"] .theme-input {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+
+/* Buttons */
+.theme-button {
+  background-color: var(--color-hcDark);
+  border: 1px solid var(--color-hcBorder);
+  color: var(--color-gray-200);
+  transition: all 0.1s;
+}
+
+.theme-button:hover:not(:disabled) {
+  background-color: var(--color-hcBorder);
+}
+
+body[data-theme="steam2003"] .theme-button {
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  border: 2px solid;
+  border-color: var(--steam-border-light) var(--steam-border-dark) var(--steam-border-dark) var(--steam-border-light);
+  border-radius: 0;
+  text-transform: none;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+body[data-theme="steam2003"] .theme-button:active,
+body[data-theme="steam2003"] .theme-button.active {
+  border-color: var(--steam-border-dark) var(--steam-border-light) var(--steam-border-light) var(--steam-border-dark);
+  background-color: var(--steam-border-active-bg);
+}
+
+body[data-theme="steam2003"] .theme-button:hover:not(:disabled) {
+    color: var(--color-text-highlight);
+}
+
+body[data-theme="steam2003"] .theme-button:disabled {
+  opacity: 0.5;
+}
+
+
+/* Tailwind Overrides for Themes */
+body[data-theme="steam2003"] .theme-highlight,
+body[data-theme="steam2003"] .text-hcAccent {
+  color: var(--color-text-highlight) !important;
+}
+
+body[data-theme="steam2003"] .text-gray-400,
+body[data-theme="steam2003"] .text-gray-500 {
+  color: var(--color-text-main) !important;
+}
+
+body[data-theme="plain"] .text-gray-400,
+body[data-theme="plain"] .text-gray-500 {
+  color: var(--color-gray-400); 
+}
+
+/* Typography fix for Steam */
+body[data-theme="steam2003"] .tracking-widest,
+body[data-theme="steam2003"] .tracking-wider {
+  letter-spacing: normal !important;
+}
+body[data-theme="steam2003"] .uppercase {
+  text-transform: none !important;
+}
+
+/* ================================
+   Steam 2003 (VGUI2) Full Styling
+   ================================ */
+
+body[data-theme="steam2003"] {
+  font-family: "Tahoma", "Arial", sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+body[data-theme="steam2003"] .rounded-lg,
+body[data-theme="steam2003"] .rounded-md,
+body[data-theme="steam2003"] .rounded-sm,
+body[data-theme="steam2003"] .rounded {
+  border-radius: 0px !important;
+}
+
+body[data-theme="steam2003"] .shadow-lg,
+body[data-theme="steam2003"] .shadow-md,
+body[data-theme="steam2003"] .shadow-xl,
+body[data-theme="steam2003"] .shadow-2xl {
+  box-shadow: none !important;
+}
+
+/* VGUI2 Window Dialog Frame */
+.steam-dialog-window {
+  background-color: var(--color-bg-body);
+  border: 2px solid;
+  border-color: var(--steam-border-light) var(--steam-border-dark) var(--steam-border-dark) var(--steam-border-light);
+  padding: 4px;
+}
+
+/* VGUI2 Header Title Bar */
+.steam-dialog-header {
+  background: linear-gradient(90deg, #3d4638 0%, #4c5844 100%);
+  color: #ffe589;
+  padding: 3px 8px;
+  font-weight: bold;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--steam-border-dark);
+  margin-bottom: 4px;
+}
+
+/* VGUI2 Inset Box Container (Listboxes, Tables, Grids) */
+.steam-inset-box {
+  background-color: var(--color-bg-panel);
+  border: 2px solid;
+  border-color: var(--steam-border-dark) var(--steam-border-light) var(--steam-border-light) var(--steam-border-dark);
+  padding: 4px;
+}
+
+/* VGUI2 Group Box & Fieldset Fixes */
+.steam-group-box {
+  border: 1px solid var(--color-hcBorder);
+  padding: 12px;
+  margin-top: 8px;
+  position: relative;
+}
+
+body[data-theme="steam2003"] .steam-group-box {
+  border: 2px solid;
+  border-color: var(--steam-border-light) var(--steam-border-dark) var(--steam-border-dark) var(--steam-border-light);
+}
+
+.steam-group-box-title {
+  color: var(--color-gray-200);
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+body[data-theme="steam2003"] .steam-group-box-title {
+  color: var(--color-text-highlight);
+  font-size: 11px;
+}
+
+/* VGUI2 Tabs */
+.steam-tab-btn {
+  background-color: var(--color-bg-body);
+  border: 2px solid;
+  border-color: var(--steam-border-light) var(--steam-border-dark) var(--color-bg-body) var(--steam-border-light);
+  color: var(--color-text-main);
+  padding: 4px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.steam-tab-btn.active,
+.steam-tab-btn:active {
+  background-color: var(--color-bg-panel);
+  border-color: var(--steam-border-light) var(--steam-border-dark) var(--color-bg-panel) var(--steam-border-light);
+  color: var(--color-text-highlight);
+  font-weight: bold;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-hcDark); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-hcBorder); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-hcAccent); 
+}
