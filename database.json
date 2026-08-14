@@ -1024,126 +1024,126 @@
     {
       "id": "expertextractionpilot",
       "name": "Expert Extraction Pilot",
-      "imageURL": "expertextractionpilot.svg",
+      "imageURL": "expertextractionpilot.webp",
       "tags": [],
       "warbondCode": "warbond6"
     },
     {
       "id": "deadsprint",
       "name": "Dead Sprint",
-      "imageURL": "deadsprint.svg",
+      "imageURL": "deadsprint.webp",
       "tags": [],
       "warbondCode": "warbond11"
     },
     {
       "id": "armedresupplypods",
       "name": "Armed Resupply Pods",
-      "imageURL": "armedresupplypods.svg",
+      "imageURL": "armedresupplypods.webp",
       "tags": [],
       "warbondCode": "warbond12"
     },
     {
       "id": "experimentalinfusion",
       "name": "Experimental Infusion",
-      "imageURL": "experimentalinfusion.svg",
+      "imageURL": "experimentalinfusion.webp",
       "tags": [],
       "warbondCode": "warbond8"
     },
     {
       "id": "motivationalshocks",
       "name": "Motivational Shocks",
-      "imageURL": "motivationalshocks.svg",
+      "imageURL": "motivationalshocks.webp",
       "tags": [],
       "warbondCode": "warbond7"
     },
     {
       "id": "flexiblereinforcementbudget",
       "name": "Flexible Reinforcement Budget",
-      "imageURL": "flexiblereinforcementbudget.svg",
+      "imageURL": "flexiblereinforcementbudget.webp",
       "tags": [],
       "warbondCode": "warbond4"
     },
     {
       "id": "hellpodspaceoptimization",
       "name": "Hellpod Space Optimization",
-      "imageURL": "hellpodspaceoptimization.svg",
+      "imageURL": "hellpodspaceoptimization.webp",
       "tags": [],
       "warbondCode": "warbond1"
     },
     {
       "id": "increasedreinforcementbudget",
       "name": "Increased Reinforcement Budget",
-      "imageURL": "increasedreinforcementbudget.svg",
+      "imageURL": "increasedreinforcementbudget.webp",
       "tags": [],
       "warbondCode": "warbond1"
     },
     {
       "id": "localizationconfusion",
       "name": "Localization Confusion",
-      "imageURL": "localizationconfusion.svg",
+      "imageURL": "localizationconfusion.webp",
       "tags": [],
       "warbondCode": "warbond5"
     },
     {
       "id": "muscleenhancement",
       "name": "Muscle Enhancement",
-      "imageURL": "muscleenhancement.svg",
+      "imageURL": "muscleenhancement.webp",
       "tags": [],
       "warbondCode": "warbond1"
     },
     {
       "id": "staminaenhancement",
       "name": "Stamina Enhancement",
-      "imageURL": "staminaenhancement.svg",
+      "imageURL": "staminaenhancement.webp",
       "tags": [],
       "warbondCode": "warbond1"
     },
     {
       "id": "uavrecon",
       "name": "UAV Recon",
-      "imageURL": "uavrecon.svg",
+      "imageURL": "uavrecon.webp",
       "tags": [],
       "warbondCode": "warbond1"
     },
     {
       "id": "vitalityenhancement",
       "name": "Vitality Enhancement",
-      "imageURL": "vitalityenhancement.svg",
+      "imageURL": "vitalityenhancement.webp",
       "tags": [],
       "warbondCode": "warbond1"
     },
     {
       "id": "firebombhellpods",
       "name": "Firebomb Hellpods",
-      "imageURL": "firebombhellpods.svg",
+      "imageURL": "firebombhellpods.webp",
       "tags": [],
       "warbondCode": "warbond9"
     },
     {
       "id": "sampleextricator",
       "name": "Sample Extricator",
-      "imageURL": "sampleextricator.svg",
+      "imageURL": "sampleextricator.webp",
       "tags": [],
       "warbondCode": "warbond14"
     },
     {
       "id": "samplescanner",
       "name": "Sample Scanner",
-      "imageURL": "samplescanner.svg",
+      "imageURL": "samplescanner.webp",
       "tags": [],
       "warbondCode": "warbond15"
     },
     {
       "id": "stunpods",
       "name": "Stun Pods",
-      "imageURL": "stunpods.svg",
+      "imageURL": "stunpods.webp",
       "tags": [],
       "warbondCode": "warbond16"
     },
     {
       "id": "concealedinsertion",
       "name": "Concealed Insertion",
-      "imageURL": "concealedinsertion.svg",
+      "imageURL": "concealedinsertion.webp",
       "tags": [],
       "warbondCode": "warbond22"
     }
