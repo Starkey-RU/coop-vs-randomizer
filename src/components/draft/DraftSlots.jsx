@@ -148,7 +148,16 @@ function Slot({ item, label, type, category, isMe, onUnequip, onSelectCategory, 
                src={imagePath} 
                alt={item.name} 
                className={`object-contain filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] pointer-events-none transition-transform ${isThrowable ? 'max-h-[115%] max-w-[115%] scale-125' : 'max-h-full max-w-full'}`} 
-               onError={(e) => { e.target.style.opacity = '0.3'; }} 
+               onError={(e) => {
+                   const src = e.target.src;
+                   if (src.endsWith('.svg')) {
+                       e.target.src = src.replace('.svg', '.webp');
+                   } else if (src.endsWith('.webp')) {
+                       e.target.src = src.replace('.webp', '.png');
+                   } else {
+                       e.target.style.opacity = '0.3';
+                   }
+               }} 
            />
            {/* Popover / Tooltip */}
            {showTooltip && (

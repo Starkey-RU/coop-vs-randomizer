@@ -228,9 +228,23 @@ function PlayerCard({ build, playerName }) {
              <div className="flex flex-col gap-1.5 justify-center w-full">
                  {build.booster ? (
                       <SteamInset className="flex flex-col items-center justify-start p-1 bg-hcDark/40 h-[68px] group border-[var(--steam-border-dark)] hover:border-[var(--steam-border-light)] transition-colors">
-                         <div className="h-11 w-full flex items-center justify-center p-0.5 bg-black/40 overflow-hidden relative">
-                             <img src={`/assets/images/${build.booster.imageURL}`} alt={build.booster.name} className="w-full h-full object-contain filter drop-shadow-md" onError={(e) => e.target.style.display = 'none'} />
-                         </div>
+                          <div className="h-11 w-full flex items-center justify-center p-0.5 bg-black/40 overflow-hidden relative">
+                             <img 
+                                src={`/assets/images/${build.booster.imageURL}`} 
+                                alt={build.booster.name} 
+                                className="w-full h-full object-contain filter drop-shadow-md" 
+                                onError={(e) => {
+                                    const src = e.target.src;
+                                    if (src.endsWith('.svg')) {
+                                        e.target.src = src.replace('.svg', '.webp');
+                                    } else if (src.endsWith('.webp')) {
+                                        e.target.src = src.replace('.webp', '.png');
+                                    } else {
+                                        e.target.style.display = 'none';
+                                    }
+                                }} 
+                             />
+                          </div>
                          <span className="text-[8.5px] text-center text-slate-300 uppercase font-mono font-bold leading-tight w-full truncate mt-0.5">{build.booster.name}</span>
                       </SteamInset>
                  ) : <EmptySlot label="Booster" />}

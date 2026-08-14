@@ -51,7 +51,16 @@ export default function StandardGridItem({
                 src={imagePath} 
                 alt={item.name} 
                 className="w-full h-full object-contain filter drop-shadow-md pointer-events-none transform group-hover:scale-105 transition-transform" 
-                onError={(e) => { e.target.src = ''; }} 
+                onError={(e) => {
+                    const src = e.target.src;
+                    if (src.endsWith('.svg')) {
+                        e.target.src = src.replace('.svg', '.webp');
+                    } else if (src.endsWith('.webp')) {
+                        e.target.src = src.replace('.webp', '.png');
+                    } else {
+                        e.target.style.display = 'none';
+                    }
+                }} 
             />
             
             {isSuperstore && (
