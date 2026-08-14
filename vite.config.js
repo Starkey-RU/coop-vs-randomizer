@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg', 'assets/**/*.png', 'assets/**/*.svg', 'assets/**/*.jpg'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'HD2 Attrition Protocol',
         short_name: 'HD2 Attrition',
@@ -28,8 +28,24 @@ export default defineConfig({
         ]
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
+        globPatterns: ['**/*.{js,css,html,ico}'],
+        globIgnores: ['**/assets/images/**', '**/assets/stratagems/**', '**/armor/**', '**/passive_armor/**'],
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'hd2-game-assets',
+              expiration: {
+                maxEntries: 500,
+                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
       }
     })
   ]

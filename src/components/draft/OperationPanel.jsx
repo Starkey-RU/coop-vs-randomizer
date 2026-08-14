@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { History, Settings, Crown, UserCheck, Skull, CheckCircle, Shield } from 'lucide-react';
-import useGameStore from '../../store/useGameStore';
 import RoomActions from '../../store/RoomActions';
 import { getFilledCount, getMaxPossibleSlots } from '../../utils/poolHelpers';
 import SteamWindow from '../ui/SteamWindow';
@@ -15,7 +13,6 @@ export default function OperationPanel({ pool, players, roomCode, uid, isHost, r
     const isReady = myPlayer?.isReady || false;
     const missionNumber = (roomOptions?.historyLength || 0) + 1;
 
-    // Phase 2: Moved DB updating to RoomActions
     const handleToggleDepleteBoosters = () => {
         if (!isHost) return;
         RoomActions.updateRoomOption(roomCode, 'depleteBoosters', !roomOptions?.depleteBoosters);
@@ -32,7 +29,7 @@ export default function OperationPanel({ pool, players, roomCode, uid, isHost, r
 
     const handleKickPlayer = async (pUid) => {
         if (!isHost) return;
-        if (window.confirm('Kick player and return their items to the pool?')) {
+        if (window.confirm(`Исключить бойца ${players[pUid]?.name || ''} и вернуть его экипировку в пул?`)) {
             await RoomActions.kickPlayer(roomCode, pUid, pool);
         }
     };
@@ -48,89 +45,215 @@ export default function OperationPanel({ pool, players, roomCode, uid, isHost, r
     let filled = 0, maxSlots = 0;
     if (myPlayer) {
         filled = getFilledCount(pool, uid);
-        maxSlots = getMaxPossibleSlots(pool);
+        maxSlots = getMaxPossibleSlots(pool, uid);
     }
+    const isLoadoutComplete = filled >= maxSlots && maxSlots > 0;
+    const readyPercent = uids.length > 0 ? Math.round((readyCount / uids.length) * 100) : 0;
 
     return (
-        <SteamWindow className="flex flex-col gap-3 relative shrink-0">
-            {/* Header / Meta */}
-            <div className="flex justify-between items-center px-2 py-1 steam-group-box-title bg-hcDark/80">
-                <span className="font-bold text-hcMuted uppercase tracking-widest text-xs flex items-center gap-2">
-                    <Skull size={14} className="text-hcRed"/> ОПЕРАЦИЯ (Миссия #{missionNumber})
-                </span>
-                <div className="flex items-center gap-1.5">
+        <SteamWindow className="flex flex-col gap-2 relative shrink-0 p-1.5">
+            {/* Header: VGUI2 Steam Title Bar */}
+            <div className="steam-dialog-header">
+                <div className="flex items-center gap-2">
+                    <span className="font-bold tracking-wider text-[11px]">
+                        ОПЕРАЦИЯ // МИССИЯ #{missionNumber}
+                    </span>
+                </div>
+                <div className="flex items-center gap-1">
                     {onOpenHistory && (
-                        <button onClick={onOpenHistory} className="p-1.5 text-hcMuted hover:text-white hover:bg-hcDark rounded transition-colors" title="Архив">
-                            <History size={14} />
+                        <button 
+                            onClick={onOpenHistory} 
+                            className="p-1 px-1.5 text-[10px] text-gray-300 hover:text-white hover:bg-black/40 rounded transition-colors" 
+                            title="Архив операций"
+                        >
+                            АРХИВ
                         </button>
                     )}
                     {isHost && (
-                        <button onClick={() => setShowOptions(!showOptions)} className={`p-1.5 rounded transition-colors ${showOptions ? 'text-hcYellow bg-hcDark' : 'text-hcMuted hover:text-white'}`} title="Настройки">
-                            <Settings size={14} />
+                        <button 
+                            onClick={() => setShowOptions(!showOptions)} 
+                            className={`p-1 px-1.5 text-[10px] rounded transition-colors ${
+                                showOptions ? 'text-yellow-300 bg-black/60 font-bold' : 'text-gray-300 hover:text-white hover:bg-black/40'
+                            }`} 
+                            title="Настройки логистики"
+                        >
+                            ОПЦИИ
                         </button>
                     )}
                 </div>
             </div>
 
-            {/* Config & Options */}
+            {/* Logistics Settings Drawer (Host Only) */}
             {isHost && showOptions && (
-                <SteamBox title="НАСТРОЙКИ ЛОГИСТИКИ" className="text-[10px] mx-2">
-                    <div className="grid grid-cols-2 gap-1 px-1">
-                        <label className="flex items-center gap-2 cursor-pointer hover:bg-hcDark p-1.5 rounded transition-colors bg-black/20 border border-hcBorder/20">
-                            <input type="checkbox" checked={roomOptions?.depleteBoosters || false} onChange={handleToggleDepleteBoosters} className="accent-hcYellow" />
-                            <span className="text-hcMuted tracking-wider font-bold">ИСТОЩАТЬ БУСТЕРЫ</span>
+                <SteamBox title="ДИРЕКТИВЫ ЛОГИСТИКИ" className="text-[11px] mb-1">
+                    <div className="grid grid-cols-2 gap-1.5 p-1 bg-black/30">
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
+                            <input 
+                                type="checkbox" 
+                                checked={roomOptions?.depleteBoosters || false} 
+                                onChange={handleToggleDepleteBoosters} 
+                                className="accent-yellow-400" 
+                            />
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать бустеры</span>
                         </label>
-                        <label className="flex items-center gap-2 cursor-pointer hover:bg-hcDark p-1.5 rounded transition-colors bg-black/20 border border-hcBorder/20">
-                            <input type="checkbox" checked={roomOptions?.depleteWeapons ?? true} onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteWeapons', !(roomOptions?.depleteWeapons ?? true))} className="accent-hcYellow" />
-                            <span className="text-hcMuted tracking-wider font-bold">ИСТОЩАТЬ ОРУЖИЕ</span>
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
+                            <input 
+                                type="checkbox" 
+                                checked={roomOptions?.depleteWeapons ?? true} 
+                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteWeapons', !(roomOptions?.depleteWeapons ?? true))} 
+                                className="accent-yellow-400" 
+                            />
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать оружие</span>
                         </label>
-                        <label className="flex items-center gap-2 cursor-pointer hover:bg-hcDark p-1.5 rounded transition-colors bg-black/20 border border-hcBorder/20">
-                            <input type="checkbox" checked={roomOptions?.depleteArmor ?? true} onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteArmor', !(roomOptions?.depleteArmor ?? true))} className="accent-hcYellow" />
-                            <span className="text-hcMuted tracking-wider font-bold">ИСТОЩАТЬ БРОНЮ</span>
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
+                            <input 
+                                type="checkbox" 
+                                checked={roomOptions?.depleteArmor ?? true} 
+                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteArmor', !(roomOptions?.depleteArmor ?? true))} 
+                                className="accent-yellow-400" 
+                            />
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать броню</span>
                         </label>
-                        <label className="flex items-center gap-2 cursor-pointer hover:bg-hcDark p-1.5 rounded transition-colors bg-black/20 border border-hcBorder/20">
-                            <input type="checkbox" checked={roomOptions?.depleteStratagems ?? true} onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteStratagems', !(roomOptions?.depleteStratagems ?? true))} className="accent-hcYellow" />
-                            <span className="text-hcMuted tracking-wider font-bold">ЛИМИТ СТРАТАГЕМ</span>
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
+                            <input 
+                                type="checkbox" 
+                                checked={roomOptions?.depleteStratagems ?? true} 
+                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteStratagems', !(roomOptions?.depleteStratagems ?? true))} 
+                                className="accent-yellow-400" 
+                            />
+                            <span className="text-gray-300 font-medium text-[10px]">Лимит стратагем</span>
                         </label>
                     </div>
                 </SteamBox>
             )}
 
             {/* Squad Roster */}
-            <SteamBox title="ЛИЧНЫЙ СОСТАВ" className="mx-2 mb-2 pb-1 text-xs">
-                <div className="flex flex-col gap-1">
-                    {uids.map(pId => (
-                        <SteamInset key={pId} className="flex justify-between items-center p-1 px-2 border-l-2" style={{ borderLeftColor: players[pId]?.isReady ? '#4ade80' : '#ef4444' }}>
-                            <div className="flex items-center gap-2">
-                                {roomOptions?.hostId === pId ? <Crown size={12} className="text-hcYellow" /> : <div className="w-3" />}
-                                <span className="font-mono text-white truncate max-w-[120px]">{players[pId]?.name}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                {isHost && pId !== uid && (
-                                    <button onClick={() => handleKickPlayer(pId)} className="text-[9px] text-hcRed hover:text-white uppercase font-bold tracking-widest px-1">Кик</button>
-                                )}
-                                {isHost && (
-                                    <button onClick={() => handleForceReady(pId)} className="text-hcMuted hover:text-white"><UserCheck size={14}/></button>
-                                )}
-                                {players[pId]?.isReady ? <CheckCircle size={14} className="text-hcGreen" /> : <Shield size={14} className="text-hcMuted" />}
-                            </div>
-                        </SteamInset>
-                    ))}
+            <SteamBox title="ЛИЧНЫЙ СОСТАВ ОТРЯДА" className="text-xs">
+                <div className="flex flex-col gap-1.5 p-1">
+                    {uids.map((pId, idx) => {
+                        const p = players[pId];
+                        const isMe = pId === uid;
+                        const isPlayerHost = roomOptions?.hostId === pId;
+                        const pFilled = getFilledCount(pool, pId);
+                        const pMax = getMaxPossibleSlots(pool, pId);
+                        const pReady = p?.isReady || false;
+
+                        return (
+                            <SteamInset 
+                                key={pId} 
+                                className={`flex justify-between items-center p-2 rounded transition-colors ${
+                                    pReady 
+                                        ? 'border-l-4 border-l-green-500 bg-green-950/10' 
+                                        : 'border-l-4 border-l-amber-500/80 bg-black/20'
+                                } ${isMe ? 'bg-yellow-500/5' : ''}`}
+                            >
+                                {/* Left: Index, Host text & Name */}
+                                <div className="flex items-center gap-2 min-w-0">
+                                    <span className="text-[10px] font-mono font-bold text-gray-400 bg-black/40 px-1 py-0.5 rounded">
+                                        0{idx + 1}
+                                    </span>
+                                    <div className="flex flex-col min-w-0">
+                                        <span className={`font-mono text-xs font-bold truncate ${isMe ? 'text-yellow-300' : 'text-white'}`}>
+                                            {p?.name || 'Боец'} 
+                                            {isPlayerHost && <span className="text-[10px] text-yellow-400 font-normal ml-1">[HOST]</span>}
+                                            {isMe && <span className="text-[10px] text-gray-400 font-normal ml-1">(Вы)</span>}
+                                        </span>
+                                        <span className="text-[9px] font-mono text-gray-400">
+                                            Слоты: {pFilled} / {pMax}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Right: Readiness Badge & Host Controls */}
+                                <div className="flex items-center gap-1.5 shrink-0">
+                                    {/* Ready Status Badge */}
+                                    {pReady ? (
+                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-green-900/60 text-green-400 border border-green-500/40">
+                                            ГОТОВ
+                                        </span>
+                                    ) : (
+                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-900/40 text-amber-300 border border-amber-500/30">
+                                            ВЫБОР...
+                                        </span>
+                                    )}
+
+                                    {/* Host Controls */}
+                                    {isHost && (
+                                        <div className="flex items-center gap-1 ml-1 border-l border-white/10 pl-1.5">
+                                            <button 
+                                                onClick={() => handleForceReady(pId)} 
+                                                className="text-[10px] font-mono font-bold text-gray-400 hover:text-yellow-300 px-1 py-0.5 rounded hover:bg-black/40 transition-colors"
+                                                title={pReady ? "Снять готовность" : "Принудительно подтвердить"}
+                                            >
+                                                [ГОТОВ]
+                                            </button>
+                                            {pId !== uid && (
+                                                <button 
+                                                    onClick={() => handleKickPlayer(pId)} 
+                                                    className="text-[10px] font-mono font-bold text-red-400 hover:text-red-300 px-1 py-0.5 rounded hover:bg-red-950/40 transition-colors"
+                                                    title="Исключить из отряда"
+                                                >
+                                                    [КИК]
+                                                </button>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </SteamInset>
+                        );
+                    })}
                 </div>
-                <div className="mt-2 text-right text-[10px] uppercase font-bold text-hcMuted">
-                    ГОТОВНОСТЬ: <span className={allReady ? "text-hcGreen" : "text-hcRed"}>{readyCount} / {uids.length}</span>
+
+                {/* Readiness Progress Bar Footer */}
+                <div className="mt-2 pt-2 border-t border-[var(--steam-border-dark)] px-1">
+                    <div className="flex justify-between items-center text-[10px] uppercase font-bold mb-1">
+                        <span className="text-gray-400">Готовность отряда:</span>
+                        <span className={allReady ? "text-green-400 font-mono" : "text-amber-400 font-mono"}>
+                            {readyCount} / {uids.length} ({readyPercent}%)
+                        </span>
+                    </div>
+                    <div className="w-full bg-black/60 h-2 rounded overflow-hidden border border-[var(--steam-border-dark)]">
+                        <div 
+                            className={`h-full transition-all duration-300 ${allReady ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-yellow-500'}`}
+                            style={{ width: `${readyPercent}%` }}
+                        />
+                    </div>
                 </div>
             </SteamBox>
 
-            {/* Action Area */}
-            <div className="mt-auto pt-2 mx-2 mb-2">
+            {/* Tactical Action Area */}
+            <div className="mt-1">
                 {!isHost ? (
-                    <SteamButton className="w-full justify-center flex py-3 text-xs tracking-widest font-bold" onClick={toggleReady} disabled={!myPlayer?.isReady && filled < maxSlots}>
-                        {myPlayer?.isReady ? 'ОТМЕНИТЬ ГОТОВНОСТЬ' : (filled < maxSlots ? `ВЫБЕРИТЕ СНАРЯЖЕНИЕ (${filled}/${maxSlots})` : 'ПОДТВЕРДИТЬ ЛОДАУТ')}
+                    <SteamButton 
+                        onClick={toggleReady} 
+                        disabled={!myPlayer?.isReady && !isLoadoutComplete}
+                        className={`w-full py-2.5 text-xs tracking-wider font-bold uppercase transition-all flex items-center justify-center ${
+                            myPlayer?.isReady 
+                                ? 'bg-green-950/80 text-green-300 border-green-500/60 hover:bg-red-950/80 hover:text-red-300 hover:border-red-500/60' 
+                                : isLoadoutComplete 
+                                    ? 'bg-yellow-500 text-black font-black hover:bg-yellow-400 shadow-md' 
+                                    : 'opacity-60 cursor-not-allowed'
+                        }`}
+                    >
+                        {myPlayer?.isReady 
+                            ? 'ГОТОВНОСТЬ ПОДТВЕРЖДЕНА (ОТМЕНИТЬ)' 
+                            : !isLoadoutComplete 
+                                ? `ВЫБЕРИТЕ СНАРЯЖЕНИЕ (${filled}/${maxSlots})` 
+                                : 'ПОДТВЕРДИТЬ ГОТОВНОСТЬ'}
                     </SteamButton>
                 ) : (
-                    <SteamButton className="w-full justify-center flex py-3 text-xs tracking-widest font-bold border-hcYellow text-hcYellow hover:bg-hcYellow hover:text-black" onClick={handleDeployClick} disabled={!allReady}>
-                        {allReady ? 'ЗАПУСТИТЬ КАПСУЛЫ (DEPLOY)' : 'ОЖИДАНИЕ ХЕЛЛДАЙВЕРОВ'}
+                    <SteamButton 
+                        onClick={handleDeployClick} 
+                        disabled={!allReady}
+                        className={`w-full py-3 text-xs tracking-widest font-black uppercase transition-all flex items-center justify-center ${
+                            allReady 
+                                ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-[0_0_15px_rgba(250,204,21,0.4)] cursor-pointer' 
+                                : 'opacity-50 cursor-not-allowed text-gray-400 bg-black/40'
+                        }`}
+                    >
+                        {allReady 
+                            ? 'ЗАПУСТИТЬ КАПСУЛЫ (DEPLOY)' 
+                            : `ОЖИДАНИЕ ГОТОВНОСТИ ОТРЯДА (${readyCount}/${uids.length})`}
                     </SteamButton>
                 )}
             </div>

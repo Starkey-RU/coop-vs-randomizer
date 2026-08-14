@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import useGameStore from '../../store/useGameStore';
 import ArmorDisplay from '../ui/ArmorDisplay';
-import { ref, update } from 'firebase/database';
-import { db } from '../../utils/firebase';
+import { useDraft } from '../../hooks/useDraft';
+import SteamBox from '../ui/SteamBox';
+import SteamInset from '../ui/SteamInset';
+import SteamButton from '../ui/SteamButton';
 
 export default function DraftSlots({ build, isMe, playerName, isReady, onSelectCategory }) {
-    const { roomCode, roomData, uid } = useGameStore();
+    const { unclaimItem } = useDraft();
     const [hasHover, setHasHover] = useState(true);
 
     useEffect(() => {
@@ -13,18 +14,8 @@ export default function DraftSlots({ build, isMe, playerName, isReady, onSelectC
     }, []);
 
     const handleUnequip = async (item, category) => {
-        if (!isMe || !item || !roomCode) return;
-        const pool = roomData?.pool;
-        if (!pool || !pool[category]) return;
-
-        // Ищем ключ предмета в Firebase pool
-        const itemEntry = Object.entries(pool[category]).find(([_, val]) => val.id === item.id && val.claimedBy === uid);
-        if (itemEntry) {
-            const [itemKey] = itemEntry;
-            await update(ref(db, `rooms/${roomCode}/pool/${category}/${itemKey}`), {
-                claimedBy: null
-            });
-        }
+        if (!isMe || !item) return;
+        await unclaimItem(category, item.id);
     };
 
     const filledCount = [build.primary, build.secondary, build.grenade, build.armor, build.booster]
@@ -45,7 +36,7 @@ export default function DraftSlots({ build, isMe, playerName, isReady, onSelectC
     }
 
     return (
-        <div className={`theme-panel border ${isMe ? 'border-hcAccent shadow-[0_0_15px_rgba(210,185,54,0.1)]' : 'border-hcBorder'} rounded-lg p-2 sm:p-3 flex flex-col relative`}>
+        <SteamBox className={`p-2 sm:p-3 flex flex-col relative ${isMe ? 'border-hcAccent shadow-[0_0_15px_rgba(210,185,54,0.1)]' : ''}`}>
             {/* Header */}
             <div className="flex justify-between items-center border-b border-hcBorder pb-2 mb-2 sm:mb-3">
                 <span className={`font-black uppercase tracking-widest text-xs sm:text-sm truncate pr-2 ${isMe ? 'text-hcAccent' : 'text-hcMuted'}`}>
@@ -56,7 +47,7 @@ export default function DraftSlots({ build, isMe, playerName, isReady, onSelectC
                 </span>
             </div>
 
-            {/* Row 1: Armor (col-span-2), Гранаты (col-span-1), Бустер (col-span-1) */}
+            {/* Row 1: Armor (col-span-2), Grenade (col-span-1), Booster (col-span-1) */}
             <div className="grid grid-cols-4 gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                 <div className="col-span-2">
                     <ArmorSlot item={build.armor} isMe={isMe} onUnequip={() => handleUnequip(build.armor, 'armor')} onSelectCategory={onSelectCategory} hasHover={hasHover} />
@@ -69,7 +60,7 @@ export default function DraftSlots({ build, isMe, playerName, isReady, onSelectC
                 </div>
             </div>
 
-            {/* Row 2: Expanded Основное & Вторичное Weapons */}
+            {/* Row 2: Expanded Primary & Secondary Weapons */}
             <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                 <Slot item={build.primary} label="Primary" type="item" category="primary" isMe={isMe} onUnequip={() => handleUnequip(build.primary, 'primary')} onSelectCategory={onSelectCategory} hasHover={hasHover} isExpanded={true} />
                 <Slot item={build.secondary} label="Secondary" type="item" category="secondary" isMe={isMe} onUnequip={() => handleUnequip(build.secondary, 'secondary')} onSelectCategory={onSelectCategory} hasHover={hasHover} isExpanded={true} />
@@ -94,7 +85,7 @@ export default function DraftSlots({ build, isMe, playerName, isReady, onSelectC
                      );
                  })}
             </div>
-        </div>
+        </SteamBox>
     );
 }
 
@@ -130,13 +121,13 @@ function Slot({ item, label, type, category, isMe, onUnequip, onSelectCategory, 
 
     if (!item) {
         return (
-            <div 
+            <SteamInset 
                 onClick={() => isMe && onSelectCategory?.(category)}
-                className={`theme-inner-panel border border-hcBorder border-dashed rounded flex items-center justify-center p-1 min-h-[44px] ${slotHeight} relative ${isMe ? 'cursor-pointer hover:border-hcAccent hover:bg-hcAccent/5 transition-colors' : ''}`}
+                className={`border-dashed flex items-center justify-center p-1 min-h-[44px] ${slotHeight} relative ${isMe ? 'cursor-pointer hover:border-hcAccent hover:bg-hcAccent/5 transition-colors' : ''}`}
                 title={isMe ? `Выбрать ${category}` : undefined}
             >
                  <span className="text-[8px] sm:text-[9px] text-hcMuted uppercase font-mono absolute bottom-0.5 sm:bottom-1 w-full text-center truncate px-0.5">{label}</span>
-            </div>
+            </SteamInset>
         );
     }
 
@@ -145,12 +136,12 @@ function Slot({ item, label, type, category, isMe, onUnequip, onSelectCategory, 
         : `/assets/images/${item.imageURL}`;
 
     return (
-        <div 
+        <SteamInset 
             ref={tooltipRef}
             onClick={handleClick}
             onMouseEnter={() => hasHover && setShowTooltip(true)}
             onMouseLeave={() => hasHover && setShowTooltip(false)}
-            className={`theme-inner-panel border ${type === 'stratagem' ? 'border-hcBlue/50 bg-hcBlue/5' : 'border-hcBorder'} rounded flex items-center justify-center p-1 sm:p-2 min-h-[44px] ${slotHeight} group relative overflow-hidden ${isMe || !hasHover ? 'cursor-pointer hover:border-red-500/70 hover:opacity-80' : ''}`}
+            className={`flex items-center justify-center p-1 sm:p-2 min-h-[44px] ${slotHeight} group relative overflow-hidden ${type === 'stratagem' ? 'border-hcBlue/50 bg-hcBlue/5' : ''} ${isMe || !hasHover ? 'cursor-pointer hover:border-red-500/70 hover:opacity-80' : ''}`}
             title={hasHover && isMe ? 'Нажмите, чтобы снять предмет' : undefined}
         >
            <img 
@@ -161,15 +152,16 @@ function Slot({ item, label, type, category, isMe, onUnequip, onSelectCategory, 
            />
            {/* Popover / Tooltip */}
            {showTooltip && (
-               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 theme-panel border border-hcBorder text-white text-[11px] sm:text-xs p-2.5 rounded z-[60] min-w-[140px] shadow-2xl flex flex-col gap-2 items-center text-center cursor-default" onClick={e => e.stopPropagation()}>
+               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 steam-dialog-window bg-hcPanel border border-hcBorder text-white text-[11px] sm:text-xs p-2.5 rounded z-[60] min-w-[140px] shadow-2xl flex flex-col gap-2 items-center text-center cursor-default" onClick={e => e.stopPropagation()}>
                     <div className="font-bold text-hcAccent">{item.name}</div>
                     {!hasHover && isMe && (
-                        <button 
+                        <SteamButton 
+                            variant="danger"
                             onClick={(e) => { e.stopPropagation(); setShowTooltip(false); onUnequip(); }}
-                            className="bg-red-900/90 hover:bg-red-700 text-white px-3 py-2 rounded text-[10px] uppercase tracking-wider w-full min-h-[44px] flex items-center justify-center border border-red-500/30 transition-colors mt-1"
+                            className="text-[10px] uppercase tracking-wider w-full min-h-[44px] flex items-center justify-center mt-1"
                         >
                             Unequip
-                        </button>
+                        </SteamButton>
                     )}
                     {hasHover && (
                         <div className="text-[10px] text-gray-400">
@@ -178,7 +170,7 @@ function Slot({ item, label, type, category, isMe, onUnequip, onSelectCategory, 
                     )}
                </div>
            )}
-         </div>
+         </SteamInset>
     );
 }
 
@@ -212,23 +204,23 @@ function ArmorSlot({ item, isMe, onUnequip, onSelectCategory, hasHover }) {
 
     if (!item) {
         return (
-            <div 
+            <SteamInset 
                 onClick={() => isMe && onSelectCategory?.('armor')}
-                className={`theme-inner-panel border border-hcBorder border-dashed rounded flex flex-col items-center justify-center p-1 min-h-[44px] h-14 sm:h-16 relative ${isMe ? 'cursor-pointer hover:border-hcAccent hover:bg-hcAccent/5 transition-colors' : ''}`}
+                className={`border-dashed flex flex-col items-center justify-center p-1 min-h-[44px] h-14 sm:h-16 relative ${isMe ? 'cursor-pointer hover:border-hcAccent hover:bg-hcAccent/5 transition-colors' : ''}`}
                 title={isMe ? 'Выбрать броню' : undefined}
             >
                  <span className="text-[8px] sm:text-[9px] text-hcMuted uppercase font-mono absolute bottom-0.5 sm:bottom-1">Armor</span>
-            </div>
+            </SteamInset>
         );
     }
 
     return (
-        <div 
+        <SteamInset 
             ref={tooltipRef}
             onClick={handleClick}
             onMouseEnter={() => hasHover && setShowTooltip(true)}
             onMouseLeave={() => hasHover && setShowTooltip(false)}
-            className={`theme-inner-panel border border-hcBorder rounded min-h-[44px] h-14 sm:h-16 flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2.5 relative group overflow-hidden ${isMe || !hasHover ? 'cursor-pointer hover:border-red-500/70 hover:opacity-80' : ''}`}
+            className={`min-h-[44px] h-14 sm:h-16 flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2.5 relative group overflow-hidden ${isMe || !hasHover ? 'cursor-pointer hover:border-red-500/70 hover:opacity-80' : ''}`}
             title={hasHover && isMe ? 'Нажмите, чтобы снять броню' : undefined}
         >
             <div className="w-7 sm:w-9 h-9 sm:h-11 flex-shrink-0 flex items-center justify-center">
@@ -249,19 +241,20 @@ function ArmorSlot({ item, isMe, onUnequip, onSelectCategory, hasHover }) {
             {/* Popover / Tooltip */}
             {showTooltip && (
                 <div 
-                    className="absolute bottom-full left-0 sm:left-1/2 transform sm:-translate-x-1/2 mb-2 flex flex-col gap-1.5 bg-neutral-900 border border-hcBorder text-white text-[11px] p-3 rounded z-[60] w-64 sm:min-w-[220px] sm:max-w-[260px] shadow-2xl cursor-default"
+                    className="absolute bottom-full left-0 sm:left-1/2 transform sm:-translate-x-1/2 mb-2 flex flex-col gap-1.5 steam-dialog-window bg-neutral-900 border border-hcBorder text-white text-[11px] p-3 rounded z-[60] w-64 sm:min-w-[220px] sm:max-w-[260px] shadow-2xl cursor-default"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <div className="font-bold text-hcAccent mb-1">{item.name}</div>
                     <ArmorDisplay item={item} compact={false} showImage={false} showTooltip={false} />
                     
                     {!hasHover && isMe && (
-                        <button 
+                        <SteamButton 
+                            variant="danger"
                             onClick={(e) => { e.stopPropagation(); setShowTooltip(false); onUnequip(); }}
-                            className="bg-red-900/90 hover:bg-red-700 text-white px-3 py-2 mt-2 rounded text-[10px] uppercase tracking-wider w-full min-h-[44px] flex items-center justify-center border border-red-500/30 transition-colors"
+                            className="mt-2 text-[10px] uppercase tracking-wider w-full min-h-[44px] flex items-center justify-center"
                         >
                             Unequip Armor
-                        </button>
+                        </SteamButton>
                     )}
                     {hasHover && isMe && (
                         <div className="text-[10px] text-gray-400 mt-1 text-center border-t border-hcBorder pt-1">
@@ -270,6 +263,6 @@ function ArmorSlot({ item, isMe, onUnequip, onSelectCategory, hasHover }) {
                     )}
                 </div>
             )}
-        </div>
+        </SteamInset>
     );
 }

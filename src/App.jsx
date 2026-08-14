@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Room from './pages/Room';
 import Admin from './pages/Admin';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 function App() {
   useEffect(() => {
@@ -19,13 +20,15 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/room/:id" element={<Room />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/room/:id" element={<Room />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

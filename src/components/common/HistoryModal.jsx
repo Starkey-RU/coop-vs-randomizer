@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { X, Calendar, User, Clock, ChevronRight } from 'lucide-react';
+import { X, User, Clock, ChevronRight } from 'lucide-react';
 import ArmorDisplay from '../ui/ArmorDisplay';
+import SteamWindow from '../ui/SteamWindow';
+import SteamBox from '../ui/SteamBox';
+import SteamInset from '../ui/SteamInset';
+import SteamButton from '../ui/SteamButton';
 
 export default function HistoryModal({ isOpen, onClose, history }) {
     const [selectedMission, setSelectedMission] = useState(null);
@@ -16,14 +20,14 @@ export default function HistoryModal({ isOpen, onClose, history }) {
     if (missions.length === 0) {
         return (
             <div className="fixed inset-0 z-[120] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-                <div className="bg-hcPanel border border-hcBorder rounded-lg p-6 max-w-md w-full text-center relative shadow-2xl">
+                <SteamWindow className="max-w-md w-full text-center relative shadow-2xl p-6">
                     <button onClick={onClose} className="absolute top-3 right-3 text-hcMuted hover:text-white">
                         <X size={20} />
                     </button>
                     <Clock size={48} className="mx-auto text-hcMuted/40 mb-3" />
                     <h3 className="text-lg font-bold uppercase tracking-wider text-white mb-2">История операций пуста</h3>
                     <p className="text-xs text-hcMuted font-mono">Высадки ещё не производились в данной сессии.</p>
-                </div>
+                </SteamWindow>
             </div>
         );
     }
@@ -33,17 +37,17 @@ export default function HistoryModal({ isOpen, onClose, history }) {
 
     return (
         <div className="fixed inset-0 z-[120] bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-in fade-in duration-200">
-            <div className="bg-hcPanel border border-hcBorder rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <SteamWindow className="w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden p-0">
                 {/* Modal Header */}
-                <div className="p-4 border-b border-hcBorder flex justify-between items-center bg-black/40">
+                <div className="p-3 border-b border-hcBorder flex justify-between items-center steam-dialog-header">
                     <div className="flex items-center gap-2">
-                        <Clock size={20} className="text-hcAccent" />
-                        <h2 className="text-base sm:text-lg font-bold text-white uppercase tracking-widest">
+                        <Clock size={16} className="text-hcAccent" />
+                        <span className="font-bold text-white uppercase tracking-widest text-xs sm:text-sm">
                             История Операций Отряда
-                        </h2>
+                        </span>
                     </div>
-                    <button onClick={onClose} className="p-2 text-hcMuted hover:text-white rounded transition-colors">
-                        <X size={20} />
+                    <button onClick={onClose} className="p-1 text-hcMuted hover:text-white rounded transition-colors">
+                        <X size={16} />
                     </button>
                 </div>
 
@@ -58,13 +62,14 @@ export default function HistoryModal({ isOpen, onClose, history }) {
                                 : '';
 
                             return (
-                                <button
+                                <SteamButton
                                     key={mKey}
+                                    variant="tab"
                                     onClick={() => setSelectedMission(mKey)}
                                     className={`p-2.5 rounded text-left flex items-center justify-between transition-colors min-h-[44px] ${
                                         isSelected 
-                                            ? 'bg-hcAccent/20 border border-hcAccent text-hcAccent font-bold' 
-                                            : 'hover:bg-hcDark text-hcMuted hover:text-white border border-transparent'
+                                            ? 'active font-bold' 
+                                            : ''
                                     }`}
                                 >
                                     <div className="flex flex-col">
@@ -74,7 +79,7 @@ export default function HistoryModal({ isOpen, onClose, history }) {
                                         {dateStr && <span className="text-[10px] text-hcMuted font-mono">{dateStr}</span>}
                                     </div>
                                     <ChevronRight size={14} className={isSelected ? 'opacity-100' : 'opacity-40'} />
-                                </button>
+                                </SteamButton>
                             );
                         })}
                     </div>
@@ -87,7 +92,7 @@ export default function HistoryModal({ isOpen, onClose, history }) {
                                 const stratagems = build.stratagems || [];
 
                                 return (
-                                    <div key={pUid} className="bg-hcDark/80 border border-hcBorder/60 rounded-lg p-3 flex flex-col gap-2">
+                                    <SteamBox key={pUid} className="p-3 flex flex-col gap-2">
                                         <div className="flex items-center justify-between border-b border-hcBorder/40 pb-1.5">
                                             <span className="font-bold text-white text-xs sm:text-sm uppercase tracking-wider flex items-center gap-1.5">
                                                 <User size={14} className="text-hcAccent" />
@@ -115,23 +120,23 @@ export default function HistoryModal({ isOpen, onClose, history }) {
                                             {[0, 1, 2, 3].map(idx => {
                                                 const strat = stratagems[idx];
                                                 return (
-                                                    <div key={idx} className="aspect-square bg-black/40 border border-hcBorder/40 rounded flex items-center justify-center p-1 relative group">
+                                                    <SteamInset key={idx} className="aspect-square flex items-center justify-center p-1 relative group">
                                                         {strat ? (
                                                             <img 
                                                                 src={`/assets/stratagems/${strat.imageURL}`} 
                                                                 alt={strat.name} 
                                                                 className="w-full h-full object-contain filter drop-shadow" 
-                                                                onError={e => e.target.style.opacity = '0.3'}
+                                                                onError={e => { e.target.style.opacity = '0.3'; }}
                                                                 title={strat.name}
                                                             />
                                                         ) : (
                                                             <span className="text-[9px] text-hcMuted uppercase font-mono">Empty</span>
                                                         )}
-                                                    </div>
+                                                    </SteamInset>
                                                 );
                                             })}
                                         </div>
-                                    </div>
+                                    </SteamBox>
                                 );
                             })
                         ) : (
@@ -141,7 +146,7 @@ export default function HistoryModal({ isOpen, onClose, history }) {
                         )}
                     </div>
                 </div>
-            </div>
+            </SteamWindow>
         </div>
     );
 }

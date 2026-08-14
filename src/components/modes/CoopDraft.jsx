@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import useGameStore from '../../store/useGameStore';
+import RoomActions from '../../store/RoomActions';
 import PoolGrid from '../draft/PoolGrid';
 import DraftSlots from '../draft/DraftSlots';
 import OperationPanel from '../draft/OperationPanel';
 import HistoryModal from '../common/HistoryModal';
-import { db } from '../../utils/firebase';
-import { ref, update } from 'firebase/database';
-import { Users, PlayCircle } from 'lucide-react';
-import { initPoolForFirebase, buildDeployUpdates, buildHistorySnapshot, getPlayerBuild } from '../../utils/poolHelpers';
-import databaseObj from '../../../database.json';
+import { getPlayerBuild } from '../../utils/poolHelpers';
+import SteamInset from '../ui/SteamInset';
+import SteamButton from '../ui/SteamButton';
 
 export default function CoopDraft() {
     const { roomData, roomCode, uid, isHost } = useGameStore();
@@ -26,29 +25,12 @@ export default function CoopDraft() {
 
     const handleStartDraft = async () => {
         if (!isHost) return;
-        const warbondsLists = Object.values(players).map(p => p.warbonds || []);
-        const newPool = initPoolForFirebase(databaseObj, warbondsLists);
-
-        await update(ref(db, `rooms/${roomCode}`), {
-            pool: newPool
-        });
+        await RoomActions.startDraft(roomCode, players);
     };
 
     const handleDeploy = async () => {
         if (!isHost) return;
-
-        const currentMissionCount = Object.keys(history).length + 1;
-        const squadSnapshot = buildHistorySnapshot(pool, players);
-        
-        const updates = buildDeployUpdates(pool, roomCode, roomOptions, uids);
-        updates[`rooms/${roomCode}/history/mission_${currentMissionCount}`] = {
-            timestamp: Date.now(),
-            missionNumber: currentMissionCount,
-            squadLoadouts: squadSnapshot
-        };
-        updates[`rooms/${roomCode}/options/historyLength`] = currentMissionCount;
-
-        await update(ref(db), updates);
+        await RoomActions.deployCoopDraft(roomCode, pool, roomOptions, players, history);
     };
 
     const handleSelectCategory = (cat) => {
@@ -57,82 +39,82 @@ export default function CoopDraft() {
     };
 
     const myBuild = getPlayerBuild(pool, uid);
-    const isReady = players[uid]?.isReady;
 
     // Экран ожидания отряда перед началом драфта
     if (!pool) {
         return (
-            <div className="flex items-center justify-center h-[calc(100vh-120px)] w-full">
-                <div className="bg-hcPanel border border-hcBorder rounded-lg p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95 text-center">
-                    <h2 className="text-xl font-bold uppercase tracking-widest text-hcAccent mb-2 border-b border-hcBorder pb-2 flex items-center justify-center gap-2">
-                        <Users /> Squad Lobby (Co-op Draft)
+            <div className="flex items-center justify-center h-[calc(100vh-100px)] w-full">
+                <SteamInset className="p-6 max-w-lg w-full text-center">
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-hcAccent mb-2 border-b border-[var(--steam-border-dark)] pb-2 font-mono">
+                        [ SQUAD LOBBY // CO-OP DRAFT ]
                     </h2>
-                    <p className="text-xs text-hcMuted mb-6 font-mono">
-                        Дождитесь подключения всех участников отряда. Арсенал будет сформирован на основе открытых варбондов всех зашедших игроков.
+                    <p className="text-xs text-slate-400 mb-5 font-mono">
+                        Ожидание участников отряда. Арсенал миссии будет сформирован на основе открытых варбондов подключенных бойцов.
                     </p>
 
-                    <div className="space-y-3 mb-8">
-                        <span className="text-xs font-bold text-hcMuted uppercase tracking-widest block text-left">
-                            Подключенные бойцы ({uids.length}/4):
+                    <div className="space-y-2 mb-6">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest block text-left font-mono">
+                            ПОДКЛЮЧЕННЫЕ БОЙЦЫ ({uids.length}/4):
                         </span>
                         {Object.values(players).map((p, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 theme-inner-panel rounded border border-hcBorder">
-                                <span className="font-bold text-white uppercase text-sm">{p.name}</span>
-                                <span className="text-[10px] text-hcAccent font-mono bg-hcDark border border-hcAccent/30 px-2 py-0.5 rounded">
-                                    Варбондов: {p.warbonds ? p.warbonds.length : 0}
+                            <div key={idx} className="flex items-center justify-between p-2 bg-black/40 border border-[var(--steam-border-dark)]">
+                                <span className="font-bold text-slate-200 uppercase text-xs font-mono">{p.name}</span>
+                                <span className="text-[10px] text-hcAccent font-mono bg-black/60 border border-hcAccent/30 px-2 py-0.5">
+                                    ВАРБОНДОВ: {p.warbonds ? p.warbonds.length : 0}
                                 </span>
                             </div>
                         ))}
                     </div>
 
                     {isHost ? (
-                        <button 
+                        <SteamButton 
+                            variant="primary"
                             onClick={handleStartDraft}
-                            className="w-full py-4 bg-hcAccent hover:bg-yellow-400 text-hcDark font-black uppercase tracking-widest rounded flex items-center justify-center gap-2 transition-transform transform active:scale-95 shadow-lg"
+                            className="w-full py-2.5 text-xs font-bold font-mono uppercase tracking-wider"
                         >
-                            <PlayCircle size={20} /> Сгенерировать арсенал и начать драфт
-                        </button>
+                            [ НАЧАТЬ ДРАФТ АРСЕНАЛА ]
+                        </SteamButton>
                     ) : (
-                        <div className="p-4 bg-hcDark rounded border border-hcAccent/30 text-center animate-pulse">
-                            <span className="text-xs text-hcMuted uppercase tracking-widest font-bold">Ожидание хоста... Отряд готовится к десантированию</span>
+                        <div className="p-3 bg-black/40 border border-[var(--steam-border-dark)] text-center font-mono">
+                            <span className="text-[11px] text-slate-400 uppercase tracking-widest font-bold">
+                                ОЖИДАНИЕ ХОСТА... ОТРЯД ГОТОВИТСЯ К ВЫСАДКЕ
+                            </span>
                         </div>
                     )}
-                </div>
+                </SteamInset>
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col h-[calc(100vh-120px)] max-w-[1600px] w-full mx-auto">
+        <div className="flex flex-col h-[calc(100vh-95px)] max-w-[1600px] w-full mx-auto">
             {/* Mobile View Toggle */}
-            <div className="lg:hidden flex shrink-0 mb-4 bg-hcPanel rounded-lg overflow-hidden border border-hcBorder">
+            <div className="lg:hidden flex shrink-0 mb-2 border border-[var(--steam-border-dark)] bg-hcDark">
                 <button 
-                    className={`flex-1 py-3 px-2 text-xs font-bold uppercase tracking-widest min-h-[44px] transition-colors ${mobileView === 'pool' ? 'bg-hcAccent text-hcDark' : 'bg-transparent text-hcMuted hover:text-white'}`}
+                    className={`flex-1 py-2 px-2 text-xs font-mono font-bold uppercase tracking-wider transition-colors ${mobileView === 'pool' ? 'bg-hcAccent text-black font-bold' : 'text-slate-400 hover:text-white'}`}
                     onClick={() => setMobileView('pool')}
                 >
-                    Arsenal Pool
+                    [ АРСЕНАЛ ]
                 </button>
                 <button 
-                    className={`flex-1 py-3 px-2 text-xs font-bold uppercase tracking-widest min-h-[44px] transition-colors ${mobileView === 'squad' ? 'bg-hcAccent text-hcDark' : 'bg-transparent text-hcMuted hover:text-white'}`}
+                    className={`flex-1 py-2 px-2 text-xs font-mono font-bold uppercase tracking-wider transition-colors ${mobileView === 'squad' ? 'bg-hcAccent text-black font-bold' : 'text-slate-400 hover:text-white'}`}
                     onClick={() => setMobileView('squad')}
                 >
-                    Squad Loadouts
+                    [ СНАРЯЖЕНИЕ ОТРЯДА ]
                 </button>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-6 flex-1 overflow-hidden">
+            <div className="flex flex-col lg:flex-row gap-3 flex-1 overflow-hidden">
                 {/* Left side: The Live Pool (Vitrine) */}
-                <div className={`flex-1 flex-col theme-inner-panel border border-hcBorder rounded-lg overflow-hidden ${mobileView === 'pool' ? 'flex' : 'hidden lg:flex'}`}>
-                    {/* Tabs */}
-                    <div className="flex bg-hcPanel border-b border-hcBorder overflow-x-auto custom-scrollbar snap-x">
+                <div className={`flex-1 flex-col overflow-hidden ${mobileView === 'pool' ? 'flex' : 'hidden lg:flex'}`}>
+                    {/* Steam 2003 Tab Strip */}
+                    <div className="flex pt-1 px-1 bg-[var(--steam-border-dark,#111)] border-b border-[var(--steam-border-light,#444)] overflow-x-auto custom-scrollbar shrink-0">
                         {['primary', 'secondary', 'grenade', 'armor', 'booster', 'stratagems'].map(tab => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`px-4 sm:px-6 py-3 min-h-[44px] min-w-[80px] text-xs font-bold uppercase tracking-widest whitespace-nowrap border-b-2 transition-colors snap-start ${
-                                    activeTab === tab 
-                                    ? 'border-hcAccent text-hcAccent bg-hcDark/50' 
-                                    : 'border-transparent text-hcMuted hover:text-gray-300 hover:bg-hcDark/30'
+                                className={`steam-tab-btn uppercase font-mono font-bold tracking-wider text-[11px] px-3.5 py-1.5 transition-colors ${
+                                    activeTab === tab ? 'active' : ''
                                 }`}
                             >
                                 {tab}
@@ -140,14 +122,14 @@ export default function CoopDraft() {
                         ))}
                     </div>
 
-                    {/* Grid */}
-                    <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+                    {/* Steam Inset Content Container */}
+                    <SteamInset className="flex-1 overflow-y-auto p-2.5 custom-scrollbar border-t-0">
                         <PoolGrid category={activeTab} poolSection={pool?.[activeTab]} />
-                    </div>
+                    </SteamInset>
                 </div>
 
                 {/* Right side: Squad Slots & Controls */}
-                <div className={`w-full lg:w-[400px] flex-col gap-4 overflow-hidden ${mobileView === 'squad' ? 'flex' : 'hidden lg:flex'}`}>
+                <div className={`w-full lg:w-[380px] flex-col gap-2 overflow-hidden shrink-0 ${mobileView === 'squad' ? 'flex' : 'hidden lg:flex'}`}>
                     
                     {/* My Control Panel */}
                     <OperationPanel 
@@ -162,7 +144,7 @@ export default function CoopDraft() {
                     />
 
                     {/* Squad Loadouts */}
-                    <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 flex flex-col gap-4">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar pr-1 flex flex-col gap-2">
                         {/* Сначала рисуем себя, потом остальных */}
                         <DraftSlots build={myBuild} isMe={true} playerName={players[uid]?.name} isReady={players[uid]?.isReady} onSelectCategory={handleSelectCategory} />
                         

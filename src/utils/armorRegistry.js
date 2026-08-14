@@ -63,29 +63,33 @@ export const ARMOR_WEIGHT_META = {
 };
 
 /**
- * Карта всех Заслуг (Warbonds) и Источников получения
+ * Карта всех Заслуг (Warbonds) и Источников получения в компактном формате
  */
 export const WARBOND_NAMES = {
-    "none": "Базовый комплект",
-    "warbond1": "Helldivers Mobilize!",
-    "warbond2": "Steeled Veterans",
+    "none": "Базовый",
+    "warbond1": "Mobilize",
+    "warbond2": "Steeled Vet",
     "warbond3": "Cutting Edge",
-    "warbond4": "Democratic Detonation",
+    "warbond4": "Demolition",
     "warbond5": "Polar Patriots",
-    "warbond6": "Viper Commandos",
-    "warbond7": "Freedom's Flame",
-    "warbond8": "Chemical Agents",
+    "warbond6": "Viper Comm.",
+    "warbond7": "Freedom Flame",
+    "warbond8": "Chem. Agents",
     "warbond9": "Truth Enforcers",
     "warbond10": "Urban Legends",
-    "warbond11": "Righteous Revenants",
-    "warbond12": "Masters of Ceremony",
-    "warbond13": "Force of Law",
-    "warbond14": "Python Commandos",
-    "warbond15": "Redacted Regiment",
-    "warbond16": "Entrenched Division",
-    "warbond17": "Exo Experts",
-    "warbond18": "Obedient Democracy",
-    "superstore": "Superstore (Супермагазин)"
+    "warbond11": "Serv. Freedom",
+    "warbond12": "Exo Experts",
+    "warbond13": "Fed. Frontline",
+    "warbond14": "Keen Commander",
+    "warbond16": "Entrenched",
+    "warbond0": "Super Citizen",
+    "warbond15": "Pre-order",
+    "warbond17": "Control Group",
+    "warbond27": "Dust Devils",
+    "warbond18": "Halo ODST",
+    "warbond23": "Killzone",
+    "warbond40k": "WH 40,000",
+    "superstore": "Superstore"
 };
 
 /**
@@ -111,17 +115,16 @@ export function getItemSourceMeta(item) {
 
     const warbondCode = item.warbondCode;
     const isLegendary = LEGENDARY_WARBONDS.some(lw => lw.code === warbondCode);
-
-    const warbondName = WARBOND_NAMES[warbondCode] || warbondCode || 'Helldivers Mobilize!';
+    const warbondName = WARBOND_NAMES[warbondCode] || warbondCode || 'Mobilize';
 
     if (!isLegendary) {
         return {
             label: warbondName,
             isSuperstore: false,
             icon: null,
-            color: 'text-gray-400',
-            bgColor: 'bg-gray-800/10',
-            borderColor: 'border-gray-700/30',
+            color: 'text-gray-300',
+            bgColor: 'bg-gray-800/40',
+            borderColor: 'border-gray-600/40',
             hasIcon: false
         };
     }
@@ -131,8 +134,8 @@ export function getItemSourceMeta(item) {
         isSuperstore: false,
         icon: BookOpen,
         color: 'text-amber-300',
-        bgColor: 'bg-amber-500/10',
-        borderColor: 'border-amber-500/30',
+        bgColor: 'bg-amber-500/15',
+        borderColor: 'border-amber-500/40',
         hasIcon: true
     };
 }
@@ -273,8 +276,13 @@ export const ARMOR_PASSIVE_META = {
     },
     "Kinetic Displacement Mitigation": {
         desc: "Provides 50% damage resistance to fire. Gives wearer a 50% chance to avoid grievous limb injury. Reduces damage taken from impact and collisions by 30%.",
-        icon: Clock,
-        color: "text-blue-500"
+        icon: Shield,
+        color: "text-blue-400"
+    },
+    "Kinetic Displacement": {
+        desc: "Provides 50% damage resistance to fire. Gives wearer a 50% chance to avoid grievous limb injury. Reduces damage taken from impact and collisions by 30%.",
+        icon: Shield,
+        color: "text-blue-400"
     },
     "Feet First": {
         desc: "Wearer makes 50% less noise when moving.\nIncreases point-of-interest identification range by 30%.\nProvides immunity to leg injuries.",
@@ -313,6 +321,8 @@ export function getArmorPassiveIconPath(passiveName) {
         "Gunslinger": "/passive_armor/Gunslinger_Armor_Passive_Icon.svg",
         "Inflammable": "/passive_armor/Inflammable_Armor_Passive_Icon.svg",
         "Integrated Explosives": "/passive_armor/Integrated_Explosives_Armor_Passive_Icon.svg",
+        "Kinetic Displacement Mitigation": "/passive_armor/Kinetic_Displacement_Mitigation_Armor_Passive_Icon.svg",
+        "Kinetic Displacement": "/passive_armor/Kinetic_Displacement_Mitigation_Armor_Passive_Icon.svg",
         "Med-Kit": "/passive_armor/Med-Kit_Armor_Passive_Icon.svg",
         "Oxygenator": "/passive_armor/Oxygenator_Armor_Passive_Icon.svg",
         "Peak Physique": "/passive_armor/Peak_Physique_Armor_Passive_Icon.svg",
@@ -328,7 +338,7 @@ export function getArmorPassiveIconPath(passiveName) {
         "Unflinching": "/passive_armor/Unflinching_Armor_Passive_Icon.svg"
     };
 
-    return iconMap[baseName] || null;
+    return iconMap[baseName] || iconMap[passiveName] || null;
 }
 
 export function getArmorPassiveMeta(passiveName) {

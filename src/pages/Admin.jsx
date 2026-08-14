@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../utils/firebase';
-import { ref, onValue, remove, update } from 'firebase/database';
+import { ref, onValue } from 'firebase/database';
+import AdminActions from '../store/AdminActions';
 import { Shield, Trash2, RefreshCcw, ArrowLeft, Users, Clock, AlertTriangle } from 'lucide-react';
+import SteamWindow from '../components/ui/SteamWindow';
+import SteamBox from '../components/ui/SteamBox';
+import SteamInset from '../components/ui/SteamInset';
+import SteamButton from '../components/ui/SteamButton';
 
 export default function Admin() {
     const navigate = useNavigate();
@@ -31,31 +36,19 @@ export default function Admin() {
 
     const handleDeleteRoom = async (code) => {
         if (window.confirm(`Удалить комнату ${code}?`)) {
-            await remove(ref(db, `rooms/${code}`));
+            await AdminActions.deleteRoom(code);
         }
     };
 
     const handleClearAll = async () => {
         if (window.confirm('ВНИМАНИЕ! Вы уверены, что хотите полностью удалить ВСЕ комнаты из базы?')) {
-            await remove(ref(db, 'rooms'));
+            await AdminActions.clearAllRooms();
         }
     };
 
     const handleRunGC = async () => {
-        const now = Date.now();
-        const FIVE_DAYS_MS = 5 * 24 * 60 * 60 * 1000;
-        const updates = {};
-        let count = 0;
-
-        rooms.forEach(room => {
-            if (room.createdAt && (now - room.createdAt > FIVE_DAYS_MS)) {
-                updates[`rooms/${room.code}`] = null;
-                count++;
-            }
-        });
-
+        const count = await AdminActions.runGarbageCollector(rooms);
         if (count > 0) {
-            await update(ref(db), updates);
             alert(`Очистка завершена: удалено ${count} устаревших комнат.`);
         } else {
             alert('Устаревших комнат (>5 дней) не обнаружено.');
@@ -68,14 +61,15 @@ export default function Admin() {
     return (
         <div className="min-h-screen p-4 sm:p-8 max-w-6xl mx-auto flex flex-col gap-6">
             {/* Top Header */}
-            <div className="theme-panel p-4 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg gap-4">
+            <SteamWindow className="p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between shadow-lg gap-4">
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                    <button 
+                    <SteamButton 
+                        variant="tab"
                         onClick={() => navigate('/')} 
-                        className="theme-button p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded hover:text-hcAccent transition-colors"
+                        className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded"
                     >
                         <ArrowLeft size={20} />
-                    </button>
+                    </SteamButton>
                     <div>
                         <h1 className="text-xl font-bold uppercase tracking-widest text-hcText flex items-center gap-2">
                             <Shield className="text-hcAccent" size={22} /> Панель Администратора
@@ -85,26 +79,28 @@ export default function Admin() {
                 </div>
 
                 <div className="flex flex-wrap gap-2 w-full sm:w-auto justify-end">
-                    <button 
+                    <SteamButton 
+                        variant="tab"
                         onClick={handleRunGC}
-                        className="theme-button px-3 py-2 min-h-[44px] text-xs font-bold uppercase rounded flex items-center gap-1.5 text-hcAccent hover:bg-hcAccent/10 flex-1 sm:flex-none justify-center"
+                        className="px-3 py-2 min-h-[44px] text-xs font-bold uppercase flex items-center gap-1.5 text-hcAccent flex-1 sm:flex-none justify-center"
                         title="Удалить комнаты старше 5 дней"
                     >
                         <RefreshCcw size={14} /> Очистить
-                    </button>
-                    <button 
+                    </SteamButton>
+                    <SteamButton 
+                        variant="danger"
                         onClick={handleClearAll}
-                        className="theme-button px-3 py-2 min-h-[44px] text-xs font-bold uppercase rounded flex items-center gap-1.5 !text-hcRed border-hcRed hover:bg-hcRed/10 flex-1 sm:flex-none justify-center"
+                        className="px-3 py-2 min-h-[44px] text-xs font-bold uppercase flex items-center gap-1.5 flex-1 sm:flex-none justify-center"
                         title="Удалить абсолютно все комнаты"
                     >
                         <Trash2 size={14} /> Сбросить
-                    </button>
+                    </SteamButton>
                 </div>
-            </div>
+            </SteamWindow>
 
             {/* Stats Bar */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="theme-inner-panel p-4 rounded flex items-center gap-4">
+                <SteamBox className="p-4 flex items-center gap-4">
                     <div className="p-3 bg-hcAccent/10 text-hcAccent rounded border border-hcAccent/20">
                         <Shield size={24} />
                     </div>
@@ -112,9 +108,9 @@ export default function Admin() {
                         <span className="text-[10px] text-hcMuted uppercase tracking-widest block">Всего комнат</span>
                         <span className="text-2xl font-black font-mono text-hcText">{totalRooms}</span>
                     </div>
-                </div>
+                </SteamBox>
 
-                <div className="theme-inner-panel p-4 rounded flex items-center gap-4">
+                <SteamBox className="p-4 flex items-center gap-4">
                     <div className="p-3 bg-hcBlue/10 text-hcBlue rounded border border-hcBlue/20">
                         <Users size={24} />
                     </div>
@@ -122,9 +118,9 @@ export default function Admin() {
                         <span className="text-[10px] text-hcMuted uppercase tracking-widest block">Бойцов в лобби</span>
                         <span className="text-2xl font-black font-mono text-hcText">{totalPlayers}</span>
                     </div>
-                </div>
+                </SteamBox>
 
-                <div className="theme-inner-panel p-4 rounded flex items-center gap-4">
+                <SteamBox className="p-4 flex items-center gap-4">
                     <div className="p-3 bg-hcGreen/10 text-hcGreen rounded border border-hcGreen/20">
                         <Clock size={24} />
                     </div>
@@ -132,11 +128,11 @@ export default function Admin() {
                         <span className="text-[10px] text-hcMuted uppercase tracking-widest block">Статус БД</span>
                         <span className="text-sm font-bold text-hcGreen uppercase">Синхронизировано</span>
                     </div>
-                </div>
+                </SteamBox>
             </div>
 
             {/* Rooms Table */}
-            <div className="theme-panel p-4 rounded-lg flex flex-col gap-4 shadow-lg flex-1">
+            <SteamWindow className="p-4 flex flex-col gap-4 shadow-lg flex-1">
                 <h2 className="text-sm font-bold uppercase tracking-widest text-hcMuted border-b border-hcBorder pb-2">
                     Активные лобби в реальном времени ({rooms.length})
                 </h2>
@@ -183,13 +179,14 @@ export default function Admin() {
                                                 <td className="p-3 font-mono">{playerCount} / 4</td>
                                                 <td className="p-3 text-hcMuted font-mono">{createdDate}</td>
                                                 <td className="p-3 text-right">
-                                                    <button 
+                                                    <SteamButton 
+                                                        variant="danger"
                                                         onClick={() => handleDeleteRoom(room.code)}
-                                                        className="theme-button p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded !text-hcRed border-hcRed/40 hover:!bg-hcRed hover:!text-white transition-colors ml-auto"
+                                                        className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded ml-auto"
                                                         title="Удалить комнату"
                                                     >
                                                         <Trash2 size={16} />
-                                                    </button>
+                                                    </SteamButton>
                                                 </td>
                                             </tr>
                                         );
@@ -208,19 +205,20 @@ export default function Admin() {
                                     : 'Нет даты';
 
                                 return (
-                                    <div key={room.code} className="bg-hcDark border border-hcBorder p-3 rounded-lg flex flex-col gap-2 relative">
+                                    <SteamInset key={room.code} className="p-3 rounded-lg flex flex-col gap-2 relative bg-hcDark">
                                         <div className="flex justify-between items-start">
                                             <div className="flex flex-col">
                                                 <span className="font-mono font-bold text-hcAccent text-lg leading-none">{room.code}</span>
                                                 <span className="uppercase font-semibold text-hcBlue text-xs mt-1">{room.mode?.replace('_', ' ')}</span>
                                             </div>
-                                            <button 
+                                            <SteamButton 
+                                                variant="danger"
                                                 onClick={() => handleDeleteRoom(room.code)}
-                                                className="theme-button p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded !text-hcRed border-hcRed/40 hover:!bg-hcRed hover:!text-white transition-colors"
+                                                className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded"
                                                 title="Удалить комнату"
                                             >
                                                 <Trash2 size={18} />
-                                            </button>
+                                            </SteamButton>
                                         </div>
                                         
                                         <div className="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-hcBorder/50 text-xs">
@@ -237,13 +235,13 @@ export default function Admin() {
                                                 <span className="text-hcMuted font-mono">{createdDate}</span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </SteamInset>
                                 );
                             })}
                         </div>
                     </>
                 )}
-            </div>
+            </SteamWindow>
         </div>
     );
 }

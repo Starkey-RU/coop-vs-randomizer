@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126 126" width="126" height="126">
+  <!-- Cyan Support Weapon Frame -->
+  <rect x="8" y="16" width="110" height="94" fill="rgba(73, 173, 201, 0.12)" stroke="#49adc9" stroke-width="3.5" stroke-dasharray="8 4" rx="4" />
+  
+  <!-- TEMP Label -->
+  <text x="63" y="52" fill="#49adc9" font-size="24" font-weight="900" font-family="'Segoe UI', monospace, sans-serif" text-anchor="middle" letter-spacing="3">TEMP</text>
+  
+  <!-- Subtle Divider -->
+  <line x1="22" y1="63" x2="104" y2="63" stroke="#49adc9" stroke-width="2" opacity="0.6" />
+  
+  <!-- MELTAGUN Label -->
+  <text x="63" y="87" fill="#49adc9" font-size="13" font-weight="900" font-family="'Segoe UI', monospace, sans-serif" text-anchor="middle" letter-spacing="1.5">MELTAGUN</text>
+</svg>

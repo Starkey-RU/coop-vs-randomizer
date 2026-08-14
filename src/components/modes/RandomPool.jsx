@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useGameStore from '../../store/useGameStore';
+import RoomActions from '../../store/RoomActions';
 import PoolGrid from '../draft/PoolGrid';
 import DraftSlots from '../draft/DraftSlots';
-import { db } from '../../utils/firebase';
-import { ref, update } from 'firebase/database';
-import { Skull, CheckCircle, RefreshCcw, Settings2, PlayCircle, Plus, Minus } from 'lucide-react';
-import { initRandomPoolMode } from '../../utils/poolHelpers';
-import databaseObj from '../../../database.json';
+import OperationPanel from '../draft/OperationPanel';
+import HistoryModal from '../common/HistoryModal';
+import { getPlayerBuild } from '../../utils/poolHelpers';
+import SteamInset from '../ui/SteamInset';
+import SteamButton from '../ui/SteamButton';
 
 export default function RandomPool() {
     const { roomData, roomCode, uid, isHost } = useGameStore();
@@ -14,188 +15,132 @@ export default function RandomPool() {
     const [activeTab, setActiveTab] = useState('primary');
     const [mobileView, setMobileView] = useState('pool');
     const [isConfiguring, setIsConfiguring] = useState(isHost && !roomData?.pool);
+    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
     const pool = roomData?.pool;
     const settings = roomData?.modeSettings || { playerCount: 4, missionCount: 3, currentMission: 1 };
     const players = roomData?.players || {};
+    const history = roomData?.history || {};
     const uids = Object.keys(players);
 
-    // Локальный стейт для настроек режима хостом
+    // Local state for campaign configuration
     const [configPlayers, setConfigPlayers] = useState(settings.playerCount);
     const [configMissions, setConfigMissions] = useState(settings.missionCount);
 
     const handleRebuildPool = async () => {
         if (!isHost) return;
-        const warbondsLists = Object.values(players).map(p => p.warbonds || []);
-        
-        const rpData = initRandomPoolMode(databaseObj, warbondsLists, configPlayers, configMissions);
-        
-        await update(ref(db, `rooms/${roomCode}`), { 
-            pool: rpData.pool,
-            modeSettings: rpData.modeSettings
-        });
-        
+        await RoomActions.rebuildRandomPool(roomCode, players, configPlayers, configMissions);
         setIsConfiguring(false);
-    };
-
-    const getPlayerBuild = (playerUid) => {
-        if (!pool) return { primary: null, secondary: null, grenade: null, armor: null, booster: null, stratagems: [] };
-
-        const build = {
-             primary: Object.values(pool.primary || {}).find(i => i.claimedBy === playerUid),
-             secondary: Object.values(pool.secondary || {}).find(i => i.claimedBy === playerUid),
-             grenade: Object.values(pool.grenade || {}).find(i => i.claimedBy === playerUid),
-             armor: Object.values(pool.armor || {}).find(i => i.claimedBy === playerUid),
-             booster: Object.values(pool.booster || {}).find(i => i.claimedBy === playerUid),
-             stratagems: Object.values(pool.stratagems || {}).filter(i => i.claimedBy === playerUid)
-        };
-        
-        while (build.stratagems.length < 4) build.stratagems.push(null);
-        return build;
-    };
-
-    const handleReadyToggle = async () => {
-        const isCurrentlyReady = players[uid]?.isReady || false;
-        await update(ref(db, `rooms/${roomCode}/players/${uid}`), {
-            isReady: !isCurrentlyReady
-        });
     };
 
     const handleDeploy = async () => {
         if (!isHost) return;
-        
-        const updates = {};
-        const categories = ['primary', 'secondary', 'grenade', 'armor', 'booster', 'stratagems'];
-        
-        // В режиме Random Pool после деплоя сжигаем взятые шмотки, как в CoopDraft
-        categories.forEach(category => {
-            if (!pool?.[category]) return;
-            
-            Object.entries(pool[category]).forEach(([itemKey, itemState]) => {
-                if (itemState.claimedBy) {
-                    updates[`rooms/${roomCode}/pool/${category}/${itemKey}`] = null;
-                }
-            });
-        });
-
-        // Сбрасываем флаги готовности
-        uids.forEach(id => {
-             updates[`rooms/${roomCode}/players/${id}/isReady`] = false;
-        });
-        
-        // Увеличиваем счетчик миссий
-        const nextMission = (settings.currentMission || 1) + 1;
-        updates[`rooms/${roomCode}/modeSettings/currentMission`] = nextMission;
-
-        await update(ref(db), updates);
+        await RoomActions.deployRandomPool(roomCode, pool, players, settings, history);
     };
 
-    const allReady = uids.length > 0 && uids.every(id => players[id]?.isReady);
-    const myBuild = getPlayerBuild(uid);
-    const isReady = players[uid]?.isReady;
+    const handleSelectCategory = (cat) => {
+        setActiveTab(cat);
+        setMobileView('pool');
+    };
+
+    const myBuild = getPlayerBuild(pool, uid);
 
     if (isConfiguring) {
         return (
-            <div className="flex items-center justify-center h-[calc(100vh-120px)] w-full">
-                <div className="bg-hcPanel border border-hcBorder rounded-lg p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95">
-                    <h2 className="text-xl font-bold uppercase tracking-widest text-hcAccent mb-2 border-b border-hcBorder pb-2 flex items-center gap-2">
-                        <Settings2 /> Настройки кампании
+            <div className="flex items-center justify-center h-[calc(100vh-100px)] w-full font-mono p-2">
+                <SteamInset className="p-6 max-w-lg w-full text-center">
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-hcAccent mb-2 border-b border-[var(--steam-border-dark)] pb-2">
+                        [ НАСТРОЙКИ КАМПАНИИ // RANDOM POOL ]
                     </h2>
-                    <p className="text-sm text-hcMuted mb-6 font-mono">
-                        Allocate initial supply limits based on operational duration and squad size. 
-                        Resources are finite.
+                    <p className="text-xs text-slate-400 mb-6 leading-relaxed">
+                        Выделите лимиты логистики на основе размера отряда и длительности операции. Ресурсы ограничены на всю кампанию.
                     </p>
 
-                    <div className="space-y-6">
-                        <div>
-                            <label className="block text-xs uppercase tracking-widest text-hcMuted mb-2">Размер отряда</label>
-                            <div className="flex items-center gap-4">
-                                <button onClick={() => setConfigPlayers(Math.max(1, configPlayers - 1))} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center theme-inner-panel hover:border-hcAccent rounded"><Minus size={16} /></button>
-                                <span className="text-2xl font-black font-mono w-8 text-center text-hcText">{configPlayers}</span>
-                                <button onClick={() => setConfigPlayers(Math.min(4, configPlayers + 1))} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center theme-inner-panel hover:border-hcAccent rounded"><Plus size={16} /></button>
+                    <div className="space-y-4 mb-6 text-left">
+                        <div className="bg-black/30 p-2.5 border border-[var(--steam-border-dark)]">
+                            <label className="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Размер отряда (бойцов):</label>
+                            <div className="flex items-center gap-3">
+                                <SteamButton variant="tab" onClick={() => setConfigPlayers(Math.max(1, configPlayers - 1))} className="px-3 py-1 text-xs font-bold font-mono">[ - ]</SteamButton>
+                                <span className="text-lg font-bold font-mono w-8 text-center text-hcAccent">{configPlayers}</span>
+                                <SteamButton variant="tab" onClick={() => setConfigPlayers(Math.min(4, configPlayers + 1))} className="px-3 py-1 text-xs font-bold font-mono">[ + ]</SteamButton>
                             </div>
                         </div>
 
-                        <div>
-                            <label className="block text-xs uppercase tracking-widest text-hcMuted mb-2">Длительность операции (Миссии)</label>
-                            <div className="flex items-center gap-4">
-                                <button onClick={() => setConfigMissions(Math.max(1, configMissions - 1))} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center theme-inner-panel hover:border-hcAccent rounded"><Minus size={16} /></button>
-                                <span className="text-2xl font-black font-mono w-8 text-center text-hcText">{configMissions}</span>
-                                <button onClick={() => setConfigMissions(Math.min(10, configMissions + 1))} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center theme-inner-panel hover:border-hcAccent rounded"><Plus size={16} /></button>
+                        <div className="bg-black/30 p-2.5 border border-[var(--steam-border-dark)]">
+                            <label className="block text-[11px] uppercase tracking-wider text-slate-400 mb-2 font-bold">Длительность операции (миссий):</label>
+                            <div className="flex items-center gap-3">
+                                <SteamButton variant="tab" onClick={() => setConfigMissions(Math.max(1, configMissions - 1))} className="px-3 py-1 text-xs font-bold font-mono">[ - ]</SteamButton>
+                                <span className="text-lg font-bold font-mono w-8 text-center text-hcAccent">{configMissions}</span>
+                                <SteamButton variant="tab" onClick={() => setConfigMissions(Math.min(10, configMissions + 1))} className="px-3 py-1 text-xs font-bold font-mono">[ + ]</SteamButton>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-8 pt-4 border-t border-hcBorder">
-                        <button 
+                    <div className="pt-2 border-t border-[var(--steam-border-dark)]">
+                        <SteamButton 
+                            variant="primary"
                             onClick={handleRebuildPool}
-                            className="w-full py-4 theme-button text-hcDark font-black uppercase tracking-widest rounded flex items-center justify-center gap-2 transition-transform transform active:scale-95"
+                            className="w-full py-2.5 text-xs font-bold uppercase tracking-wider"
                         >
-                            <PlayCircle size={20} /> Сгенерировать арсенал кампании
-                        </button>
+                            [ СГЕНЕРИРОВАТЬ АРСЕНАЛ КАМПАНИИ ]
+                        </SteamButton>
                     </div>
-                </div>
+                </SteamInset>
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col h-[calc(100vh-120px)] max-w-[1600px] w-full mx-auto">
+        <div className="flex flex-col h-[calc(100vh-95px)] max-w-[1600px] w-full mx-auto font-mono">
             
             {/* Mobile View Toggle */}
-            <div className="lg:hidden flex shrink-0 mb-4 bg-hcPanel rounded-lg overflow-hidden border border-hcBorder">
+            <div className="lg:hidden flex shrink-0 mb-2 border border-[var(--steam-border-dark)] bg-hcDark">
                 <button 
-                    className={`flex-1 py-3 px-2 text-xs font-bold uppercase tracking-widest min-h-[44px] transition-colors ${mobileView === 'pool' ? 'bg-hcAccent text-hcDark' : 'bg-transparent text-hcMuted hover:text-white'}`}
+                    className={`flex-1 py-2 px-2 text-xs font-bold uppercase tracking-wider transition-colors ${mobileView === 'pool' ? 'bg-hcAccent text-black font-bold' : 'text-slate-400 hover:text-white'}`}
                     onClick={() => setMobileView('pool')}
                 >
-                    Arsenal Pool
+                    [ АРСЕНАЛ ]
                 </button>
                 <button 
-                    className={`flex-1 py-3 px-2 text-xs font-bold uppercase tracking-widest min-h-[44px] transition-colors ${mobileView === 'squad' ? 'bg-hcAccent text-hcDark' : 'bg-transparent text-hcMuted hover:text-white'}`}
+                    className={`flex-1 py-2 px-2 text-xs font-bold uppercase tracking-wider transition-colors ${mobileView === 'squad' ? 'bg-hcAccent text-black font-bold' : 'text-slate-400 hover:text-white'}`}
                     onClick={() => setMobileView('squad')}
                 >
-                    Squad Loadouts
+                    [ СНАРЯЖЕНИЕ ОТРЯДА ]
                 </button>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-6 flex-1 overflow-hidden">
+            <div className="flex flex-col lg:flex-row gap-3 flex-1 overflow-hidden">
                 {/* Left side: The Limited Pool (Vitrine) */}
-                <div className={`flex-1 flex-col theme-inner-panel border border-hcBorder rounded-lg overflow-hidden ${mobileView === 'pool' ? 'flex' : 'hidden lg:flex'}`}>
-                    {/* Stats Header for Random Pool */}
-                    <div className="bg-hcDark border-b border-hcBorder p-3 flex justify-between items-center px-4 flex-wrap gap-2">
-                        <div>
-                            <span className="text-xs uppercase tracking-widest text-hcMuted">Operation Status: </span>
-                            <span className="font-bold text-hcText uppercase tracking-widest">
-                                Mission {settings.currentMission} / {settings.missionCount}
-                            </span>
+                <div className={`flex-1 flex-col overflow-hidden ${mobileView === 'pool' ? 'flex' : 'hidden lg:flex'}`}>
+                    
+                    {/* Campaign Status Bar */}
+                    <div className="bg-black/40 border-b border-[var(--steam-border-dark)] px-3 py-1.5 flex justify-between items-center text-xs shrink-0">
+                        <div className="flex items-center gap-2">
+                            <span className="text-slate-400">МИССИЯ:</span>
+                            <span className="text-hcAccent font-bold">{settings.currentMission} / {settings.missionCount}</span>
+                            <span className="text-slate-600">|</span>
+                            <span className="text-slate-400">ОТРЯД:</span>
+                            <span className="text-slate-200 font-bold">{settings.playerCount} БОЙЦА</span>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <div>
-                                <span className="text-xs uppercase tracking-widest text-hcMuted">Squad Size: </span>
-                                <span className="font-bold text-hcAccent">{settings.playerCount}</span>
-                            </div>
-                            {isHost && (
-                                <button 
-                                    onClick={() => setIsConfiguring(true)}
-                                    className="px-3 py-1.5 text-[10px] min-h-[44px] sm:min-h-[32px] text-hcMuted uppercase font-bold flex items-center gap-2 hover:text-white border border-hcBorder hover:border-gray-400 rounded transition-colors bg-hcDark"
-                                    title="Reconfigure Campaign & Reset Pool"
-                                >
-                                    <Settings2 size={12} /> <span className="hidden sm:inline">Campaign Settings</span>
-                                </button>
-                            )}
-                        </div>
+                        {isHost && (
+                            <SteamButton 
+                                variant="tab"
+                                onClick={() => setIsConfiguring(true)}
+                                className="px-2 py-0.5 text-[9px] font-bold text-slate-300 hover:text-white uppercase"
+                            >
+                                [ НАСТРОЙКИ КАМПАНИИ ]
+                            </SteamButton>
+                        )}
                     </div>
 
-                    {/* Tabs */}
-                    <div className="flex bg-hcPanel border-b border-hcBorder overflow-x-auto custom-scrollbar snap-x">
+                    {/* Steam 2003 Tab Strip */}
+                    <div className="flex pt-1 px-1 bg-[var(--steam-border-dark,#111)] border-b border-[var(--steam-border-light,#444)] overflow-x-auto custom-scrollbar shrink-0">
                         {['primary', 'secondary', 'grenade', 'armor', 'booster', 'stratagems'].map(tab => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`px-4 sm:px-6 py-3 min-h-[44px] min-w-[80px] text-xs font-bold uppercase tracking-widest whitespace-nowrap border-b-2 transition-colors snap-start ${
-                                    activeTab === tab 
-                                    ? 'border-hcAccent text-hcAccent bg-hcDark/50' 
-                                    : 'border-transparent text-hcMuted hover:text-gray-300 hover:bg-hcDark/30'
+                                className={`steam-tab-btn uppercase font-mono font-bold tracking-wider text-[11px] px-3.5 py-1.5 transition-colors ${
+                                    activeTab === tab ? 'active' : ''
                                 }`}
                             >
                                 {tab}
@@ -204,55 +149,38 @@ export default function RandomPool() {
                     </div>
 
                     {/* Grid */}
-                    <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+                    <SteamInset className="flex-1 overflow-y-auto p-2.5 custom-scrollbar border-t-0">
                         <PoolGrid category={activeTab} poolSection={pool?.[activeTab]} />
-                    </div>
+                    </SteamInset>
                 </div>
 
                 {/* Right side: Squad Slots & Controls */}
-                <div className={`w-full lg:w-[400px] flex-col gap-4 overflow-hidden ${mobileView === 'squad' ? 'flex' : 'hidden lg:flex'}`}>
+                <div className={`w-full lg:w-[380px] flex-col gap-2 overflow-hidden shrink-0 ${mobileView === 'squad' ? 'flex' : 'hidden lg:flex'}`}>
                     
-                    {/* My Control Panel */}
-                    <div className="bg-hcPanel border border-hcBorder rounded-lg p-4 flex flex-col gap-3 shadow-lg shrink-0">
-                        <div className="text-center font-bold text-hcMuted uppercase tracking-widest text-xs border-b border-hcBorder pb-2 flex justify-between items-center">
-                            <span>Resource Allocation</span>
-                            {settings.currentMission > settings.missionCount && (
-                                <span className="text-[10px] text-hcRed bg-red-900/20 px-2 py-1 rounded">OVERTIME</span>
-                            )}
-                        </div>
-                        
-                        <button 
-                            onClick={handleReadyToggle}
-                            className={`py-3 min-h-[44px] rounded font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${
-                                isReady 
-                                ? 'bg-hcGreen/20 text-hcGreen border border-hcGreen hover:bg-hcGreen/30' 
-                                : 'bg-hcDark border border-hcBorder text-hcMuted hover:border-gray-400 hover:text-white'
-                            }`}
-                        >
-                            <CheckCircle size={18} /> {isReady ? 'Ready for Deployment' : 'Confirm Loadout'}
-                        </button>
-
-                        {isHost && (
-                            <button 
-                                onClick={handleDeploy}
-                                disabled={!allReady}
-                                className="py-4 min-h-[44px] theme-button text-hcDark font-black uppercase tracking-widest rounded flex items-center justify-center gap-2 transition-transform transform active:scale-95 disabled:opacity-50 disabled:active:scale-100 shadow-md mt-2"
-                            >
-                                <Skull size={20} /> Burn Loadouts & Deploy
-                            </button>
-                        )}
-                    </div>
+                    {/* Standard Steam Operation Panel */}
+                    <OperationPanel 
+                        pool={pool} 
+                        players={players} 
+                        roomCode={roomCode} 
+                        uid={uid} 
+                        isHost={isHost} 
+                        roomOptions={settings} 
+                        onDeploy={handleDeploy} 
+                        onOpenHistory={() => setIsHistoryOpen(true)} 
+                    />
 
                     {/* Squad Loadouts */}
-                    <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 flex flex-col gap-4">
-                        <DraftSlots build={myBuild} isMe={true} playerName={players[uid]?.name} />
+                    <div className="flex-1 overflow-y-auto custom-scrollbar pr-1 flex flex-col gap-2">
+                        <DraftSlots build={myBuild} isMe={true} playerName={players[uid]?.name} isReady={players[uid]?.isReady} onSelectCategory={handleSelectCategory} />
                         
                         {uids.filter(id => id !== uid).map(otherUid => (
                             <DraftSlots 
                                 key={otherUid} 
-                                build={getPlayerBuild(otherUid)} 
+                                build={getPlayerBuild(pool, otherUid)} 
                                 isMe={false} 
                                 playerName={players[otherUid]?.name} 
+                                isReady={players[otherUid]?.isReady}
+                                onSelectCategory={handleSelectCategory}
                             />
                         ))}
                     </div>
@@ -260,6 +188,12 @@ export default function RandomPool() {
                 </div>
 
             </div>
+
+            <HistoryModal 
+                isOpen={isHistoryOpen} 
+                onClose={() => setIsHistoryOpen(false)} 
+                history={history} 
+            />
         </div>
     );
 }

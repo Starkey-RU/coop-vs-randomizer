@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { WARBONDS, LEGENDARY_WARBONDS, getDefaultWarbonds } from '../../utils/warbondRegistry';
 import SuperstoreSubmenu from './SuperstoreSubmenu';
 import { Save, X, ChevronDown, ChevronRight, ShoppingCart, ShieldCheck, Award } from 'lucide-react';
+import useGameStore from '../../store/useGameStore';
+import SteamWindow from '../ui/SteamWindow';
+import SteamBox from '../ui/SteamBox';
+import SteamInset from '../ui/SteamInset';
+import SteamButton from '../ui/SteamButton';
 
 export default function WarbondSettings({ onClose }) {
     const [owned, setOwned] = useState([]);
     const [standardOpen, setStandardOpen] = useState(true);
     const [premiumOpen, setPremiumOpen] = useState(false);
     const [storeOpen, setStoreOpen] = useState(false);
+    const syncWarbonds = useGameStore(state => state.syncWarbonds);
 
     useEffect(() => {
         const saved = localStorage.getItem('bingo_owned_warbonds');
@@ -32,12 +38,9 @@ export default function WarbondSettings({ onClose }) {
 
     const handleSave = () => {
         localStorage.setItem('bingo_owned_warbonds', JSON.stringify(owned));
-        
-        import('../../store/useGameStore').then(({ default: useGameStore }) => {
-             const sync = useGameStore.getState().syncWarbonds;
-             if (sync) sync();
-        });
-
+        if (syncWarbonds) {
+            syncWarbonds();
+        }
         if (onClose) onClose();
     };
 
@@ -72,7 +75,7 @@ export default function WarbondSettings({ onClose }) {
     const ownedStoreItemsCount = owned.filter(id => !WARBONDS.some(w => w.code === id) && !LEGENDARY_WARBONDS.some(w => w.code === id)).length;
 
     return (
-        <div className="steam-dialog-window max-w-4xl w-full flex flex-col max-h-[85vh]">
+        <SteamWindow className="max-w-4xl w-full flex flex-col max-h-[85vh]">
             <div className="steam-dialog-header flex items-center justify-between p-[6px] px-2 cursor-move select-none">
                 <span className="font-bold text-xs uppercase tracking-wider text-hcMuted">Owned Warbonds & Superstore</span>
                 {onClose && (
@@ -86,18 +89,19 @@ export default function WarbondSettings({ onClose }) {
                 <div className="flex justify-between items-center text-xs pb-1 border-b" style={{ borderColor: 'var(--steam-border-dark)' }}>
                     <span className="text-gray-400">Total Unlocked: <b className="text-hcAccent">{owned.length}</b></span>
                     <div className="flex gap-1">
-                        <button onClick={selectAll} className="steam-tab-btn text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Select All">All</button>
-                        <button onClick={clearAll} className="steam-tab-btn text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Clear All">Clear</button>
+                        <SteamButton variant="tab" onClick={selectAll} className="text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Select All">All</SteamButton>
+                        <SteamButton variant="tab" onClick={clearAll} className="text-[10px] py-2 px-3 sm:py-0.5 sm:px-2 min-h-[44px] sm:min-h-0 flex items-center justify-center font-bold" title="Clear All">Clear</SteamButton>
                     </div>
                 </div>
 
                 <div className="flex-1 overflow-y-auto custom-scrollbar px-2 max-h-[55vh] flex flex-col gap-4" style={{ minHeight: '200px' }}>
                     
                     {/* Standard Warbonds */}
-                    <div className="steam-group-box relative pt-2 pb-2 px-3">
-                        <button 
+                    <SteamBox className="relative pt-2 pb-2 px-3">
+                        <SteamButton 
+                            variant="tab"
                             onClick={() => setStandardOpen(!standardOpen)}
-                            className={`steam-tab-btn theme-button w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${standardOpen ? 'active' : ''}`}
+                            className={`w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${standardOpen ? 'active' : ''}`}
                         >
                             <span className="flex items-center gap-2">
                                 <ShieldCheck size={14} className={standardOpen ? 'theme-highlight' : 'text-gray-400'} />
@@ -109,19 +113,20 @@ export default function WarbondSettings({ onClose }) {
                                 </span>
                                 {standardOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                             </span>
-                        </button>
+                        </SteamButton>
                         {standardOpen && (
-                            <div className="steam-inset-box p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                            <SteamInset className="p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
                                 {renderCheckboxList(WARBONDS)}
-                            </div>
+                            </SteamInset>
                         )}
-                    </div>
+                    </SteamBox>
 
                     {/* Premium / Legendary Warbonds */}
-                    <div className="steam-group-box relative pt-2 pb-2 px-3">
-                        <button 
+                    <SteamBox className="relative pt-2 pb-2 px-3">
+                        <SteamButton 
+                            variant="tab"
                             onClick={() => setPremiumOpen(!premiumOpen)}
-                            className={`steam-tab-btn theme-button w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${premiumOpen ? 'active' : ''}`}
+                            className={`w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${premiumOpen ? 'active' : ''}`}
                         >
                             <span className="flex items-center gap-2">
                                 <Award size={14} className={premiumOpen ? 'theme-highlight' : 'text-gray-400'} />
@@ -133,19 +138,20 @@ export default function WarbondSettings({ onClose }) {
                                 </span>
                                 {premiumOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                             </span>
-                        </button>
+                        </SteamButton>
                         {premiumOpen && (
-                            <div className="steam-inset-box p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                            <SteamInset className="p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-2">
                                 {renderCheckboxList(LEGENDARY_WARBONDS)}
-                            </div>
+                            </SteamInset>
                         )}
-                    </div>
+                    </SteamBox>
 
                     {/* Superstore - Visual Submenu */}
-                    <div className="steam-group-box relative pt-2 pb-2 px-3 mb-2">
-                        <button 
+                    <SteamBox className="relative pt-2 pb-2 px-3 mb-2">
+                        <SteamButton 
+                            variant="tab"
                             onClick={() => setStoreOpen(!storeOpen)}
-                            className={`steam-tab-btn theme-button w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${storeOpen ? 'active' : ''}`}
+                            className={`w-full py-2.5 px-3 min-h-[44px] flex items-center justify-between font-bold text-xs ${storeOpen ? 'active' : ''}`}
                         >
                             <span className="flex items-center gap-2">
                                 <ShoppingCart size={14} className={storeOpen ? 'theme-highlight' : 'text-gray-400'} />
@@ -157,27 +163,27 @@ export default function WarbondSettings({ onClose }) {
                                 </span>
                                 {storeOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                             </span>
-                        </button>
+                        </SteamButton>
                         {storeOpen && (
-                            <div className="steam-inset-box p-2 mt-2">
+                            <SteamInset className="p-2 mt-2">
                                 <SuperstoreSubmenu owned={owned} toggleWarbond={toggleWarbond} />
-                            </div>
+                            </SteamInset>
                         )}
-                    </div>
+                    </SteamBox>
 
                 </div>
 
             </div>
 
             <div className="flex justify-end gap-2 p-2 border-t" style={{ borderColor: 'var(--steam-border-dark)' }}>
-                {onClose && <button onClick={onClose} className="theme-button px-4 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 text-xs font-bold">Cancel</button>}
-                <button 
+                {onClose && <SteamButton onClick={onClose} className="px-4 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 text-xs font-bold">Cancel</SteamButton>}
+                <SteamButton 
                     onClick={handleSave}
-                    className="theme-button px-6 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 text-xs font-bold theme-highlight flex items-center gap-2"
+                    className="px-6 py-2 sm:py-1.5 min-h-[44px] sm:min-h-0 text-xs font-bold theme-highlight flex items-center gap-2"
                 >
                     <Save size={14} /> Save & Apply
-                </button>
+                </SteamButton>
             </div>
-        </div>
+        </SteamWindow>
     );
 }

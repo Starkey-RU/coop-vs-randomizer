@@ -8,10 +8,10 @@ class ItemManager {
 
     pick() {
         if (this.pool.length === 0) {
-            return null; // ??'?%?
+            return null; // Empty pool
         }
         const index = randomInt(0, this.pool.length - 1, this.rng);
-        return this.pool.splice(index, 1)[0]; // ??>??  ????%?
+        return this.pool.splice(index, 1)[0]; // Remove and return picked item
     }
 
     pickFromFilteredContext(filteredArray) {

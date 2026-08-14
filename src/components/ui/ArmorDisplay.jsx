@@ -13,44 +13,42 @@ export default function ArmorDisplay({ item, compact = false, showImage = true, 
 
         const WeightIcon = typeof weightMeta.icon === 'function' || typeof weightMeta.icon === 'object' ? weightMeta.icon : Shield;
         const PassiveIcon = passiveMeta && (typeof passiveMeta.icon === 'function' || typeof passiveMeta.icon === 'object') ? passiveMeta.icon : null;
-        const SourceIcon = sourceMeta && (typeof sourceMeta.icon === 'function' || typeof sourceMeta.icon === 'object') ? sourceMeta.icon : null;
 
         if (compact) {
             return (
                 <div className="flex items-center gap-1 flex-nowrap overflow-hidden">
                     {/* Weight badge (Pure Icon ONLY) */}
                     <span 
-                        className={`h-5 w-5 inline-flex items-center justify-center rounded border shrink-0 ${weightMeta.bgColor || ''} ${weightMeta.color || ''} ${weightMeta.borderColor || ''}`}
+                        className={`h-4.5 w-4.5 inline-flex items-center justify-center rounded border shrink-0 ${weightMeta.bgColor || ''} ${weightMeta.color || ''} ${weightMeta.borderColor || ''}`}
                         title={`Класс: ${weightMeta.label}`}
                     >
-                        {WeightIcon && <WeightIcon size={12} />}
+                        {WeightIcon && <WeightIcon size={11} />}
                     </span>
 
                     {/* Passive badge icon */}
                     {passiveIconPath ? (
                         <span 
-                            className="h-5 w-5 inline-flex items-center justify-center p-0.5 rounded border border-hcBorder bg-hcDark shrink-0"
+                            className="h-4.5 w-4.5 inline-flex items-center justify-center p-0.5 rounded border border-hcBorder bg-hcDark shrink-0"
                             title={`${passiveMeta?.name || ''}: ${passiveMeta?.desc || ''}`}
                         >
                             <img src={passiveIconPath} alt={item.passive || 'Passive'} className="w-3.5 h-3.5 object-contain" />
                         </span>
                     ) : passiveMeta && (
                         <span 
-                            className={`h-5 inline-flex items-center gap-1 px-1.5 rounded text-[9px] font-semibold border border-hcBorder bg-hcDark shrink-0 ${passiveMeta.color || ''}`}
+                            className={`h-4.5 inline-flex items-center gap-1 px-1 rounded text-[8.5px] font-mono border border-hcBorder bg-hcDark shrink-0 ${passiveMeta.color || ''}`}
                             title={`${passiveMeta.name || ''}: ${passiveMeta.desc || ''}`}
                         >
-                            {PassiveIcon && <PassiveIcon size={10} />}
-                            <span className="truncate max-w-[80px]">{passiveMeta.name}</span>
+                            {PassiveIcon && <PassiveIcon size={9} />}
+                            <span className="truncate max-w-[65px]">{passiveMeta.name}</span>
                         </span>
                     )}
 
-                    {/* Source / Warbond badge */}
+                    {/* Source / Warbond compact text badge */}
                     <span 
-                        className={`h-5 inline-flex items-center gap-1 px-1.5 rounded text-[9px] font-semibold border shrink-0 ${sourceMeta.bgColor || ''} ${sourceMeta.color || ''} ${sourceMeta.borderColor || ''}`}
+                        className={`h-4.5 inline-flex items-center px-1.5 rounded text-[8.5px] font-mono tracking-tight border shrink-0 ${sourceMeta.bgColor || ''} ${sourceMeta.color || ''} ${sourceMeta.borderColor || ''}`}
                         title={`Источник: ${sourceMeta.label}`}
                     >
-                        {SourceIcon && <SourceIcon size={10} />}
-                        <span className="truncate max-w-[80px]">{sourceMeta.label}</span>
+                        <span className="truncate max-w-[85px] leading-none">{sourceMeta.label}</span>
                     </span>
                 </div>
             );
@@ -63,7 +61,7 @@ export default function ArmorDisplay({ item, compact = false, showImage = true, 
                         <img 
                             src={`/armor/${item.imageURL}`} 
                             alt={item.name} 
-                            className="absolute inset-0 w-full h-full object-contain filter drop-shadow-md z-0 transform scale-[1.1]"
+                            className="absolute inset-0 w-full h-full object-contain filter drop-shadow-md z-0 transform scale-[1.05]"
                             onError={(e) => { e.target.style.display = 'none'; }} 
                         />
                     )}

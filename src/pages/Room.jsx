@@ -1,10 +1,12 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useGameStore from '../store/useGameStore';
 import ChaosMode from '../components/modes/ChaosMode';
 import CoopDraft from '../components/modes/CoopDraft';
-import { ArrowLeft, Loader2, ShieldCheck } from 'lucide-react';
 import RandomPool from '../components/modes/RandomPool';
+import SteamWindow from '../components/ui/SteamWindow';
+import SteamInset from '../components/ui/SteamInset';
+import SteamButton from '../components/ui/SteamButton';
 
 const Room = () => {
     const { id } = useParams();
@@ -32,63 +34,80 @@ const Room = () => {
 
     if (!roomData) {
         return (
-            <div className="min-h-screen bg-hcDark text-hcText flex flex-col items-center justify-center">
-                <Loader2 className="animate-spin text-hcAccent mb-4" size={48} />
-                <h2 className="text-xl font-bold uppercase tracking-widest text-hcMuted">Connecting to CommLink...</h2>
+            <div className="min-h-screen bg-hcDark text-hcText flex flex-col items-center justify-center font-mono">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-hcMuted">[ ПОДКЛЮЧЕНИЕ К COMMLINK... ]</h2>
             </div>
         );
     }
 
+    const modeName = (roomData.mode || '').replace('_', ' ').toUpperCase();
+
     return (
-        <div className="h-screen overflow-hidden theme-panel bg-hcDark text-hcText flex flex-col p-2">
+        <SteamWindow className="h-screen overflow-hidden text-hcText flex flex-col p-1.5 sm:p-2 bg-hcDark">
             {/* Steam 2003 Dialog Header Bar */}
-            <div className="steam-dialog-header shrink-0">
-                <span>Steam CommLink — Operation {id} [{(roomData.mode || '').replace('_', ' ').toUpperCase()}]</span>
-                <div className="flex items-center gap-1">
-                    <button onClick={handleLeave} className="px-1 py-0.2 hover:text-white" title="Вернуться в меню"><ArrowLeft size={12} /></button>
-                </div>
+            <div className="steam-dialog-header shrink-0 flex items-center justify-between font-mono">
+                <span>Steam CommLink — Operation {id} [{modeName}]</span>
+                <button 
+                    onClick={handleLeave} 
+                    className="px-1.5 py-0.5 text-[10px] font-mono hover:bg-red-900/60 text-slate-300 hover:text-white border border-transparent hover:border-red-500" 
+                    title="Выйти в главное меню"
+                >
+                    [X]
+                </button>
             </div>
 
-            {/* Top Navigation & Status Bar */}
-            <div className="steam-inset-box theme-inner-panel p-2 flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 shrink-0 gap-2 w-full box-border">
-                <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
-                    <button 
+            {/* Top Tactical Navigation & Status Bar */}
+            <SteamInset className="p-1.5 flex flex-col sm:flex-row items-start sm:items-center justify-between mb-1.5 shrink-0 gap-2 w-full box-border">
+                <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                    <SteamButton 
+                         variant="primary"
                          onClick={handleLeave}
-                         className="theme-button px-3 min-h-[44px] text-xs font-bold flex items-center justify-center gap-1 rounded"
+                         className="px-2.5 py-1 text-xs font-mono font-bold tracking-wider"
                     >
-                        <ArrowLeft size={16} /> Назад
-                    </button>
-                    <div className="text-right sm:text-left flex-1">
-                        <h1 className="text-sm sm:text-xs font-bold uppercase tracking-wider text-hcText flex items-center justify-end sm:justify-start gap-2">
-                            Operation <span className="theme-highlight truncate max-w-[100px] sm:max-w-none">{id}</span>
-                        </h1>
-                        <p className="text-[11px] sm:text-[10px] text-hcMuted font-mono truncate">
-                            Режим: <span className="text-hcBlue font-bold">{(roomData.mode || '').replace('_', ' ')}</span>
-                        </p>
+                        [ НАЗАД ]
+                    </SteamButton>
+
+                    <div className="flex items-center gap-2 font-mono text-[11px] leading-tight">
+                        <span className="text-slate-400">ОПЕРАЦИЯ:</span>
+                        <span className="text-hcAccent font-bold">{id}</span>
+                        <span className="text-slate-600">|</span>
+                        <span className="text-slate-400">РЕЖИМ:</span>
+                        <span className="text-sky-400 font-bold">{modeName}</span>
                     </div>
                 </div>
 
-                <div className="flex items-center w-full sm:w-auto overflow-x-auto custom-scrollbar pb-1 sm:pb-0">
-                    <div className="steam-inset-box flex flex-row p-1 gap-1 theme-inner-panel min-w-min">
-                        {Object.entries(roomData.players || {}).map(([playerUid, player]) => (
-                             <div 
+                {/* Squad Readiness Badges */}
+                <div className="flex items-center gap-1 w-full sm:w-auto overflow-x-auto custom-scrollbar">
+                    {Object.entries(roomData.players || {}).map(([playerUid, player]) => {
+                        const isHost = playerUid === roomData.host;
+                        const isReady = Boolean(player.isReady);
+                        return (
+                            <div 
                                 key={playerUid} 
-                                className={`px-2 py-1 min-h-[32px] sm:min-h-[auto] flex items-center gap-1 text-[11px] sm:text-[10px] font-bold whitespace-nowrap rounded ${playerUid === roomData.host ? 'theme-highlight font-bold' : 'text-hcMuted'}`}
-                             >
-                                 {player.isReady && <ShieldCheck size={12} className="text-hcGreen shrink-0" />}
-                                 {player.name}
-                             </div>
-                        ))}
-                    </div>
+                                className={`px-2 py-0.5 flex items-center gap-1 text-[10px] font-mono whitespace-nowrap border ${
+                                    isReady 
+                                        ? 'bg-emerald-950/40 border-emerald-600/60 text-emerald-300' 
+                                        : 'bg-black/40 border-slate-700/60 text-slate-400'
+                                }`}
+                            >
+                                <span className={isReady ? 'text-emerald-400 font-bold' : 'text-slate-500'}>
+                                    {isReady ? '[✓]' : '[...]'}
+                                </span>
+                                <span className={isHost ? 'text-hcAccent font-bold' : 'text-slate-200'}>
+                                    {player.name}
+                                </span>
+                            </div>
+                        );
+                    })}
                 </div>
-            </div>
+            </SteamInset>
 
             <div className="flex-1 overflow-hidden">
                 {(roomData.mode === 'chaos' || roomData.mode === 'chaos_random' || roomData.mode === 'chaos_attrition') && <ChaosMode />}
                 {(roomData.mode === 'coop' || roomData.mode === 'attrition') && <CoopDraft />}
                 {roomData.mode === 'random_pool' && <RandomPool />}
             </div>
-        </div>
+        </SteamWindow>
     );
 };
 
