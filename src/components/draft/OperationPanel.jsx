@@ -90,20 +90,29 @@ export default function OperationPanel({ pool, players, roomCode, uid, isHost, r
                         <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
                             <input 
                                 type="checkbox" 
-                                checked={roomOptions?.depleteBoosters || false} 
-                                onChange={handleToggleDepleteBoosters} 
+                                checked={roomOptions?.depletePrimary ?? roomOptions?.depleteWeapons ?? true} 
+                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depletePrimary', !(roomOptions?.depletePrimary ?? roomOptions?.depleteWeapons ?? true))} 
                                 className="accent-yellow-400" 
                             />
-                            <span className="text-gray-300 font-medium text-[10px]">Истощать бустеры</span>
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать Primary</span>
                         </label>
                         <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
                             <input 
                                 type="checkbox" 
-                                checked={roomOptions?.depleteWeapons ?? true} 
-                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteWeapons', !(roomOptions?.depleteWeapons ?? true))} 
+                                checked={roomOptions?.depleteSecondary ?? roomOptions?.depleteWeapons ?? true} 
+                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteSecondary', !(roomOptions?.depleteSecondary ?? roomOptions?.depleteWeapons ?? true))} 
                                 className="accent-yellow-400" 
                             />
-                            <span className="text-gray-300 font-medium text-[10px]">Истощать оружие</span>
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать Secondary</span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
+                            <input 
+                                type="checkbox" 
+                                checked={roomOptions?.depleteGrenades ?? roomOptions?.depleteWeapons ?? true} 
+                                onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteGrenades', !(roomOptions?.depleteGrenades ?? roomOptions?.depleteWeapons ?? true))} 
+                                className="accent-yellow-400" 
+                            />
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать гранаты</span>
                         </label>
                         <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
                             <input 
@@ -122,6 +131,15 @@ export default function OperationPanel({ pool, players, roomCode, uid, isHost, r
                                 className="accent-yellow-400" 
                             />
                             <span className="text-gray-300 font-medium text-[10px]">Истощать стратагемы</span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer hover:bg-white/5 p-1.5 rounded transition-colors border border-white/5">
+                            <input 
+                                type="checkbox" 
+                                checked={roomOptions?.depleteBoosters || false} 
+                                onChange={handleToggleDepleteBoosters} 
+                                className="accent-yellow-400" 
+                            />
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать бустеры</span>
                         </label>
                     </div>
                 </SteamBox>

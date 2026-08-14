@@ -142,7 +142,9 @@ export function getMaxPossibleSlots(pool, playerUid) {
 
 export function buildDeployUpdates(pool, roomCode, roomOptions = {}, playerUids = []) {
     const options = {
-        depleteWeapons: true,
+        depletePrimary: true,
+        depleteSecondary: true,
+        depleteGrenades: true,
         depleteArmor: true,
         depleteBoosters: false,
         depleteStratagems: true,
@@ -156,8 +158,12 @@ export function buildDeployUpdates(pool, roomCode, roomOptions = {}, playerUids 
         if (!pool?.[category]) return;
 
         let shouldDeplete = true;
-        if (category === 'primary' || category === 'secondary' || category === 'grenade') {
-            shouldDeplete = options.depleteWeapons ?? true;
+        if (category === 'primary') {
+            shouldDeplete = options.depletePrimary ?? options.depleteWeapons ?? true;
+        } else if (category === 'secondary') {
+            shouldDeplete = options.depleteSecondary ?? options.depleteWeapons ?? true;
+        } else if (category === 'grenade') {
+            shouldDeplete = options.depleteGrenades ?? options.depleteWeapons ?? true;
         } else if (category === 'armor') {
             shouldDeplete = options.depleteArmor ?? true;
         } else if (category === 'booster') {

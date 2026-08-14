@@ -46,7 +46,7 @@ export default function CoopDraft() {
             <div className="flex items-center justify-center h-[calc(100vh-100px)] w-full">
                 <SteamInset className="p-6 max-w-lg w-full text-center">
                     <h2 className="text-sm font-bold uppercase tracking-widest text-hcAccent mb-2 border-b border-[var(--steam-border-dark)] pb-2 font-mono">
-                        [ SQUAD LOBBY // CO-OP DRAFT ]
+                        [ SQUAD LOBBY // ATTRITION ]
                     </h2>
                     <p className="text-xs text-slate-400 mb-5 font-mono">
                         Ожидание участников отряда. Арсенал миссии будет сформирован на основе открытых варбондов подключенных бойцов.

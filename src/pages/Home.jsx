@@ -11,6 +11,7 @@ const Home = () => {
     const { name, setName, createRoom, joinRoom, listenToActiveRooms, activeRooms } = useGameStore();
 
     const [mode, setMode] = useState('attrition'); 
+    const [customRoomTitle, setCustomRoomTitle] = useState('');
     const [isDark, setIsDark] = useState(document.body.getAttribute('data-dark') === 'true');
     const [showWarbonds, setShowWarbonds] = useState(false);
 
@@ -38,7 +39,7 @@ const Home = () => {
     const handleCreate = async () => {
         if (!name.trim()) return;
         try {
-            const newCode = await createRoom(mode);
+            const newCode = await createRoom(mode, customRoomTitle);
             if (newCode) {
                 navigate(`/room/${newCode}`);
             }
@@ -114,7 +115,7 @@ const Home = () => {
                                 {[
                                     { id: 'chaos_random', label: 'Chaos Random' },
                                     { id: 'chaos_attrition', label: 'Chaos Attrition' },
-                                    { id: 'attrition', label: 'Co-op Draft' },
+                                    { id: 'attrition', label: 'Attrition' },
                                     { id: 'random_pool', label: 'Random Pool' }
                                 ].map((m) => (
                                     <button
@@ -127,6 +128,20 @@ const Home = () => {
                                         {m.label}
                                     </button>
                                 ))}
+                            </div>
+
+                            <div className="flex flex-col gap-1 mt-1">
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                                    НАЗВАНИЕ ЛОББИ (ОПЦИОНАЛЬНО):
+                                </label>
+                                <input
+                                    type="text"
+                                    value={customRoomTitle}
+                                    onChange={(e) => setCustomRoomTitle(e.target.value)}
+                                    className="bg-black/60 border border-[var(--steam-border-dark)] px-3 py-1.5 text-xs font-mono text-slate-200 outline-none focus:border-hcAccent"
+                                    placeholder={name.trim() ? `По умолчанию: Операция ${name}` : "Введите название лобби..."}
+                                    maxLength={40}
+                                />
                             </div>
 
                             <SteamButton
@@ -151,23 +166,26 @@ const Home = () => {
                                 </div>
                             ) : (
                                 <div className="flex flex-col gap-1.5 max-h-[220px] overflow-y-auto pr-1 custom-scrollbar w-full">
-                                    {activeRooms.map((room) => (
-                                        <div 
-                                            key={room.id} 
-                                            className="flex justify-between items-center p-2 text-xs bg-black/40 border border-[var(--steam-border-dark)] hover:border-hcAccent/50 cursor-pointer transition-colors" 
-                                            onClick={() => handleJoin(room.id)}
-                                        >
-                                            <div className="flex flex-col text-left overflow-hidden">
-                                                <span className="font-bold text-slate-200 text-xs truncate">Лобби {room.players[room.host]?.name}</span>
-                                                <span className="text-[10px] text-hcAccent mt-0.5 truncate">
-                                                    Режим: {room.mode.replace('_', ' ').toUpperCase()} | ID: {room.id} | Бойцы: {Object.keys(room.players || {}).length}/4
+                                    {activeRooms.map((room) => {
+                                        const displayName = room.roomName || `Лобби ${room.players?.[room.host]?.name || 'Helldiver'}`;
+                                        return (
+                                            <div 
+                                                key={room.id} 
+                                                className="flex justify-between items-center p-2 text-xs bg-black/40 border border-[var(--steam-border-dark)] hover:border-hcAccent/50 cursor-pointer transition-colors" 
+                                                onClick={() => handleJoin(room.id)}
+                                            >
+                                                <div className="flex flex-col text-left overflow-hidden mr-2">
+                                                    <span className="font-bold text-slate-200 text-xs truncate">{displayName}</span>
+                                                    <span className="text-[10px] text-hcAccent mt-0.5 truncate">
+                                                        Режим: {room.mode.replace('_', ' ').toUpperCase()} | ID: {room.id} | Бойцы: {Object.keys(room.players || {}).length}/4
+                                                    </span>
+                                                </div>
+                                                <span className="text-[10px] text-hcAccent font-bold px-2 py-1 bg-black border border-[var(--steam-border-dark)] shrink-0">
+                                                    [ ВОЙТИ → ]
                                                 </span>
                                             </div>
-                                            <span className="text-[10px] text-hcAccent font-bold px-2 py-1 bg-black border border-[var(--steam-border-dark)]">
-                                                [ ВОЙТИ → ]
-                                            </span>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             )}
                         </SteamInset>

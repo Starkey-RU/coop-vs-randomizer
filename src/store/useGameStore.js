@@ -89,15 +89,17 @@ const useGameStore = create((setStore, getStore) => ({
         });
     },
 
-    createRoom: async (mode) => {
+    createRoom: async (mode, customRoomName = '') => {
         const { uid, name } = getStore();
         const code = Math.random().toString(36).substring(2, 7).toUpperCase();
         
         const myLocalWarbonds = getLocalWarbonds();
+        const finalRoomName = customRoomName.trim() || `Операция ${name}`;
         
         let initialRoom = {
             host: uid,
             mode: mode, 
+            roomName: finalRoomName,
             status: 'lobby',
             createdAt: Date.now(),
             players: {

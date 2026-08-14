@@ -28,6 +28,13 @@ class RoomActions {
         await update(ref(db), updates);
     }
 
+    static async updateRoomName(roomCode, newName) {
+        if (!roomCode || !newName?.trim()) return;
+        await update(ref(db, `rooms/${roomCode}`), {
+            roomName: newName.trim()
+        });
+    }
+
     static async startDraft(roomCode, players) {
         if (!roomCode || !players) return;
         const warbondsLists = Object.values(players).map(p => p?.warbonds || []);
