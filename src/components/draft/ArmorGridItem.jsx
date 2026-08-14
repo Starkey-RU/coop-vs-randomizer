@@ -1,5 +1,4 @@
 import React from 'react';
-import { ShieldAlert } from 'lucide-react';
 import ArmorDisplay from '../ui/ArmorDisplay';
 import SteamInset from '../ui/SteamInset';
 import SteamButton from '../ui/SteamButton';
@@ -20,10 +19,10 @@ export default function ArmorGridItem({
     let opacityClass = 'opacity-100';
 
     if (isMine) {
-        borderClass = 'border-hcAccent bg-hcAccent/10 shadow-[0_0_10px_rgba(210,185,54,0.2)]';
+        borderClass = 'border-2 border-yellow-400 bg-yellow-500/10 shadow-[inset_0_0_8px_rgba(250,204,21,0.2)]';
     } else if (isTaken) {
-        borderClass = 'border-red-900/60 bg-red-900/10 cursor-not-allowed';
-        opacityClass = 'opacity-40 grayscale';
+        borderClass = 'border-red-900/60 bg-red-950/20 cursor-not-allowed';
+        opacityClass = 'opacity-35 grayscale';
     } else if (isLocked) {
         borderClass = 'border-red-900/40 bg-black/40 cursor-not-allowed';
         opacityClass = 'opacity-60';
@@ -40,6 +39,20 @@ export default function ArmorGridItem({
                         {item.id} | {code || 'base'}
                     </div>
                 )}
+
+                {/* Selection badges */}
+                {isMine && (
+                    <div className="absolute top-1 right-1 z-30 bg-black/90 text-yellow-400 border border-yellow-400 text-[8px] font-mono font-bold px-1 py-0.2 tracking-wider">
+                        [ ВЫБРАНО ]
+                    </div>
+                )}
+
+                {isTaken && (
+                    <div className="absolute top-1 right-1 z-30 bg-black/90 text-red-400 border border-red-800 text-[8px] font-mono font-bold px-1 py-0.2 tracking-wider">
+                        [ ЗАНЯТО ]
+                    </div>
+                )}
+
                 <img 
                     src={`/armor/${item.imageURL}`} 
                     alt={item.name} 
@@ -58,32 +71,42 @@ export default function ArmorGridItem({
                 </span>
             </div>
 
-            {isTaken && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded z-20 pointer-events-none">
-                    <ShieldAlert className="text-hcRed animate-pulse" size={28} />
-                </div>
-            )}
-
             {isLocked && (
                 <div 
                     className="absolute inset-0 rounded z-20 pointer-events-none border border-red-900/60"
                     style={{
-                        backgroundImage: 'repeating-linear-gradient(45deg, rgba(220,38,38,0.2), rgba(220,38,38,0.2) 10px, rgba(0,0,0,0.75) 10px, rgba(0,0,0,0.75) 20px)'
+                        backgroundImage: 'repeating-linear-gradient(45deg, rgba(220,38,38,0.25), rgba(220,38,38,0.25) 8px, rgba(0,0,0,0.75) 8px, rgba(0,0,0,0.75) 16px)'
                     }}
                 />
             )}
-            
-            {/* Mobile Action Overlay for Armor */}
-            {showTooltip && !isTaken && (
-                 <div className="absolute inset-0 z-[60] bg-black/90 rounded flex items-center justify-center p-2 backdrop-blur-sm border border-hcAccent animate-in fade-in zoom-in duration-200">
-                    <SteamButton 
+
+            {/* Desktop Hover Tooltip */}
+            {hasHover && (
+                <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-black border border-hcBorder text-white text-xs px-2.5 py-1.5 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 pointer-events-none transition-opacity shadow-lg">
+                    <span className={isMine ? 'text-hcAccent font-bold' : ''}>{item.name}</span>
+                    {isMine && <span className="text-[10px] text-yellow-400 ml-2 font-mono">[ ВЫБРАНО ВАМИ ]</span>}
+                    {isTaken && <span className="text-[10px] text-red-400 ml-2 font-mono">[ ЗАНЯТО СОЮЗНИКОМ ]</span>}
+                    {isLocked && <span className="text-[10px] text-red-400 ml-2 font-mono">[ НЕТ ЛИЦЕНЗИИ ]</span>}
+                </div>
+            )}
+
+            {/* Mobile / Touch Tap Action Tooltip */}
+            {showTooltip && (
+                <div className="absolute inset-0 z-40 bg-black/90 flex flex-col items-center justify-center p-2 gap-2 rounded animate-in fade-in zoom-in-95">
+                    <span className="text-[10px] font-bold text-white text-center leading-tight truncate w-full px-1">
+                        {item.name}
+                    </span>
+                    <SteamButton
                         variant={isMine ? 'danger' : 'primary'}
-                        onClick={(e) => { e.stopPropagation(); onPerformAction(item); }}
-                        className="min-h-[44px] w-full max-w-[200px] text-xs font-bold uppercase tracking-widest"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onPerformAction(item);
+                        }}
+                        className="py-1 px-2 text-[9px] font-bold uppercase tracking-wider w-full min-h-[32px]"
                     >
-                        {isMine ? 'Unequip' : 'Equip Armor'}
+                        {isMine ? 'Снять' : isTaken ? 'Занято' : 'Выбрать'}
                     </SteamButton>
-                 </div>
+                </div>
             )}
         </SteamInset>
     );

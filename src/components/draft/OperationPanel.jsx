@@ -121,7 +121,7 @@ export default function OperationPanel({ pool, players, roomCode, uid, isHost, r
                                 onChange={() => RoomActions.updateRoomOption(roomCode, 'depleteStratagems', !(roomOptions?.depleteStratagems ?? true))} 
                                 className="accent-yellow-400" 
                             />
-                            <span className="text-gray-300 font-medium text-[10px]">Лимит стратагем</span>
+                            <span className="text-gray-300 font-medium text-[10px]">Истощать стратагемы</span>
                         </label>
                     </div>
                 </SteamBox>

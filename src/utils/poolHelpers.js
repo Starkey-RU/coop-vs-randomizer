@@ -145,7 +145,7 @@ export function buildDeployUpdates(pool, roomCode, roomOptions = {}, playerUids 
         depleteWeapons: true,
         depleteArmor: true,
         depleteBoosters: false,
-        depleteStratagems: false,
+        depleteStratagems: true,
         ...roomOptions
     };
 
@@ -163,7 +163,7 @@ export function buildDeployUpdates(pool, roomCode, roomOptions = {}, playerUids 
         } else if (category === 'booster') {
             shouldDeplete = options.depleteBoosters ?? false;
         } else if (category === 'stratagems') {
-            shouldDeplete = options.depleteStratagems ?? false;
+            shouldDeplete = options.depleteStratagems ?? true;
         }
 
         Object.entries(pool[category]).forEach(([itemKey, itemState]) => {
